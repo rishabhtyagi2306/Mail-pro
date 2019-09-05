@@ -8,6 +8,7 @@ using demoDB.Db.DbOperations;
 
 namespace CRUDdemo.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         StudentsRepository repository = null;

@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>studentModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>studentModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

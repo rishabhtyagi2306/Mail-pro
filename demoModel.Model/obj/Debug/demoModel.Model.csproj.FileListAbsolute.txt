@@ -1,6 +1,5 @@
 C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\bin\Debug\demoModel.Model.dll
 C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\bin\Debug\demoModel.Model.pdb
-C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\obj\Debug\demoModel.Model.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\obj\Debug\demoModel.Model.csproj.CoreCompileInputs.cache
 C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\obj\Debug\demoModel.Model.dll
 C:\Users\hp\source\repos\CRUDdemo\demoModel.Model\obj\Debug\demoModel.Model.pdb

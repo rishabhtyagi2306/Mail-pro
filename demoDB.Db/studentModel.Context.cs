@@ -26,5 +26,6 @@ namespace demoDB.Db
         }
     
         public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<user> user { get; set; }
     }
 }
