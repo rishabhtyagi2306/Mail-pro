@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using demoModel.Model;
 using demoDB.Db.DbOperations;
 using demoDB.Db;
+//using System.Web.Security;
 
 namespace CRUDdemo.Controllers
 {
@@ -18,9 +19,21 @@ namespace CRUDdemo.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Login(Membership model)
         {
-            return View();
+            using (var context = new demoCRUDEntities())
+            {
+                bool isvalid = context.user.Any(x => x.User_name == model.User_name && x.Password == model.Password);
+                if(isvalid)
+                {
+                    //FormsAuthentication.SetAuthCookie(model.User_name, false);
+                    return RedirectToAction(Request.Form["%2fhome%2fcreate"].Split('/')[2]);
+                }
+                ModelState.AddModelError("", "Invalid user name and password");
+                return View();
+            }
+            
         }
 
         public ActionResult Signup()

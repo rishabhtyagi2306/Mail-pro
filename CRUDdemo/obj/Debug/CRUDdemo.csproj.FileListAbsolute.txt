@@ -83,3 +83,9 @@ C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\demoModel.Model.pdb
 C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\EntityFramework.xml
 C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\EntityFramework.SqlServer.dll
 C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\EntityFramework.SqlServer.xml
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\CryptoHelper.dll
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\CryptoHelper.xml
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+C:\Users\hp\source\repos\CRUDdemo\CRUDdemo\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
