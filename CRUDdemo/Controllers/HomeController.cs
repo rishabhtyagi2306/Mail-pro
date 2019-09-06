@@ -23,6 +23,11 @@ namespace CRUDdemo.Controllers
             return View();
         }
 
+        public ActionResult demo()
+        {
+            return View();
+        }
+
         [HttpPost]
 
         public ActionResult Create(StudentsModel model)

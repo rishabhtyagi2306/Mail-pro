@@ -27,5 +27,7 @@ namespace demoDB.Db
     
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<user> user { get; set; }
+
+        public System.Data.Entity.DbSet<demoModel.Model.Membership> Memberships { get; set; }
     }
 }

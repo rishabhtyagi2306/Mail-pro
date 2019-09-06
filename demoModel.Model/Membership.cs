@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace demoModel.Model
 {
-    class Membership
+    public class Membership
     {
         public int Id { get; set; }
 
