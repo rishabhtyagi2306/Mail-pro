@@ -28,7 +28,7 @@ namespace CRUDdemo.Controllers
                 if(isvalid)
                 {
                     //FormsAuthentication.SetAuthCookie(model.User_name, false);
-                    return RedirectToAction(Request.Form["%2fhome%2fcreate"].Split('/')[2]);
+                    return RedirectToAction("GetAllStudents" , "Home");
                 }
                 ModelState.AddModelError("", "Invalid user name and password");
                 return View();

@@ -18,15 +18,12 @@ namespace CRUDdemo.Controllers
             repository = new StudentsRepository();
         }
 
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
         }
 
-        public ActionResult demo()
-        {
-            return View();
-        }
 
         [HttpPost]
 
