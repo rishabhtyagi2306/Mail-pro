@@ -11,20 +11,18 @@
 	width: 50%;
 	float: left;
 	height: 750px;
-	
+	background-color: white;
 }
+
 #form{
 	padding-top:15%;
 }
 #back{
-	background-image: url("../XD/background 1.jpg");
+	background-image: url("../img/background 1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-.col-md-6{
-	height: 750px;
-	background-color: white;
-}
+
 #logo{
 	align-content:left;
 	position: absolute;
@@ -62,7 +60,7 @@
 	color: black;
 	font-size:2.2em;
 }
-#email{
+/*#email{
 	margin-top: 0;
 	font-size: 1.2em;
 	}
@@ -80,33 +78,115 @@
 	left: 7%;
 	border-bottom: 1px thick rgba(135,132,132,1.00);
 	
-}
+}*/
 #btn{
 	position: absolute;
-	margin-top: 15%;
+	margin-top: 10%;
 	height: 40px;
-	width: 20%;
-	left:24%;
+	width: 25%;
+	left:40%;
 	background-color: black;
 	color: white;
 	font-size: 0.6em;
 }
-@media only screen and (min-width: 1140px) {
+@media only screen and (min-width: 1140px ) {
+	#btn{
+		font-size: 1.2em;
+		
+	}
+	
+	
+}
+@media only screen and (max-width: 900px ) {
+	.welcome{
+		font-size: 1.8em;
+	}
+	#btn{
+		margin-top: 15%;
+	}
+	#form{
+		top: 5%;
+		width: 50%;
+	}
+	
+}
+@media only screen and (max-width: 767px) {
 	#btn{
 		font-size: 1.2em;
 	}
 	.col-md-6{
-		z-index: 1;
-		margin-top: 0px;
+		height: 500px;
+	}
+	.welcome{
+		font-size: 1.5em;
+		top: 0%;
+		left: 35%;
+	}
+	#logo-name{
+		font-size: 1.5em;
+		margin-top: 3%;
+	}
+	#back{
+		height:300px
+	}
+	.signin{
+		font-size: 1.8em;
+		margin-top: 10%;
+		
+	}
+	#form{
+		top:-20%;
+	}
+	
+}
+@media only screen and (max-width: 550px) {
+	#btn{
+		font-size: 0.6em;
+		margin-top: 15%;
+	}
+	.col-md-6{
+		height: 400px;
+	}
+	.welcome{
+		font-size: 1.5em;
+		top: -20%;
+		left: 25%;
+	}
+	#logo-name{
+		font-size: 0.9em;
+		margin-top: 3%;
+		left: 20%;
+	}
+	#back{
+		height:250px;
+	}
+	.signin{
+		font-size: 1.2em;
+		margin-top: 5%;
+		margin-left: 5%;
+	}
+	#form{
+		top:-17%;
 	}
 }
-#check{
+
+#defaultCheck1{
 	position: absolute;
-	margin-top:5%;
+	margin-top:0%;
+	height: 40px;
+	left:10%;
+	font-size: 01em;
+}
+.form-check-label{
+	position: absolute;
+	margin-top:1%;
 	height: 40px;
 	left:10%;
 	font-size: 01em;
 }
 #form{
-	margin-top: 10%;
+	position: absolute;
+	margin-top: 15%;
+	width: 80%;
+	margin-left: 5%;
 }
