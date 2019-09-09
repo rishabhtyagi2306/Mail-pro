@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="MailProEntities">
+    <EntitySetMapping Name="CategoryTable">
+      <EntityTypeMapping TypeName="DatabaseModel.CategoryTable">
+        <MappingFragment StoreEntitySet="CategoryTable">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConnectTable">
+      <EntityTypeMapping TypeName="DatabaseModel.ConnectTable">
+        <MappingFragment StoreEntitySet="ConnectTable">
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacultyTable">
+      <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
+        <MappingFragment StoreEntitySet="FacultyTable">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyEmail" ColumnName="FacultyEmail" />
+          <ScalarProperty Name="FacultyPhoneNo" ColumnName="FacultyPhoneNo" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentTable">
+      <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
+        <MappingFragment StoreEntitySet="StudentTable">
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="Section" ColumnName="Section" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
+          <ScalarProperty Name="IsCR" ColumnName="IsCR" />
+          <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
