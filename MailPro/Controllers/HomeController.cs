@@ -41,5 +41,37 @@ namespace MailPro.Controllers
             }
             return RedirectToAction("Create");
         }
+
+        public ActionResult GetAllStudents()
+        {
+            //StudentTable Stu = new StudentTable();
+            var Data = Db.StudentTables.SqlQuery("Select *From StudentTable").ToList();
+            return View(Data);
+        }
+
+        public ActionResult Edit()
+        {
+            //var Data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = @p0");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int StudentNo, StudentModel obj)
+        {
+            List<object> Parameters = new List<object>();
+            Parameters.Add(obj.StudentNo);
+            Parameters.Add(obj.StudentName);
+            Parameters.Add(obj.StudentEmail);
+            Parameters.Add(obj.Branch);
+            Parameters.Add(obj.Section);
+            Parameters.Add(obj.Year);
+            Parameters.Add(obj.IsHosteller);
+            Parameters.Add(obj.IsCR);
+            Parameters.Add(obj.StudentCategory);
+            object[] objectarray = Parameters.ToArray();
+            int Output = Db.Database.ExecuteSqlCommand("Update StudentTable set StudentNo = @p0, StudentName = @p1, StudentEmail = @p2, Branch = @p3, Section = @p4, Year = @p5, IsHosteller = @p6, IsCR = @p7, StudentCategory = @p8 where StudentNo = @p0", objectarray);
+
+            return View();
+        }
     }
 }

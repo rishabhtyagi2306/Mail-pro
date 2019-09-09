@@ -9,6 +9,6 @@ namespace MailPro.Models
     public class DataContext : DbContext
     {
         public DataContext() : base("MailProEntities") { }
-        public DbSet<FacultyTable> FacultyTables { get; set; }
+        public DbSet<StudentTable> StudentTables { get; set; }
     }
 }
