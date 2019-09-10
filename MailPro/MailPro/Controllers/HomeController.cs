@@ -83,22 +83,21 @@ namespace MailPro.Controllers
         public ActionResult Details(int StudentNo)
         {
             var Data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = @p0", StudentNo).SingleOrDefault();
-            return View(Data);
+            return View();
         }
 
-        //public ActionResult Delete()
-        //{
-         //   var Data = Db.StudentTables.SqlQuery("Select *From StudentTable").ToList();
-          //  return View(Data);
-        //}
+        public ActionResult Delete()
+        {
+            return View();
+        }
 
+        [HttpPost]
         public ActionResult Delete(int StudentNo)
         {
             var productlist = Db.Database.ExecuteSqlCommand("delete from StudentTable where StudentNo=@p0", StudentNo);
 
             if (productlist != 0)
             {
-                //We will go back to action ProductDelete to show updated records
                 return RedirectToAction("GetAllStudents");
             }
             return View();
