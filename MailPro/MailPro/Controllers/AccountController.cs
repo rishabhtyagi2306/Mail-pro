@@ -53,6 +53,12 @@ namespace MailPro.Controllers
                 //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
                 FacultyTable Fac = new FacultyTable();
                 //Fac.Password = Crypto.Hash(Fac.Password);
+                var IsExist = IsEmailExist(model.FacultyEmail);
+                if(IsExist)
+                {
+                    ModelState.AddModelError("Email Exist", "Email already exist");
+                    return View();
+                }
                 Fac.ActivationCode = Guid.NewGuid();
                
                 model.Password = Crypto.Hash(model.Password);
@@ -62,6 +68,16 @@ namespace MailPro.Controllers
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
             return RedirectToAction("Login");
+        }
+
+        [NonAction]
+        public bool IsEmailExist(string FacultyEmail)
+        {
+            using(MailProEntities Mp = new MailProEntities())
+            {
+                var v = Mp.FacultyTable.Where(a => a.FacultyEmail == FacultyEmail).FirstOrDefault();
+                return v != null;
+            }
         }
 
         [NonAction]
