@@ -67,7 +67,30 @@ namespace MailPro.Controllers
                 EmailVerification(model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return RedirectToAction("Login");
+            return RedirectToAction("Signup");
+        }
+
+        [HttpGet]
+        public ActionResult VerifyAccount(string id)
+        {
+            bool status = false;
+            using (MailProEntities Mp = new MailProEntities())
+            {
+                Mp.Configuration.ValidateOnSaveEnabled = false;
+                var v = Mp.FacultyTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                if(v != null)
+                {
+                    v.IsEmailVerified = true;
+                    Mp.SaveChanges();
+                    status = true;
+                }
+                else
+                {
+                    ViewBag.Message = "invalid request";
+                }
+            }
+            ViewBag.Status = status;
+            return View();
         }
 
         [NonAction]
@@ -84,11 +107,11 @@ namespace MailPro.Controllers
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "<Pending>")]
         public void EmailVerification(string FacultyEmail, string ActivationCode )
         {
-            var verifyUrl = "/Account/VerifyAccount" + ActivationCode;
+            var verifyUrl = "/Account/VerifyAccount/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Rishabh Tyagi");
+            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "**********";
+            var FromEmailPassword = "***********";
             string Body = "<br/>Please click on the link below to verify your account" +
                 "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
 
