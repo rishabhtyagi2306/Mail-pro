@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using MailPro.Models;
 using System.Web.Security;
+using System.Net.Mail;
+using System.Net;
 
 namespace MailPro.Controllers
 {
@@ -49,14 +51,48 @@ namespace MailPro.Controllers
             using (var context = new MailProEntities())
             {
                 //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-                //FacultyTable Fac = new FacultyTable();
+                FacultyTable Fac = new FacultyTable();
                 //Fac.Password = Crypto.Hash(Fac.Password);
+                Fac.ActivationCode = Guid.NewGuid();
+               
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
+                EmailVerification(model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
             return RedirectToAction("Login");
+        }
+
+        [NonAction]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "<Pending>")]
+        public void EmailVerification(string FacultyEmail, string ActivationCode )
+        {
+            var verifyUrl = "/Account/VerifyAccount" + ActivationCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Rishabh Tyagi");
+            var ToEmail = new MailAddress(FacultyEmail);
+            var FromEmailPassword = "**********";
+            string Body = "<br/>Please click on the link below to verify your account" +
+                "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
+
+            SmtpClient smtp = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+            };
+
+            using (var message = new MailMessage(FromEmail, ToEmail)
+            {
+                Body = Body,
+                IsBodyHtml = true
+            })
+
+                smtp.Send(message);
         }
     }
 }

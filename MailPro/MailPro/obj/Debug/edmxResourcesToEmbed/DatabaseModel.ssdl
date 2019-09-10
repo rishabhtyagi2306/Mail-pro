@@ -26,6 +26,8 @@
     <Property Name="FacultyPhoneNo" Type="int" Nullable="false" />
     <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" />
+    <Property Name="ActivationCode" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>

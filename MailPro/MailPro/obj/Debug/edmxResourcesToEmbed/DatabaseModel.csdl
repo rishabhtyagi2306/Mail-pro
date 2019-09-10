@@ -31,6 +31,8 @@
     <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
+    <Property Name="IsEmailVerified" Type="Boolean" />
+    <Property Name="ActivationCode" Type="Guid" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>

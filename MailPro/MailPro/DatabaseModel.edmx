@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CategoryTable">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -31,6 +31,8 @@
           <Property Name="FacultyPhoneNo" Type="int" Nullable="false" />
           <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="bit" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -100,8 +102,7 @@
             <End Role="ConnectTable" EntitySet="ConnectTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -136,6 +137,8 @@
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
+          <Property Name="IsEmailVerified" Type="Boolean" />
+          <Property Name="ActivationCode" Type="Guid" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -233,6 +236,8 @@
           <EntitySetMapping Name="FacultyTable">
             <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
               <MappingFragment StoreEntitySet="FacultyTable">
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
                 <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
                 <ScalarProperty Name="FacultyEmail" ColumnName="FacultyEmail" />
