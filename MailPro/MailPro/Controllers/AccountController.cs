@@ -8,6 +8,7 @@ using System.Web.Security;
 
 namespace MailPro.Controllers
 {
+    
     public class AccountController : Controller
     {
         // GET: Account
@@ -24,9 +25,13 @@ namespace MailPro.Controllers
             {
                 var y = Crypto.Hash(model.Password);
                 bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y);
-                if (IsValid)
-                {
-                    var ID = context.FacultyTable.Find();
+                 FacultyTable facultyTable = new FacultyTable() ;
+                facultyTable= context.FacultyTable.Find(model.FacultyEmail);
+                int ID = facultyTable.FacultyID;
+                 //int ID = model.FacultyID;
+
+                    if (IsValid)
+                { 
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
                     //return RedirectToAction("Index", "GetAllSudents");
                     return RedirectToAction("CreateCategory","Category"); 
@@ -51,6 +56,7 @@ namespace MailPro.Controllers
             {
                 //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
                 //FacultyTable Fac = new FacultyTable();
+
                 //Fac.Password = Crypto.Hash(Fac.Password);
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
