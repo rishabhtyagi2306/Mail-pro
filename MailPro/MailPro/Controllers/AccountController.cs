@@ -30,7 +30,7 @@ namespace MailPro.Controllers
                 if (IsValid)
                 {
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
-                    return RedirectToAction("Index", "GetAllSudents");
+                    return RedirectToAction("AddCategory", "Category");
                 }
                 ModelState.AddModelError("", "Invalid Email or Password");
                 return View();
@@ -64,10 +64,16 @@ namespace MailPro.Controllers
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
-                EmailVerification(model.FacultyEmail, Fac.ActivationCode.ToString());
+                EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return RedirectToAction("Signup");
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
@@ -105,14 +111,15 @@ namespace MailPro.Controllers
 
         [NonAction]
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "<Pending>")]
-        public void EmailVerification(string FacultyEmail, string ActivationCode )
+        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode )
         {
             var verifyUrl = "/Account/VerifyAccount/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "***********";
-            string Body = "<br/>Please click on the link below to verify your account" +
+            var FromEmailPassword = "01342263354";
+            string Subject = "Email Verification for Mail Pro Account";
+            string Body = "Your Faculty ID id" + "= '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
                 "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
 
             SmtpClient smtp = new SmtpClient()
@@ -127,6 +134,7 @@ namespace MailPro.Controllers
 
             using (var message = new MailMessage(FromEmail, ToEmail)
             {
+                Subject = Subject,
                 Body = Body,
                 IsBodyHtml = true
             })

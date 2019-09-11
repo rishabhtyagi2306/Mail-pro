@@ -28,6 +28,6 @@ namespace MailPro.Models
         [Required(ErrorMessage = "Please conform Your Password")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-        public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+        //public virtual ICollection<CategoryTable> CategoryTable { get; set; }
     }
 }

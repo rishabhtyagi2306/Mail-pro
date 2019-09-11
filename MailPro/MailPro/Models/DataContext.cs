@@ -10,5 +10,7 @@ namespace MailPro.Models
     {
         public DataContext() : base("MailProEntities") { }
         public DbSet<StudentTable> StudentTables { get; set; }
+
+        public DbSet<CategoryTable> CategoryTables { get; set; }
     }
 }
