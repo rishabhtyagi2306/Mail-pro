@@ -17,8 +17,9 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCategory(CategoryModel obj, FacultyTable FacultyID)
+        public ActionResult AddCategory(CategoryModel obj, Membership FacultyID)
         {
+            Session["FacultyID"] = FacultyID;
             List<object> Parameters = new List<object>();
             //FacultyTable st = new FacultyTable();
 

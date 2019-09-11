@@ -20,7 +20,13 @@
                 @Html.ActionLink("Mail Pro", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul
+                <ul class = "nav navbar-nav">
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li><a>Dear - @User.Identity.Name</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                    
                 </ul>
             </div>
         </div>
