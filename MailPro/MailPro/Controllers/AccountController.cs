@@ -25,9 +25,9 @@ namespace MailPro.Controllers
             {
                 var y = Crypto.Hash(model.Password);
                 bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y);
-                 FacultyTable facultyTable = new FacultyTable() ;
-                facultyTable= context.FacultyTable.Find(model.FacultyEmail);
-                int ID = facultyTable.FacultyID;
+                FacultyTable facultyTable = new FacultyTable() ;
+                //facultyTable = context.FacultyTable.Where(x => x.FacultyEmail == model.FacultyEmail);
+                //int ID = facultyTable.FacultyID;
                  //int ID = model.FacultyID;
 
                     if (IsValid)
