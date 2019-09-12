@@ -206,6 +206,7 @@
     <Content Include="Views\Account\VerifyAccount.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\ShowCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -30,10 +30,20 @@ namespace MailPro.Controllers
             Parameters.Add(obj.FacultyID);
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
-            {
-                ViewBag.Message = "Data of Student" + obj.CategoryName + "is added successfully";
-            }
-            return RedirectToAction("Create");
+            //Session["FacID"] = fid; 
+
+            return RedirectToAction("ShowCategory");
+        }
+
+        public ActionResult ShowCategory()
+        {
+            //List<object> Parameters = new List<object>();
+            int fid = (int)Session["FacultyID"];
+            //obj.FacultyID = (int)Session["FacID"];
+            //Parameters.Add(obj.FacultyID);
+            //object[] objectarray = Parameters.ToArray();
+            var Data = Db.CategoryTables.SqlQuery("Select *From CategoryTable where FacultyID ="+ fid).ToList();
+            return View(Data);
         }
     }
 }
