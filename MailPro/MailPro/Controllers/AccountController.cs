@@ -26,13 +26,15 @@ namespace MailPro.Controllers
             using (var context = new MailProEntities())
             {
                 var y = Crypto.Hash(model.Password);
-                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y);
+                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && x.FacultyID == model.FacultyID);
                 if (IsValid)
                 {
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
-                    return RedirectToAction("AddCategory", "Category");
+                    //TempData["mydata"] = model.FacultyID;
+                    Session["FacultyID"] = model.FacultyID;
+                    return RedirectToAction("AddCategory", "Category" /*new { model.FacultyID}*/);
                 }
-                ModelState.AddModelError("", "Invalid Email or Password");
+                ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
             }
 
@@ -117,7 +119,7 @@ namespace MailPro.Controllers
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "01342263354";
+            var FromEmailPassword = "*********";
             string Subject = "Email Verification for Mail Pro Account";
             string Body = "Your Faculty ID id" + "= '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
                 "<br/><br/><a href = '" + link + "'>" + link + "<a/>";

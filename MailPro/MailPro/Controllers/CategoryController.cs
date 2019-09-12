@@ -17,16 +17,19 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCategory(CategoryModel obj, Membership FacultyID)
+        public ActionResult AddCategory(CategoryModel obj)
         {
-            Session["FacultyID"] = FacultyID;
+            //Session["FacultyID"] = FacultyID;
+            int fid = (int)Session["FacultyID"];
             List<object> Parameters = new List<object>();
-            //FacultyTable st = new FacultyTable();
+            //var fac = (String)Session["FacultyID"];
+            //CategoryTable ct = new CategoryTable();
+            obj.FacultyID = fid;
 
             Parameters.Add(obj.CategoryName);
             Parameters.Add(obj.FacultyID);
             object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName, FacultyID) values(@p0,@p1)", objectarray);
+            int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
             {
                 ViewBag.Message = "Data of Student" + obj.CategoryName + "is added successfully";
             }
