@@ -20,11 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-<<<<<<< HEAD:MailPro/Properties/AssemblyInfo.cs
-[assembly: Guid("d5faf94b-4324-47bc-956b-602ebe7713f8")]
-=======
 [assembly: Guid("87c95806-b411-49f8-8e99-38eaf6a9d027")]
->>>>>>> Rishabh:MailPro/MailPro/Properties/AssemblyInfo.cs
 
 // Version information for an assembly consists of the following four values:
 //
