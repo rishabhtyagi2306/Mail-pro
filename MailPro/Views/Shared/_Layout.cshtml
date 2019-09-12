@@ -17,10 +17,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Mail Pro", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+<<<<<<< HEAD:MailPro/Views/Shared/_Layout.cshtml
                 <ul class="nav navbar-nav">
+=======
+                <ul class = "nav navbar-nav">
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li><a>Dear - @User.Identity.Name</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                    
+>>>>>>> Rishabh:MailPro/MailPro/Views/Shared/_Layout.cshtml
                 </ul>
             </div>
         </div>
