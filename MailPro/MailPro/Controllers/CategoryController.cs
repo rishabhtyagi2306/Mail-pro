@@ -31,8 +31,9 @@ namespace MailPro.Controllers
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
             //Session["FacID"] = fid; 
+            Session["CategoryID"] = obj.CategoryID;
 
-            return RedirectToAction("ShowCategory");
+            return RedirectToAction("Create", "Home");
         }
 
         public ActionResult ShowCategory()

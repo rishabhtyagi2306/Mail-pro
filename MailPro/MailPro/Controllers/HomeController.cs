@@ -39,6 +39,7 @@ namespace MailPro.Controllers
             {
                 ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
             }
+            Session["StudentNo"] = obj.StudentNo;
             return RedirectToAction("Create");
         }
 

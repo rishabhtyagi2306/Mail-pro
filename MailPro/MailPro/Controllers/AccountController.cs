@@ -119,7 +119,7 @@ namespace MailPro.Controllers
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "********";
+            var FromEmailPassword = "01342263354";
             string Subject = "Email Verification for Mail Pro Account";
             string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
                 "<br/><br/><a href = '" + link + "'>" + link + "<a/>";

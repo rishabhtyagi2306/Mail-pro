@@ -142,12 +142,9 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\GetAllStudents.cshtml" />
-<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-=======
->>>>>>> e0d1bf4d32031bd60e142c9cdc4c0eeea52c658a:MailPro/MailPro.csproj
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -159,6 +156,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ConnectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="DatabaseModel.Context.cs">
@@ -183,6 +181,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ConnectModel.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\StudentModel.cs" />
@@ -205,15 +204,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\VerifyAccount.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\ShowCategory.cshtml" />
-=======
-    <Content Include="Views\Home\Edit.cshtml" />
->>>>>>> e0d1bf4d32031bd60e142c9cdc4c0eeea52c658a:MailPro/MailPro.csproj
+    <Content Include="Views\Excel\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -223,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Connect\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
