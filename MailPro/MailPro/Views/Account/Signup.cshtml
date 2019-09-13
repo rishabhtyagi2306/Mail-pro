@@ -20,7 +20,8 @@
     <script src="@Url.Content("../files/bootstrap.min.js")"></script>
 
 </head>
-@Html.BeginForm(new { @id = "form" }){
+@using (Html.BeginForm(new { @id = "form" }))
+{
 @Html.AntiForgeryToken()
 <body>
     <div class="container-fluid">
@@ -86,7 +87,8 @@
                         <div class="col-sm-7">
                             @Html.EditorFor(model => model.FacultyName, new
                        {
-                           htmlAttributes = new { @class = "form-control", @id = "inputName", @placeholder = "FacultyName" }
+                           htmlAttributes = new { @class = "form-control", @id = "inputName", @placeholder = "FacultyName"
+                           }
                        })
 
                             <!-- <input type="text" class="form-control" id="inputName" placeholder="Faculty Name">-->
