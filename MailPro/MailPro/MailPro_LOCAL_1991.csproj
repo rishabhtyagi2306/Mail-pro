@@ -142,12 +142,9 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\GetAllStudents.cshtml" />
-<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-=======
->>>>>>> e0d1bf4d32031bd60e142c9cdc4c0eeea52c658a:MailPro/MailPro.csproj
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -205,15 +202,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\VerifyAccount.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\ShowCategory.cshtml" />
-=======
-    <Content Include="Views\Home\Edit.cshtml" />
->>>>>>> e0d1bf4d32031bd60e142c9cdc4c0eeea52c658a:MailPro/MailPro.csproj
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
