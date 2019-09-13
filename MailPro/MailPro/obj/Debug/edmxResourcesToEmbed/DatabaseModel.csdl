@@ -27,10 +27,11 @@
     <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="FacultyPhoneNo" Type="Int32" Nullable="false" />
+    <Property Name="FacultyPhoneNo" Type="String" Nullable="false" />
     <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
+    <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_Mails" FromRole="FacultyTable" ToRole="Mails" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -100,5 +101,33 @@
       <End Role="StudentTable" EntitySet="StudentTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
     </AssociationSet>
+    <EntitySet Name="Mails" EntityType="DatabaseModel.Mails" />
+    <AssociationSet Name="FK_Mails_Mails" Association="DatabaseModel.FK_Mails_Mails">
+      <End Role="FacultyTable" EntitySet="FacultyTable" />
+      <End Role="Mails" EntitySet="Mails" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Mails">
+    <Key>
+      <PropertyRef Name="MailID" />
+    </Key>
+    <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_Mails" FromRole="Mails" ToRole="FacultyTable" />
+  </EntityType>
+  <Association Name="FK_Mails_Mails">
+    <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
+    <End Type="DatabaseModel.Mails" Role="Mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacultyTable">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Mails">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

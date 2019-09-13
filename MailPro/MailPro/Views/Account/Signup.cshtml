@@ -24,6 +24,7 @@
 {
 @Html.AntiForgeryToken()
 <body>
+  
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6" id="back">
@@ -72,12 +73,17 @@
                 </span>
                 </div>-->
                 <form id="form">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                     <div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
                         @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
+
                         <div class="col-sm-7">
 
+
                             @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", @id = "inputId", @placeholder = "Faculty I'd" } })
+                            @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
                             <!--<input type="number" class="form-control" id="inputId" placeholder="Faculty I'd">-->
                         </div>
                     </div>
@@ -87,9 +93,14 @@
                         <div class="col-sm-7">
                             @Html.EditorFor(model => model.FacultyName, new
                        {
-                           htmlAttributes = new { @class = "form-control", @id = "inputName", @placeholder = "FacultyName"
+                           htmlAttributes = new
+                                {
+                                    @class = "form-control",
+                                    @id = "inputName",
+                                    @placeholder = "FacultyName"
                            }
                        })
+                            @Html.ValidationMessageFor(model => model.FacultyName, "", new { @class = "text-danger" })
 
                             <!-- <input type="text" class="form-control" id="inputName" placeholder="Faculty Name">-->
                         </div>
@@ -100,6 +111,7 @@
                         <div class="col-sm-7">
 
                             @Html.EditorFor(model => model.FacultyEmail, new { htmlAttributes = new { @class = "form-control", @id = "inputEmail", @placeholder = "Email" } })
+                            @Html.ValidationMessageFor(model => model.FacultyEmail, "", new { @class = "text-danger" })
                             <!-- <input type="email" class="form-control" id="inputEmail" placeholder="Email">-->
                         </div>
                     </div>
@@ -108,6 +120,7 @@
                         @Html.LabelFor(model => model.FacultyPhoneNo, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputPhone" })
                         <div class="col-sm-7">
                             @Html.EditorFor(model => model.FacultyPhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "inputPhone", @placeholder = "Contact number" } })
+                            @Html.ValidationMessageFor(model => model.FacultyPhoneNo, "", new { @class = "text-danger" })
                             <!-- <input type="text" class="form-control" id="inputPhone" placeholder="Contact number">-->
                         </div>
                     </div>
@@ -116,7 +129,7 @@
                         @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputDept" })
                         <div class="col-sm-7">
                             @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control", @id = "inputDept", @placeholder = "Department Name" } })
-                            <!--<input type="text" class="form-control" id="inputDept" placeholder="Department Name">-->
+                            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })    <!--<input type="text" class="form-control" id="inputDept" placeholder="Department Name">-->
                         </div>
                     </div>
                     <div class="form-group row">
@@ -124,6 +137,7 @@
                         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputPassword" })
                         <div class="col-sm-7">
                             @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "inputPassword", @placeholder = "Password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password">-->
                         </div>
                     </div>

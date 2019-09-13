@@ -18,16 +18,19 @@ namespace MailPro
         public FacultyTable()
         {
             this.CategoryTable = new HashSet<CategoryTable>();
+            this.Mails = new HashSet<Mails>();
         }
     
         public int FacultyID { get; set; }
         public string FacultyName { get; set; }
         public string FacultyEmail { get; set; }
-        public int FacultyPhoneNo { get; set; }
+        public string FacultyPhoneNo { get; set; }
         public string Department { get; set; }
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mails> Mails { get; set; }
     }
 }

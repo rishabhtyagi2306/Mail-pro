@@ -12,6 +12,8 @@
         <AssociationConnector Association="DatabaseModel.FK_CategoryTable_FacultyTable" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK_ConnectTable_CategoryTable" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK_ConnectTable_StudentTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DatabaseModel.Mails" Width="1.5" PointX="3" PointY="10" />
+        <AssociationConnector Association="DatabaseModel.FK_Mails_Mails" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

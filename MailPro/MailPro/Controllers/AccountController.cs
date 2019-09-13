@@ -60,7 +60,7 @@ namespace MailPro.Controllers
                 //Fac.Password = Crypto.Hash(Fac.Password);
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
-                context.SaveChanges();
+                _ = context.SaveChanges();
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
             return RedirectToAction("Login");

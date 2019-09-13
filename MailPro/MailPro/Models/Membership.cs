@@ -17,7 +17,7 @@ namespace MailPro.Models
         public string FacultyEmail { get; set; }
 
         [Required]
-        public int FacultyPhoneNo { get; set; }
+        public string FacultyPhoneNo { get; set; }
 
         [Required]
         public string Department { get; set; }
