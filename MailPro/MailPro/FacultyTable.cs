@@ -24,9 +24,11 @@ namespace MailPro
         public int FacultyID { get; set; }
         public string FacultyName { get; set; }
         public string FacultyEmail { get; set; }
-        public string FacultyPhoneNo { get; set; }
+        public Nullable<int> FacultyPhoneNo { get; set; }
         public string Department { get; set; }
         public string Password { get; set; }
+        public Nullable<bool> IsEmailVerified { get; set; }
+        public Nullable<System.Guid> ActivationCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryTable> CategoryTable { get; set; }

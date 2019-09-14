@@ -11,7 +11,7 @@ namespace MailPro.Controllers
     public class EmailController : Controller
     {
         // GET: Email
-        
+
         public ActionResult Mail()
         {
             return View();
@@ -26,7 +26,7 @@ namespace MailPro.Controllers
                 //FacultyTable Fac = new FacultyTable();
 
                 //Fac.Password = Crypto.Hash(Fac.Password);
-              
+
                 context.Mails.Add(model);
                 _ = context.SaveChanges();
                 EmailVerification(model);
@@ -36,8 +36,8 @@ namespace MailPro.Controllers
         [HttpGet]
         public void EmailVerification(Mails model)
         {
-            
-           
+
+
             var FromEmail = new MailAddress("swasti.tiwari@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(model.Sent);
             var FromEmailPassword = "swastipratyush";
@@ -67,4 +67,3 @@ namespace MailPro.Controllers
 }
 
 
-    

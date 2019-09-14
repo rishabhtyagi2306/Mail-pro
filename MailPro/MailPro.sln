@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailPro", "MailPro\MailPro.csproj", "{D5FAF94B-4324-47BC-956B-602EBE7713F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailPro", "MailPro\MailPro.csproj", "{87C95806-B411-49F8-8E99-38EAF6A9D027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D5FAF94B-4324-47BC-956B-602EBE7713F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5FAF94B-4324-47BC-956B-602EBE7713F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5FAF94B-4324-47BC-956B-602EBE7713F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5FAF94B-4324-47BC-956B-602EBE7713F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C95806-B411-49F8-8E99-38EAF6A9D027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C95806-B411-49F8-8E99-38EAF6A9D027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C95806-B411-49F8-8E99-38EAF6A9D027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C95806-B411-49F8-8E99-38EAF6A9D027}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {57BF2F22-5480-4573-B5B2-1C4FC12E6581}
+		SolutionGuid = {5FDCE960-1424-49EF-A1F3-3ACDC1411314}
 	EndGlobalSection
 EndGlobal

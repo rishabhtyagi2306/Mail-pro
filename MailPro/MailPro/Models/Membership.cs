@@ -17,13 +17,17 @@ namespace MailPro.Models
         public string FacultyEmail { get; set; }
 
         [Required]
-        public string FacultyPhoneNo { get; set; }
+        public int FacultyPhoneNo { get; set; }
 
         [Required]
         public string Department { get; set; }
 
         [Required]
         public string Password { get; set; }
-        public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+
+        [Required(ErrorMessage = "Please confirm Your Password")]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
+        //public virtual ICollection<CategoryTable> CategoryTable { get; set; }
     }
 }
