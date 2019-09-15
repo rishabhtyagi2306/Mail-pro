@@ -40,6 +40,18 @@ namespace MailPro.Controllers
                 ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
             }
             Session["StudentNo"] = obj.StudentNo;
+            int id = (int)Session["CategoryID"];
+            ConnectTable CC = new ConnectTable();
+            CC.CategoryID = id;
+            CC.StudentNo = obj.StudentNo;
+            using (var context = new MailProEntities())
+            {
+
+               // CC.PrimaryID = 1;
+                context.ConnectTable.Add(CC);
+                context.SaveChanges();
+                
+            }
             return RedirectToAction("Create");
         }
 

@@ -19,7 +19,7 @@
           </Key>
           <Property Name="StudentNo" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="PrimaryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PrimaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="FacultyTable">
           <Key>

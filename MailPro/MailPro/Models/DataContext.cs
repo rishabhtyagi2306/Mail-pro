@@ -13,6 +13,7 @@ namespace MailPro.Models
 
         public DbSet<CategoryTable> CategoryTables { get; set; }
 
-        public DbSet<ConnectTable> connectTables { get; set; }
+        public DbSet<ConnectTable> ConnectTables { get; set; }
+        
     }
 }
