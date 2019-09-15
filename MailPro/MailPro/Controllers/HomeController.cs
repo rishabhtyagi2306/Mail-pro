@@ -40,7 +40,16 @@ namespace MailPro.Controllers
                 ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
             }
             Session["StudentNo"] = obj.StudentNo;
-            return RedirectToAction("Create");
+            int id = (int)Session["CategoryID"];
+            ConnectTable CC = new ConnectTable();
+            CC.CategoryID = id;
+            CC.StudentNo = obj.StudentNo;
+            using (var context = new MailProEntities())
+            {
+                context.ConnectTable.Add(CC);
+                context.SaveChanges();
+            }
+                return RedirectToAction("Create");
         }
 
         public ActionResult GetAllStudents()
@@ -75,17 +84,7 @@ namespace MailPro.Controllers
             return View();
         }
 
-        public ActionResult Details()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Details(int StudentNo)
-        {
-            var Data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = @p0", StudentNo).SingleOrDefault();
-            return View();
-        }
+       
 
         public ActionResult Delete()
         {
@@ -101,7 +100,7 @@ namespace MailPro.Controllers
             {
                 return RedirectToAction("GetAllStudents");
             }
-            return View();
+            return View(productlist);
         }
 
     }

@@ -66,8 +66,8 @@ C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Webpages.Razor.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Helpers.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Mvc.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CoreCompileInputs.cache
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.pdb
+C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache

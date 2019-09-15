@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9f9bcb1142c340a9893613757d512870" Name="Diagram1">
         <EntityTypeShape EntityType="DatabaseModel.CategoryTable" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.ConnectTable" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.ConnectTable" Width="1.5" PointX="6.875" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.FacultyTable" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.StudentTable" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="DatabaseModel.FK_CategoryTable_FacultyTable" ManuallyRouted="false" />

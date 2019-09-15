@@ -143,7 +143,6 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\GetAllStudents.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +155,6 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\ConnectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="DatabaseModel.Context.cs">
@@ -209,7 +207,7 @@
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\ShowCategory.cshtml" />
-    <Content Include="Views\Excel\Index.cshtml" />
+    <Content Include="Views\Category\DeleteCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,7 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Connect\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
