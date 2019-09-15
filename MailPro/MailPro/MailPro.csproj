@@ -185,7 +185,7 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryModel.cs" />
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\ConnectModel.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Membership.cs" />
@@ -216,6 +216,7 @@
     <Content Include="Views\Category\ShowCategory.cshtml" />
     <Content Include="Views\Excel\Index.cshtml" />
     <Content Include="Views\Email\Mail.cshtml" />
+    <Content Include="Views\Category\ShowStudents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

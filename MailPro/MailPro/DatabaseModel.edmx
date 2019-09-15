@@ -43,6 +43,7 @@
           <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FacultyID" Type="int" Nullable="false" />
+          <Property Name="GmailPassword" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -252,6 +253,7 @@
           <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FacultyID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_Mails" FromRole="Mails" ToRole="FacultyTable" />
+          <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Mails_Mails">
           <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
@@ -321,6 +323,7 @@
           <EntitySetMapping Name="Mails">
             <EntityTypeMapping TypeName="DatabaseModel.Mails">
               <MappingFragment StoreEntitySet="Mails">
+                <ScalarProperty Name="GmailPassword" ColumnName="GmailPassword" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
                 <ScalarProperty Name="Sent" ColumnName="Sent" />
                 <ScalarProperty Name="Contents" ColumnName="Contents" />

@@ -46,5 +46,14 @@ namespace MailPro.Controllers
             var Data = Db.CategoryTables.SqlQuery("Select *From CategoryTable where FacultyID ="+ fid).ToList();
             return View(Data);
         }
+
+        //public ActionResult ShowStudents()
+        //{
+        //    int fid = (int)Session["FacultyID"];
+        //    var Data = Db.CategoryTables.SqlQuery("Select *From CategoryTable where FacultyID =" + fid);
+        //    var dt = Db.StudentTables.SqlQuery("Select StudentTable.StudentName,StudentTable.StudentEmail FROM StudentTable INNER JOIN ConnectTable ON Connect.StudentNo=StudentTable.StudentNo GroupBy CategoryID;").ToList();
+        //    return View(dt);
+        //}
+
     }
 }

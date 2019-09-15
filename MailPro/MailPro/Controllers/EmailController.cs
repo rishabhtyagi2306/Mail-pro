@@ -20,27 +20,35 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult Mail(Mails model)
         {
+           
             using (var context = new MailProEntities())
             {
                 //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
                 //FacultyTable Fac = new FacultyTable();
 
                 //Fac.Password = Crypto.Hash(Fac.Password);
-
+                int Fac = (int)Session["FacultyID"];
+                model.FacultyID = Fac;
                 context.Mails.Add(model);
-                _ = context.SaveChanges();
-                EmailVerification(model);
+                context.SaveChanges();
+                EmailSent(model);
             }
             return View();
         }
         [HttpGet]
-        public void EmailVerification(Mails model)
+        public void EmailSent(Mails model)
         {
 
+            int Fac = (int)Session["FacultyID"];
+            FacultyTable ft = new FacultyTable();
+            var context = new MailProEntities();
+            ft = context.FacultyTable.Find(Fac);
 
-            var FromEmail = new MailAddress("swasti.tiwari@gmail.com", "Mail Pro");
+
+           var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
             var ToEmail = new MailAddress(model.Sent);
-            var FromEmailPassword = "swastipratyush";
+            var FromEmailPassword = model.GmailPassword;
+                  
             string Subject = model.Subject;
             string Body = model.Contents;
 

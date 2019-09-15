@@ -23,6 +23,7 @@ namespace MailPro.Models
         public int FacultyID { get; set; }
         // public virtual Membership FacultyTable { get => facultyTable; set => facultyTable = value; }
 
+        public string GmailPassword { get; set; }
         public virtual FacultyTable FacultyTable { get => facultyTable; set => facultyTable = value; }
     }
 }

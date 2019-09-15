@@ -32,7 +32,7 @@ namespace MailPro.Controllers
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
                     //TempData["mydata"] = model.FacultyID;
                     Session["FacultyID"] = model.FacultyID;
-                    return RedirectToAction("ShowCategory", "Category" /*new { model.FacultyID}*/);
+                    return RedirectToAction("Mail", "Email" /*new { model.FacultyID}*/);
                 }
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
@@ -118,9 +118,9 @@ namespace MailPro.Controllers
         {
             var verifyUrl = "/Account/VerifyAccount/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
+            var FromEmail = new MailAddress("swasti.tiwari@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "01342263354";
+            var FromEmailPassword = "swastipratyush";
             string Subject = "Email Verification for Mail Pro Account";
             string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
                 "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
