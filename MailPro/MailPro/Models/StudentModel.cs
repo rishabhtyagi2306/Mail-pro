@@ -36,4 +36,9 @@ namespace MailPro.Models
         public virtual ICollection<CategoryTable> categoryTables { get; set; }
        
     }
+
+    public class ModelOfStudent
+    {
+        public List<StudentTable> StudentTables { get; set; }
+    }
 }

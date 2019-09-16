@@ -1,64 +1,127 @@
 ﻿@model MailPro.Models.Membership
 
-@{
-    ViewBag.Title = "Login";
-}
-
-<h2>Login</h2>
 
 
-@using (Html.BeginForm()) 
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN PAGE</title>
+    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../css/login.css")" type="text/css">
+
+    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
+
+
+    <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("../files/bootstrap.min.js")"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+@using (Html.BeginForm(new { @id = "" }))
 {
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Membership</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <body>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
-        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" id="back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="151" height="146" viewBox="0 0 151 146">
+                        <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#fff" stroke-width="6">
+                            <ellipse cx="75.5" cy="73" rx="30" ry="30" stroke="none" />
+                            <ellipse cx="75.5" cy="73" rx="30" ry="30" fill="none" />
+                        </g>
+                    </svg>
+                    <div id="logo-name">NAME</div>
+                    <div class="welcome">
+                        <div>Welcome Back!</div>
+                        <div id="sign">Sign in to continue access</div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="signin"><b>SIGN IN</b></div>
+                    <!--<div id="form">
+        <div class="row">
+        <div class="col-12">
+        <label class="signin" id="email">Email</label>
+        <input type="email" placeholder="Enter email address" class="input"/>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-12 ">
+        <label class="signin" id="password" >Password</label>
+        <input type="password" placeholder="Enter password"  class="input"/>
+                </div>
+                </div>
+        <input type="button" value="CONTINUE" id="btn"/>
+        <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+       Keep me logged in
+      </label>
     </div>
+        </div>-->
+                    <!--<form id="form">-->
+                    <div class="form-group row" style="padding-top:175px">
+                        <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
+                        @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.FacultyID, new
+                       {
+                           htmlAttributes = new { @class = "form-control", @id = "inputEmail13", @placeholder = "Email" }
+                       })
+                            @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
+                            <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
+                        @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.FacultyEmail, new
+                       {
+                           htmlAttributes = new { @class = "form-control", @id = "inputEmail13", @placeholder = "Email" }
+                       })
+                            @Html.ValidationMessageFor(model => model.FacultyEmail, "", new { @class = "text-danger" })
+                            <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <!--<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>-->
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-2 col-form-label", @id = "inputPassword3" })
+                        <div class="col-sm-10">
+                            @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "inputPassword3", @placeholder = "Password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="submit" value="CONTINUE" id="btn" />
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Keep me logged in
+                                </label>
+                            </div>
+                        </div>
+                    </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.FacultyEmail, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.FacultyEmail, "", new { @class = "text-danger" })
+                    <!-- </form>-->
+
+                </div>
+            </div>
         </div>
-    </div>
 
-
-
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Login" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+    </body>
 }
-
-<div>
-    @Html.ActionLink("Signup", "Signup")
-</div>
-
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</html>
