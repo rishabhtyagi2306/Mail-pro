@@ -29,6 +29,17 @@
     <Property Name="IsEmailVerified" Type="bit" />
     <Property Name="ActivationCode" Type="uniqueidentifier" />
   </EntityType>
+  <EntityType Name="Mails">
+    <Key>
+      <PropertyRef Name="MailID" />
+    </Key>
+    <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FacultyID" Type="int" Nullable="false" />
+    <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="StudentTable">
     <Key>
       <PropertyRef Name="StudentNo" />
@@ -79,10 +90,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mails_FacultyTable">
+    <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
+    <End Role="Mails" Type="Self.Mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacultyTable">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Mails">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConnectTable" EntityType="Self.ConnectTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FacultyTable" EntityType="Self.FacultyTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CategoryTable_FacultyTable" Association="Self.FK_CategoryTable_FacultyTable">
       <End Role="FacultyTable" EntitySet="FacultyTable" />
@@ -95,6 +119,10 @@
     <AssociationSet Name="FK_ConnectTable_StudentTable" Association="Self.FK_ConnectTable_StudentTable">
       <End Role="StudentTable" EntitySet="StudentTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mails_FacultyTable" Association="Self.FK_Mails_FacultyTable">
+      <End Role="FacultyTable" EntitySet="FacultyTable" />
+      <End Role="Mails" EntitySet="Mails" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

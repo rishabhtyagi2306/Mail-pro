@@ -33,6 +33,7 @@
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
     <Property Name="IsEmailVerified" Type="Boolean" />
     <Property Name="ActivationCode" Type="Guid" />
+    <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -102,5 +103,34 @@
       <End Role="StudentTable" EntitySet="StudentTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
     </AssociationSet>
+    <EntitySet Name="Mails" EntityType="DatabaseModel.Mails" />
+    <AssociationSet Name="FK_Mails_FacultyTable" Association="DatabaseModel.FK_Mails_FacultyTable">
+      <End Role="FacultyTable" EntitySet="FacultyTable" />
+      <End Role="Mails" EntitySet="Mails" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Mails">
+    <Key>
+      <PropertyRef Name="MailID" />
+    </Key>
+    <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
+    <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
+  </EntityType>
+  <Association Name="FK_Mails_FacultyTable">
+    <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
+    <End Type="DatabaseModel.Mails" Role="Mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacultyTable">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Mails">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

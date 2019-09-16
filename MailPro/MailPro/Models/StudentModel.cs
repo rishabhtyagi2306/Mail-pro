@@ -32,6 +32,11 @@ namespace MailPro.Models
         [Required]
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
-        public virtual ICollection<ConnectTable> ConnectTable { get; set; }
+        public bool IsChecked { get; set; }
+        public List<StudentTable> StudentTables { get; set; }
+
+        public virtual ICollection<CategoryTable> categoryTables { get; set; }
+       
     }
+
 }

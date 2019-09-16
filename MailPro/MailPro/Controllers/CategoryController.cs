@@ -28,11 +28,16 @@ namespace MailPro.Controllers
 
             Parameters.Add(obj.CategoryName);
             Parameters.Add(obj.FacultyID);
+            //string CName = obj.CategoryName;
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
-            //Session["FacID"] = fid; 
+            // CategoryModel Cm = new CategoryModel();
+           // var Cm = Db.CategoryTables.SqlQuery("Select CategoryID from CategoryTable where CategoryName = @p0");
 
-            return RedirectToAction("ShowCategory");
+            //Session["FacID"] = fid; 
+          //  Session["CategoryID"] = Cm.CategoryID;
+
+            return RedirectToAction("AddCategory");
         }
 
         public ActionResult ShowCategory()
@@ -45,5 +50,23 @@ namespace MailPro.Controllers
             var Data = Db.CategoryTables.SqlQuery("Select *From CategoryTable where FacultyID ="+ fid).ToList();
             return View(Data);
         }
+
+        public ActionResult DeleteCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int CategoryID)
+        {
+            var productlist = Db.Database.ExecuteSqlCommand("delete from CategoryTable where CategoryID = " + CategoryID);
+
+            if (productlist != 0)
+            {
+                return RedirectToAction("ShowCategory");
+            }
+            return RedirectToAction("ShowCategory");
+        }
+
     }
 }

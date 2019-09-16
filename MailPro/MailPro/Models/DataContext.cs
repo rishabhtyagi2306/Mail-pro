@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -12,5 +13,10 @@ namespace MailPro.Models
         public DbSet<StudentTable> StudentTables { get; set; }
 
         public DbSet<CategoryTable> CategoryTables { get; set; }
+
+        public DbSet<ConnectTable> ConnectTables { get; set; } 
+
+        
+        
     }
 }

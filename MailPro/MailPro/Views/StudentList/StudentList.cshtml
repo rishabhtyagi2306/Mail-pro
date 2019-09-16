@@ -1,0 +1,32 @@
+﻿@model MailPro.Models.StudentModel
+
+@{
+    ViewBag.Title = "StudentList";
+}
+
+@using (Html.BeginForm())
+{
+    <table>
+        @for (int i = 0; i < Model.StudentTables.Count; i++)
+        {
+            if(i % 1 == 0)
+            {
+                @:<tr></tr>
+            }
+            <td>
+                @Html.CheckBoxFor(model => model.StudentTables[i].IsChecked)
+                <label>@Model.StudentTables[i].StudentEmail</label>
+                @*<label>@Model.StudentTables[i].StudentName</label>*@
+                @Html.HiddenFor(model => model.StudentTables[i].StudentEmail)
+                @*@Html.HiddenFor(model => model.StudentTables[i].Branch)
+                @Html.HiddenFor(model => model.StudentTables[i].Section)
+                @Html.HiddenFor(model => model.StudentTables[i].Year)
+                @Html.HiddenFor(model => model.StudentTables[i].IsCR)
+                @Html.HiddenFor(model => model.StudentTables[i].IsHosteller)
+                @Html.HiddenFor(model => model.StudentTables[i].StudentCategory)*@
+            </td>
+         }
+    </table>
+    <input type = "submit" name = "Send Mail" value = "Submit" />
+}
+
