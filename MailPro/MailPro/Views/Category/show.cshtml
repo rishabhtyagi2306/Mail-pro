@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<MailPro.Models.ViewModel>
+@{
+    ViewBag.Title = "show";
+}
+
+<h2>show</h2>
+<table class="table">
+    <tr>
+        <td>Student Number</td>
+        <td>Student Name</td>
+        <td>Student Email</td>
+        <td>Categories</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.studentmodelvm.StudentNo</td>
+    <td>@item.studentmodelvm.StudentName</td>
+    <td>@item.studentmodelvm.StudentEmail</td>
+    <td>@item.categorymodelvm.CategoryName</td>
+</tr>
+    }
+    </table>
+

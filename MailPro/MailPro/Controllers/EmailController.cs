@@ -35,6 +35,7 @@ namespace MailPro.Controllers
             }
             return View();
         }
+      
         [HttpGet]
         public void EmailSent(Mails model)
         {
@@ -48,7 +49,13 @@ namespace MailPro.Controllers
            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
             var ToEmail = new MailAddress(model.Sent);
             var FromEmailPassword = model.GmailPassword;
-                  
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress(ft.FacultyEmail,ft.FacultyName);
+                mail.To.Add(model.Sent);
+                mail.To.Add(model.Sent);
+            }
+
             string Subject = model.Subject;
             string Body = model.Contents;
 
@@ -70,6 +77,14 @@ namespace MailPro.Controllers
             })
 
                 smtp.Send(message);
+        } 
+
+        public ActionResult ShowMails()
+        {
+            int fid = (int)Session["FacultyID"];
+            var context=new MailProEntities();
+            var s = context.Mails.SqlQuery("Select * from Mails where FacultyID=" + fid).ToList();
+            return View(s);
         }
     }
 }

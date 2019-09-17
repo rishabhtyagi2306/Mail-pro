@@ -6,6 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MailPro.Models
 {
+    public class Students
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
     public class StudentModel
     {
         [Required]
@@ -32,6 +37,9 @@ namespace MailPro.Models
         [Required]
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
+      
         public virtual ICollection<ConnectTable> ConnectTable { get; set; }
+        
     }
+    
 }

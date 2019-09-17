@@ -32,7 +32,7 @@ namespace MailPro.Controllers
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
                     //TempData["mydata"] = model.FacultyID;
                     Session["FacultyID"] = model.FacultyID;
-                    return RedirectToAction("Mail", "Email" /*new { model.FacultyID}*/);
+                    return RedirectToAction("Home" /*new { model.FacultyID}*/);
                 }
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
@@ -143,6 +143,10 @@ namespace MailPro.Controllers
             })
 
                 smtp.Send(message);
+        }
+        public ActionResult Home()
+        {
+            return View();
         }
     }
 }
