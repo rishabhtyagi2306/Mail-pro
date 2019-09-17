@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using MailPro.Models;
 using System.Data.SqlClient;
+using OfficeOpenXml;
+using System.Web.UI.MobileControls;
 
 namespace MailPro.Controllers
 {
@@ -12,6 +14,8 @@ namespace MailPro.Controllers
     {
         // GET: Home
         DataContext Db = new DataContext();
+
+
         //[Authorize]
         public ActionResult Create()
         {
@@ -101,6 +105,45 @@ namespace MailPro.Controllers
                 return RedirectToAction("GetAllStudents");
             }
             return View(productlist);
+        }
+
+        public ActionResult Upload(FormCollection formCollection)
+        {
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    var usersList = new List<StudentModel>();
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            var user = new StudentModel();
+                            user.StudentNo = Convert.ToInt32(workSheet.Cells[rowIterator, 1].Value.ToString());
+                            user.StudentName = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            user.StudentEmail = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            user.Branch = workSheet.Cells[rowIterator, 4].Value.ToString();
+                            user.Section = Convert.ToInt32(workSheet.Cells[rowIterator, 5].Value.ToString());
+                            user.Year = Convert.ToInt32(workSheet.Cells[rowIterator, 6].Value.ToString());
+                            user.IsHosteller = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString()));
+                            user.IsCR = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value.ToString()));
+                            user.StudentCategory = workSheet.Cells[rowIterator, 9].Value.ToString();
+                            usersList.Add(user);
+                        }
+                    }
+                }
+            }
+            return View("Create");
         }
 
     }

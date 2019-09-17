@@ -45,7 +45,7 @@ namespace MailPro.Controllers
             ft = context.FacultyTable.Find(Fac);
 
 
-           var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
             var ToEmail = new MailAddress(model.Sent);
             var FromEmailPassword = model.GmailPassword;
                   
