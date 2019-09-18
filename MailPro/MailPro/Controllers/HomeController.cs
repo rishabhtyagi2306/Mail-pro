@@ -107,11 +107,11 @@ namespace MailPro.Controllers
             return View(productlist);
         }
 
-        /*public ActionResult StudentDetails(int MailID)
+        public ActionResult StudentDetails(int StudentNo)
         {
-            var data = Db.GetMails.SqlQuery("Select *From Mails where MailID = " + MailID).SingleOrDefault();
+            var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
             return View(data);
-        }*/
+        }
 
         public ActionResult Upload(StudentModel obj, FormCollection formCollection)
         {

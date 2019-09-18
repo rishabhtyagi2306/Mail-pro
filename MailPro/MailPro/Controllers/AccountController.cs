@@ -32,7 +32,7 @@ namespace MailPro.Controllers
                     FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
                     //TempData["mydata"] = model.FacultyID;
                     Session["FacultyID"] = model.FacultyID;
-                    return RedirectToAction("ShowCategory", "Category" /*new { model.FacultyID}*/);
+                    return RedirectToAction("ShowSentEmail", "Email" /*new { model.FacultyID}*/);
                 }
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();

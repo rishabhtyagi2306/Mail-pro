@@ -73,6 +73,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { StudentNo = item.StudentNo }) |
+                @Html.ActionLink("Detail", "StudentDetails", new { StudentNo = item.StudentNo }) |
                 @Html.ActionLink("Delete", "Delete", new { StudentNo = item.StudentNo })
             </td>
         </tr>

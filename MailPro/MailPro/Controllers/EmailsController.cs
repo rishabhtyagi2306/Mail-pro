@@ -76,7 +76,8 @@ namespace MailPro.Controllers
 
         public ActionResult ShowSentEmail()
         {
-            var Data = Db.GetMails.SqlQuery("Select *From Mails").ToList();
+            int fac = (int)Session["FacultyID"];
+            var Data = Db.GetMails.SqlQuery("Select *From Mails where FacultyID ="+ fac).ToList();
             return View(Data);
         }
 
