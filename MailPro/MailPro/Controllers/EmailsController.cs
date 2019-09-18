@@ -79,5 +79,28 @@ namespace MailPro.Controllers
             var Data = Db.GetMails.SqlQuery("Select *From Mails").ToList();
             return View(Data);
         }
+
+        public ActionResult DeleteEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteEmail(int MailID)
+        {
+            var productlist = Db.Database.ExecuteSqlCommand("delete from Mails where MailID = @p0", MailID);
+
+            if (productlist != 0)
+            {
+                return RedirectToAction("ShowSentEmails");
+            }
+            return View(productlist);
+        }
+
+        public ActionResult EmailDetail(int MailID)
+        {
+            var data = Db.GetMails.SqlQuery("Select *From Mails where MailID = " + MailID).SingleOrDefault();
+            return View(data);
+        }
     }
 }

@@ -74,3 +74,4 @@ C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.dll
 C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.dll
 C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.xml
+C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache

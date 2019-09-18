@@ -49,7 +49,7 @@
                 </svg>
 
                 <div class="media-body">
-                    <h4 class="m-0">Name</h4>
+                    <h4 class="m-0">Mail Pro</h4>
 
                 </div>
             </div>
@@ -116,9 +116,6 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MailID)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Subject)
                 </th>
                 <th>
@@ -127,18 +124,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Sent)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FacultyID)
-                </th>
                 @**<th></th>*@
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MailID)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Subject)
                     </td>
@@ -149,11 +140,8 @@
                         @Html.DisplayFor(modelItem => item.Sent)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FacultyID)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Details", "EmailDetail", new { MailID = item.MailID }) |
+                        @Html.ActionLink("Delete", "DeleteEmail", new { MailID = item.MailID })
                     </td>
                 </tr>
             }
