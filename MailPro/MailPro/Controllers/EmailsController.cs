@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
 using System.Net;
+using MailPro.Models;
 
 namespace MailPro.Controllers
 {
     public class EmailController : Controller
     {
+        DataContext Db = new DataContext();
         // GET: Email
 
         public ActionResult Mail()
@@ -70,6 +72,12 @@ namespace MailPro.Controllers
             })
 
                 smtp.Send(message);
+        }
+
+        public ActionResult ShowSentEmail()
+        {
+            var Data = Db.GetMails.SqlQuery("Select *From Mails").ToList();
+            return View(Data);
         }
     }
 }

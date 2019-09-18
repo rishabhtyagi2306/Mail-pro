@@ -225,6 +225,7 @@
     <Content Include="Views\Category\DeleteCategory.cshtml" />
     <Content Include="Views\StudentList\StudentList.cshtml" />
     <Content Include="Views\Email\Mail.cshtml" />
+    <Content Include="Views\Email\ShowSentEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

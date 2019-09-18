@@ -70,7 +70,6 @@ C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CoreCompileInp
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.pdb
-C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.dll
 C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.dll
 C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.xml

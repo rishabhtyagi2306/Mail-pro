@@ -16,6 +16,8 @@ namespace MailPro.Models
 
         public DbSet<ConnectTable> ConnectTables { get; set; } 
 
+        public DbSet<Mails> GetMails { get; set; }
+
         
         
     }
