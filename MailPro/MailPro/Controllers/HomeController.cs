@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MailPro.Models;
 using System.Data.SqlClient;
+using OfficeOpenXml;
 
 namespace MailPro.Controllers
 {
@@ -114,6 +115,82 @@ namespace MailPro.Controllers
                 return RedirectToAction("GetAllStudents");
             }
             return View();
+        }
+        public ActionResult Upload(StudentModel obj, FormCollection formCollection)
+        {
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    //var usersList = new List<StudentModel>();
+
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            var user = new StudentModel();
+                            user.StudentNo = Convert.ToInt32(workSheet.Cells[rowIterator, 1].Value.ToString());
+                            user.StudentName = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            user.StudentEmail = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            user.Branch = workSheet.Cells[rowIterator, 4].Value.ToString();
+                            user.Section = Convert.ToInt32(workSheet.Cells[rowIterator, 5].Value.ToString());
+                            user.Year = Convert.ToInt32(workSheet.Cells[rowIterator, 6].Value.ToString());
+                            user.IsHosteller = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString()));
+                            user.IsCR = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value.ToString()));
+                            user.StudentCategory = workSheet.Cells[rowIterator, 9].Value.ToString();
+                            //usersList.Add(user);
+                            List<object> Parameters = new List<object>();
+                            obj.StudentNo = user.StudentNo;
+                            obj.StudentName = user.StudentName;
+                            obj.StudentEmail = user.StudentEmail;
+                            obj.Branch = user.Branch;
+                            obj.Section = user.Section;
+                            obj.Year = user.Year;
+                            obj.IsHosteller = user.IsHosteller;
+                            obj.IsCR = user.IsCR;
+                            obj.StudentCategory = user.StudentCategory;
+
+                            Parameters.Add(obj.StudentNo);
+                            Parameters.Add(obj.StudentName);
+                            Parameters.Add(obj.StudentEmail);
+                            Parameters.Add(obj.Branch);
+                            Parameters.Add(obj.Section);
+                            Parameters.Add(obj.Year);
+                            Parameters.Add(obj.IsHosteller);
+                            Parameters.Add(obj.IsCR);
+                            Parameters.Add(obj.StudentCategory);
+
+                            object[] objectarray = Parameters.ToArray();
+                            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)", objectarray);
+                            Session["StudentNo"] = obj.StudentNo;
+                            int id = (int)Session["CategoryID"];
+                            ConnectTable CC = new ConnectTable();
+                            CC.CategoryID = id;
+                            CC.StudentNo = obj.StudentNo;
+                            using (var context = new MailProEntities())
+                            {
+
+                                // CC.PrimaryID = 1;
+                                context.ConnectTable.Add(CC);
+                                context.SaveChanges();
+
+                            }
+                        }
+                    }
+
+                }
+            }
+            return View("Create");
         }
 
     }
