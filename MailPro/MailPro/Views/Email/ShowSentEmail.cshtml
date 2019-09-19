@@ -101,11 +101,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="https://localhost:44378/Account/Login" class="nav-link text-dark font-italic">
+                <a class="nav-link text-dark font-italic">
                     <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                    -->
-
-                    Sign Out
+    -->             @if(User.Identity.IsAuthenticated)
+                    {
+                        @*<li><a>Dear - @User.Identity.Name</a></li>*@
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
                 </a>
             </li>
         </ul>

@@ -13,7 +13,7 @@ namespace MailPro.Controllers
     {
         DataContext Db = new DataContext();
         // GET: Email
-
+        [Authorize]
         public ActionResult Mail()
         {
             return View();
