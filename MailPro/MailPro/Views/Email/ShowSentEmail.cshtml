@@ -100,24 +100,24 @@
                     Add Categories
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark font-italic">
+            <li class="nav-item mx-5">
                     <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
     -->             @if(User.Identity.IsAuthenticated)
                     {
-                        @*<li><a>Dear - @User.Identity.Name</a></li>*@
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        <button id="logout" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">@Html.ActionLink("Logout", "Logout", "Account")</small></button>
                     }
-                </a>
+               
             </li>
         </ul>
 
 
     </div>
     <!-- End vertical navbar -->
-    <div class="page-content active" id="content">
+    <div class="page-content pr-5 active container"  id="content">
+        <div class="row pt-5 container-fluid">
+            <div class="col-lg-10">
         <table class="table">
-            <tr>
+            <tr class="bg-white">
                 <th>
                     @Html.DisplayNameFor(model => model.Subject)
                 </th>
@@ -127,12 +127,14 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Sent)
                 </th>
-                @**<th></th>*@
+                <th>
+
+                </th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="bg-white ">
                     <td>
                         @Html.DisplayFor(modelItem => item.Subject)
                     </td>
@@ -150,6 +152,8 @@
             }
 
         </table>
+        </div>
+            </div>
 
     </div>
 

@@ -10,10 +10,10 @@
 }
 
 .page-content {
-  width: calc(100% - 17rem);
-  margin-left: 3rem;
+  margin: 3rem;
   transition: all 0.4s;
-	color: white;
+  color: white;
+  width: 100%;
 }
 
 /* for toggle behavior */
@@ -21,11 +21,20 @@
 #sidebar.active {
   margin-left: -17rem;
 }
+#content{
+  width: 200%;
+  margin-left: 5rem;
+  transition: all ease-in 0.4s;
+  margin-right: 0rem;
+}
 
 #content.active {
-  width: 100%;
+  width:100% ;
+  
+  transition: all 0.4s;
   margin-left: 20rem;
 }
+
 
 @media (max-width: 768px) {
   #sidebar {
@@ -35,13 +44,15 @@
     margin-left: 0;
   }
   #content {
-    width: 100%;
-    margin: 0;
+    width: calc(100%-17rem);
+    
+    margin-left: 0rem;
   }
   #content.active {
     margin-left: 17rem;
     width: calc(100% - 17rem);
   }
+  
 }
 
 

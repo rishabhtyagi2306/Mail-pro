@@ -34,11 +34,14 @@ namespace MailPro.Controllers
             //string CName = obj.CategoryName;
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
-            // CategoryModel Cm = new CategoryModel();
-           // var Cm = Db.CategoryTables.SqlQuery("Select CategoryID from CategoryTable where CategoryName = @p0");
+            CategoryTable c = new CategoryTable();
+            using (var context = new MailProEntities())
+            {
+                var s = obj.CategoryName;
 
-            //Session["FacID"] = fid; 
-          //  Session["CategoryID"] = Cm.CategoryID;
+                c = context.CategoryTable.SingleOrDefault(x => x.CategoryName == s);
+                Session["CategoryID"] = c.CategoryID;
+            }
 
             return RedirectToAction("AddCategory");
         }
@@ -72,7 +75,6 @@ namespace MailPro.Controllers
         }
 
         List<StudentModel> student = new List<StudentModel>();
-
         List<CategoryModel> AdditionalInfo = new List<CategoryModel>();
         List<ConnectModel> info = new List<ConnectModel>();
         List<Membership> info1 = new List<Membership>();

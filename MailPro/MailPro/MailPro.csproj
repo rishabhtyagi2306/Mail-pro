@@ -164,9 +164,9 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ConnectController.cs" />
     <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -224,7 +224,6 @@
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\ShowCategory.cshtml" />
     <Content Include="Views\Category\DeleteCategory.cshtml" />
-    <Content Include="Views\StudentList\StudentList.cshtml" />
     <Content Include="Views\Email\Mail.cshtml" />
     <Content Include="Views\Email\ShowSentEmail.cshtml" />
     <Content Include="Views\Email\DeleteEmail.cshtml" />
