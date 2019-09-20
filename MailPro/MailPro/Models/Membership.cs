@@ -30,6 +30,8 @@ namespace MailPro.Models
         [Required(ErrorMessage = "Please confirm Your Password")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
+        public string ActivationCode { get; set; }
+        public bool IsEmailVerified { get; set; }
         //public virtual ICollection<CategoryTable> CategoryTable { get; set; }
     }
 }

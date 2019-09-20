@@ -25,14 +25,21 @@ namespace MailPro.Controllers
         {
             using (var context = new MailProEntities())
             {
+                /*FacultyTable Fac = new FacultyTable();
+                model.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);*/
+                bool Verified = Convert.ToBoolean(Session["IsEmailVerified"]);
+                //var verified = Fac.IsEmailVerified;
                 var y = Crypto.Hash(model.Password);
                 bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && x.FacultyID == model.FacultyID);
                 if (IsValid)
                 {
-                    FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
-                    //TempData["mydata"] = model.FacultyID;
-                    Session["FacultyID"] = model.FacultyID;
-                    return RedirectToAction("ShowSentEmail", "Email" /*new { model.FacultyID}*/);
+                    if(Verified)
+                    {
+                        FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
+                        //TempData["mydata"] = model.FacultyID;
+                        Session["FacultyID"] = model.FacultyID;
+                        return RedirectToAction("ShowSentEmail", "Email" /*new { model.FacultyID}*/);
+                    }
                 }
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
@@ -62,7 +69,7 @@ namespace MailPro.Controllers
                     return View();
                 }
                 Fac.ActivationCode = Guid.NewGuid();
-               
+                model.ActivationCode = Fac.ActivationCode;
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
@@ -79,23 +86,26 @@ namespace MailPro.Controllers
         }
 
         [HttpGet]
-        public ActionResult VerifyAccount(string id)
+        public ActionResult VerifyAccount(string id, Models.Membership model)
         {
             bool status = false;
-            using (MailProEntities Mp = new MailProEntities())
+            using (var context = new MailProEntities())
             {
-                Mp.Configuration.ValidateOnSaveEnabled = false;
-                var v = Mp.FacultyTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                FacultyTable Fac = new FacultyTable();
+                //Mp.Configuration.ValidateOnSaveEnabled = false;
+                var v = context.FacultyTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
                 if(v != null)
                 {
-                    v.IsEmailVerified = true;
-                    Mp.SaveChanges();
+                    Fac.IsEmailVerified = true;
+                    model.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);
+                    context.SaveChanges();
                     status = true;
                 }
                 else
                 {
                     ViewBag.Message = "invalid request";
                 }
+                Session["IsEmailVerified"] = model.IsEmailVerified;
             }
             ViewBag.Status = status;
             return View();
