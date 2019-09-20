@@ -37,6 +37,7 @@ namespace MailPro.Models
         [Required]
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
+        public int FacultyID { get; set; }
 
         public virtual ICollection<ConnectTable> ConnectTable { get; set; }
 

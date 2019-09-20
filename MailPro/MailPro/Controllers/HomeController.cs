@@ -26,6 +26,8 @@ namespace MailPro.Controllers
         public ActionResult Create(StudentModel obj)
         {
             List<object> Parameters = new List<object>();
+            int fid = (int)Session["FacultyID"];
+            obj.FacultyID = fid;
             //StudentTable st = new StudentTable();
 
             Parameters.Add(obj.StudentNo);
@@ -37,8 +39,9 @@ namespace MailPro.Controllers
             Parameters.Add(obj.IsHosteller);
             Parameters.Add(obj.IsCR);
             Parameters.Add(obj.StudentCategory);
+            Parameters.Add(obj.FacultyID);
             object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)", objectarray);
+            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
             if (output > 0)
             {
                 ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
@@ -63,7 +66,8 @@ namespace MailPro.Controllers
         public ActionResult GetAllStudents()
         {
             //StudentTable Stu = new StudentTable();
-            var Data = Db.StudentTables.SqlQuery("Select *From StudentTable").ToList();
+            int fid = (int)Session["FacultyID"];
+            var Data = Db.StudentTables.SqlQuery("Select *From StudentTable where FacultyID ="+ fid).ToList();
             return View(Data);
         }
 
@@ -111,11 +115,11 @@ namespace MailPro.Controllers
             return View(productlist);
         }
 
-        public ActionResult StudentDetails(int StudentNo)
+       /* public ActionResult StudentDetails(int StudentNo)
         {
             var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
             return View(data);
-        }
+        }*/
 
         public ActionResult Upload(StudentModel obj, FormCollection formCollection)
         {
@@ -149,7 +153,9 @@ namespace MailPro.Controllers
                             user.IsHosteller = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 7].Value.ToString()));
                             user.IsCR = Convert.ToBoolean(Convert.ToInt32(workSheet.Cells[rowIterator, 8].Value.ToString()));
                             user.StudentCategory = workSheet.Cells[rowIterator, 9].Value.ToString();
-                                //usersList.Add(user);
+                            int fid = (int)Session["FacultyID"];
+                            user.FacultyID = fid;
+                            //usersList.Add(user);
                             List<object> Parameters = new List<object>();
                             obj.StudentNo = user.StudentNo;
                             obj.StudentName = user.StudentName;
@@ -160,6 +166,7 @@ namespace MailPro.Controllers
                             obj.IsHosteller = user.IsHosteller;
                             obj.IsCR = user.IsCR;
                             obj.StudentCategory = user.StudentCategory;
+                            obj.FacultyID = user.FacultyID;
 
                             Parameters.Add(obj.StudentNo);
                             Parameters.Add(obj.StudentName);
@@ -170,9 +177,23 @@ namespace MailPro.Controllers
                             Parameters.Add(obj.IsHosteller);
                             Parameters.Add(obj.IsCR);
                             Parameters.Add(obj.StudentCategory);
+                            Parameters.Add(obj.FacultyID);
 
                             object[] objectarray = Parameters.ToArray();
-                            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)", objectarray);
+                            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
+                            Session["StudentNo"] = obj.StudentNo;
+                            int id = (int)Session["CategoryID"];
+                            ConnectTable CC = new ConnectTable();
+                            CC.CategoryID = id;
+                            CC.StudentNo = obj.StudentNo;
+                            using (var context = new MailProEntities())
+                            {
+
+                                // CC.PrimaryID = 1;
+                                context.ConnectTable.Add(CC);
+                                context.SaveChanges();
+
+                            }
                         }
                     }
                     

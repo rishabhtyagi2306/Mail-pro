@@ -22,11 +22,8 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult AddCategory(CategoryModel obj)
         {
-            //Session["FacultyID"] = FacultyID;
             int fid = (int)Session["FacultyID"];
             List<object> Parameters = new List<object>();
-            //var fac = (String)Session["FacultyID"];
-            //CategoryTable ct = new CategoryTable();
             obj.FacultyID = fid;
 
             Parameters.Add(obj.CategoryName);
@@ -48,13 +45,16 @@ namespace MailPro.Controllers
 
         public ActionResult ShowCategory()
         {
-            //List<object> Parameters = new List<object>();
             int fid = (int)Session["FacultyID"];
-            //obj.FacultyID = (int)Session["FacID"];
-            //Parameters.Add(obj.FacultyID);
-            //object[] objectarray = Parameters.ToArray();
             var Data = Db.CategoryTables.SqlQuery("Select *From CategoryTable where FacultyID ="+ fid).ToList();
             return View(Data);
+        }
+
+        public ActionResult AddStudentToCategory(CategoryModel model)
+        {
+            CategoryTable c = new CategoryTable();
+            Session["CategoryID"] = model.CategoryID;
+            return RedirectToAction("Create", "Home", new { area = ""});
         }
 
         public ActionResult DeleteCategory()

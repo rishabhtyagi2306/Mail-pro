@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.FacultyID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { CategoryID=item.CategoryID }) |
+            @Html.ActionLink("Add Student", "AddStudentToCategory", new { CategoryID=item.CategoryID }) |
             @Html.ActionLink("Delete", "DeleteCategory", new { CategoryID=item.CategoryID })
         </td>
     </tr>

@@ -58,6 +58,7 @@
           <Property Name="IsHosteller" Type="bit" Nullable="false" />
           <Property Name="IsCR" Type="bit" Nullable="false" />
           <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -183,6 +184,7 @@
           <Property Name="IsCR" Type="Boolean" Nullable="false" />
           <Property Name="StudentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ConnectTable" Relationship="Self.FK_ConnectTable_StudentTable" FromRole="StudentTable" ToRole="ConnectTable" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -308,6 +310,7 @@
           <EntitySetMapping Name="StudentTable">
             <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
               <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
                 <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
                 <ScalarProperty Name="StudentName" ColumnName="StudentName" />
                 <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />

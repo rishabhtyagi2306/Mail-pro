@@ -49,6 +49,7 @@
     <Property Name="IsCR" Type="Boolean" Nullable="false" />
     <Property Name="StudentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="ConnectTable" Relationship="Self.FK_ConnectTable_StudentTable" FromRole="StudentTable" ToRole="ConnectTable" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />

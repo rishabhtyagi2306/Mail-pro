@@ -36,6 +36,7 @@
     <EntitySetMapping Name="StudentTable">
       <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
         <MappingFragment StoreEntitySet="StudentTable">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
           <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
           <ScalarProperty Name="StudentName" ColumnName="StudentName" />
           <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
