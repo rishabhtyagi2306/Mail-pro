@@ -61,7 +61,7 @@ namespace MailPro.Controllers
                 }
 
                 string Subject = model.Subject;
-                string Body = model.Contents;
+                string Body = "Hello"+st.StudentName+model.Contents;
 
                 SmtpClient smtp = new SmtpClient()
                 {
