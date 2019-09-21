@@ -232,9 +232,7 @@
     <Content Include="Views\Email\Mail.cshtml" />
     <Content Include="Views\Account\Home.cshtml" />
     <Content Include="Views\Email\ShowMails.cshtml" />
-    <Content Include="Views\Category\show.cshtml" />
     <Content Include="Views\Category\Displays.cshtml" />
-    <Content Include="Views\Category\disp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -114,22 +114,9 @@ namespace MailPro.Controllers
             Session["mails"] = mails;
             Session["data"] = data;
             
-            //  List<string> mails = (List<string>)Session["mailview"];
-            // List<ViewModel> vm = new List<ViewModel>();
+           
             int output = Db.Database.ExecuteSqlCommand("delete from Temp");
-            //string strConnection = "Data Source =.; Initial Catalog = MailPro; Integrated Security = True";
-            //using (SqlConnection con = new SqlConnection(strConnection))
-            //{
-            //    string query = " DELETE from Temp";
-            //    using (SqlCommand cmd = new SqlCommand(query))
-            //    {
-            //        cmd.Connection = con;
-            //        con.Open();
-
-
-            //        con.Close();
-            //    }
-            //}
+          
             foreach (var item in studentViewModel)
             {
                 vr.StudentName = @item.studentmodelvm.StudentName;
@@ -207,22 +194,7 @@ namespace MailPro.Controllers
             return View(obj);
         }
 
-        [HttpPost]
-        public ActionResult disp(Class1 obj)
-        {
-            List<string> send = new List<string>();
-                //foreach(var item in obj)
-           
-                //if (obj.IsSelected)
-                //{
-                ////append each checked records into StringBuilder   
-                //send.Add(obj.StudentEmail);
-                //    //sb.Append(item.Text + ",");
-                //}
-            
-            return View(obj);
-
-        }
+      
         public ActionResult Displays()
         {
             DisplayClass fruit = new DisplayClass();
@@ -327,14 +299,7 @@ namespace MailPro.Controllers
 
         public void InsertData1()
         {
-            //using (var context = new MailProEntities())
-            //{
-            //    var abc= from st in context.StudentTable
-            //               select st;
-            //           return View();
-            //}
-
-
+            
             int fid = (int)Session["FacultyID"];
 
             // string strConnection = "Data Source=.; uid=sa; pwd=wintellect;database=Genericdatabase;";
@@ -442,59 +407,7 @@ namespace MailPro.Controllers
 
 
       
-        //var context = new MailProEntities();
-        //    StudentTable s = new StudentTable();
-        //    //var st = context.StudentTable.SqlQuery("Select * from StudentTable");
-        //    //student = MailPro.StudentTable.ToList();
-        //    foreach(var item in dt)
-        //    {
-        //        student.Add(new StudentModel { StudentNo = st.StudentNo });
-
-        //    }
-        //}
-        //public ActionResult ShowStudents()
-        //{
-        //    //List<object> Parameters = new List<object>();
-        //   
-
-        //    Class1 obj=new Class1();
-        //   
-        //    //context.DbSet<Table_name>.SqlQuery
-
-        //    //var s = context.CategoryTable.SqlQuery("Select CategoryID,CategoryName from CategoryTable where FacultyID=" + fid).ToList();
-        //    //foreach(var item in s)
-        //    //{
-        //    //    var m = context.ConnectTable.SqlQuery("Select StudentNo from ConnectTable where ConnectTable.CategoryID=" + item.CategoryID).ToList();
-        //    //    foreach(var number in m)
-        //    //    {
-        //    //        var q = context.StudentTable.SqlQuery("Select StudentName,StudentEmail from StudentTable where StudentTable.StudentNo=" + number.StudentNo).ToList();
-        //    //    }
-        //    //}
-        //      //var si = context.Database.SqlQuery<>("SELECT StudentTable.StudentNo,StudentTable.StudentName,StudentTable.StudentEmail,CategoryTable.CategoryID,CategoryTable.CategoryName FROM StudentTable INNER JOIN ConnectTable On ConnectTable.StudentNo = StudentTable.StudentNo INNER JOIN CategoryTable On CategoryTable.CategoryID = ConnectTable.CategoryID INNER JOIN FacultyTable On FacultyTable.FacultyID =" + fid).ToList();
-
-        //    return View();
-
-
-        //    //var cv = (from a in Db.StudentTables
-        //    //          join e in Db.ConnectTables on a.StudentNo equals e.StudentNo
-        //    //          join t in Db.CategoryTables on e.CategoryID equals t.CategoryID
-        //    //          join h in Db.FacultyTables on t.FacultyID equals h.FacultyID
-        //    //          where h.FacultyID == fid
-        //    //          select new
-        //    //          {
-        //    //              StudentNo = a.StudentNo,
-        //    //              Name = a.StudentName,
-        //    //              Email = a.StudentEmail,
-        //    //              CategoryName = t.CategoryName,
-
-
-        //    //          }
-
-
-
-
-        //).ToList(); 
-
+      
 
 
 
