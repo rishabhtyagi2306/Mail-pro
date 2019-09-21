@@ -21,26 +21,29 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.Membership model)
+        public ActionResult Login(Models.Membership model, FacultyTable faculty)
         {
             using (var context = new MailProEntities())
             {
-                /*FacultyTable Fac = new FacultyTable();
-                model.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);*/
-                bool Verified = Convert.ToBoolean(Session["IsEmailVerified"]);
-                //var verified = Fac.IsEmailVerified;
+                FacultyTable Fac = new FacultyTable();
+                FacultyTable faculty1 = new FacultyTable();
+                faculty1 = context.FacultyTable.SingleOrDefault(m => m.FacultyEmail == model.FacultyEmail);
+                var abc = faculty1.IsEmailVerified;
+                Fac = context.FacultyTable.SingleOrDefault(n => n.FacultyEmail == model.FacultyEmail);
+                int fid = Fac.FacultyID;                
                 var y = Crypto.Hash(model.Password);
-                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && x.FacultyID == model.FacultyID);
+                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && abc!=null);
                 if (IsValid)
                 {
-                    if(Verified)
-                    {
+                    
                         FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
-                        //TempData["mydata"] = model.FacultyID;
-                        Session["FacultyID"] = model.FacultyID;
-                        return RedirectToAction("ShowSentEmail", "Email" /*new { model.FacultyID}*/);
-                    }
+                        
+                        Session["FacultyID"] = fid;
+                        
+                        return RedirectToAction("ShowSentEmail", "Email");
+                    
                 }
+                context.SaveChanges();
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
             }
@@ -76,7 +79,7 @@ namespace MailPro.Controllers
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return RedirectToAction("Login");
+            return RedirectToAction("Login" /*new { model.IsEmailVerified }*/);
         }
 
         public ActionResult Logout()
@@ -97,7 +100,7 @@ namespace MailPro.Controllers
                 if(v != null)
                 {
                     Fac.IsEmailVerified = true;
-                    model.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);
+                    v.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);
                     context.SaveChanges();
                     status = true;
                 }

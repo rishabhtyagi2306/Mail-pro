@@ -9,6 +9,7 @@ using MailPro.Models;
 
 namespace MailPro.Controllers
 {
+    [Authorize]
     public class EmailController : Controller
     {
         DataContext Db = new DataContext();

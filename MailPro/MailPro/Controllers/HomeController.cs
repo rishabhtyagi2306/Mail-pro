@@ -10,13 +10,12 @@ using System.Web.UI.MobileControls;
 
 namespace MailPro.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         // GET: Home
         DataContext Db = new DataContext();
 
-
-        [Authorize]
         public ActionResult Create()
         {
             return View();

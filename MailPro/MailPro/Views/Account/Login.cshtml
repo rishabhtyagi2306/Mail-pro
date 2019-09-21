@@ -66,7 +66,7 @@
     </div>
         </div>-->
                     <!--<form id="form">-->
-                    <div class="form-group row" style="padding-top:175px">
+                    @*<div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
                         @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
                         <div class="col-sm-10">
@@ -77,9 +77,9 @@
                             @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
                             <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
                         </div>
-                    </div>
+                    </div>*@
 
-                    <div class="form-group row">
+                    <div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
                         @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
                         <div class="col-sm-10">
@@ -102,7 +102,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-lg-12">
                         <h6>New to Mail Pro ? Click here to @Html.ActionLink("SignUp","Signup","Account")</h6>
+                            </div>
                     </div> 
                     <div class="form-group row">
                         <div class="col-sm-12">

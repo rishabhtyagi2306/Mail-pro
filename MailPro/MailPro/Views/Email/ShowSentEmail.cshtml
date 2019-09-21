@@ -1,25 +1,18 @@
 ﻿@model IEnumerable<MailPro.Mails>
-
-@{
-    ViewBag.Title = "Home";
-}
-
-
-
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Untitled Document</title>
+    <title>Inbox</title>
 
-    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
-    <link rel="stylesheet" href="@Url.Content("../css/navbar.css")" type="text/css">
-    <link rel="stylesheet" href="@Url.Content("../files/fontawesome.min.css")">
-    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/sent mails.css" type="text/css">
+    <link rel="stylesheet" href="../files/fontawesome.min.css">
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
 
 
-    <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
-    <script src="@Url.Content("../files/bootstrap.min.js")"></script>
+    <script src="../files/jquery-3.4.1.min.js"></script>
+    <script src="../files/bootstrap.min.js"></script>
 
     <script>
         $(function () {
@@ -33,10 +26,8 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!--<a class="navbar-brand" href="#">Navbar</a>-->
         <div class="px-3 bg-light">
             <div class="media d-flex align-items-center">
-                <!--<img src="" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="96.412" height="68" viewBox="0 0 96.412 68" class="mr-3 ">
                     <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#fff" stroke-width="6">
                         <ellipse cx="35.164" cy="34" rx="35.164" ry="34" stroke="none" />
@@ -49,7 +40,8 @@
                 </svg>
 
                 <div class="media-body">
-                    <h4 class="m-0">Mail Pro</h4>
+                    <h4 class="m-0">Name</h4>
+
 
                 </div>
             </div>
@@ -58,9 +50,10 @@
 
         <div class=" collapse navbar-collapse nav-item active" id="navbarSupportedContent">
             <!--
-            <a class="nav-link" href="#">Signout</a>-->
+            <a class="nav-link" href="#"	>Signout</a>-->
         </div>
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Toggle</small></button>
+        
+        <button id="sidebarCollapse" type="button"  class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
 
 
@@ -69,94 +62,107 @@
 
         <p class="text-gray font-weight-bold text-uppercase px-3 py-3 pb-4 mb-0">MENU</p>
         <a href="https://localhost:44378/Email/Mail">
-            <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><em class="text-uppercase font-weight-bold">Compose</em></button>
-        </a>
-        <ul class="nav flex-column bg-white mb-0">
-            <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic bg-light">
-                    <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            <button type="button" class="btn btn-light bg-light rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><em class="text-uppercase font-weight-bold">Compose</em></button>
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Email/ShowSentEmail" class="nav-link text-dark bg-light opt">
+                        <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                     -->
-                    Sent Mail
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                    <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        Sent Mail
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark opt">
+                        <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                     -->
-                    Browse Templates
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://localhost:44378/Category/ShowCategory" class="nav-link text-dark font-italic">
-                    <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        Browse Templates
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/ShowCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                     -->
-                    View Categories
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://localhost:44378/Category/AddCategory" class="nav-link text-dark font-italic">
-                    <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        View Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/AddCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
                     -->
-                    Add Categories
-                </a>
-            </li>
-            <li class="nav-item mx-5">
-                    <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-    -->             @if(User.Identity.IsAuthenticated)
+                        Add Categories
+                    </a>
+                </li>
+                @*<li class="nav-item">
+                    <a href="#" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        -->
+                        View Students
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        -->
+                        Add Students
+                    </a>
+                </li>*@
+                <li class="nav-item mx-5">
+                    @if (User.Identity.IsAuthenticated)
                     {
                         <button id="logout" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">@Html.ActionLink("Logout", "Logout", "Account")</small></button>
                     }
-               
-            </li>
-        </ul>
+                </li>
+
+            </ul>
 
 
     </div>
-    <!-- End vertical navbar -->
-    <div class="page-content pr-5 active container"  id="content">
-        <div class="row pt-5 container-fluid">
-            <div class="col-lg-10">
-        <table class="table">
-            <tr class="bg-white">
-                <th>
-                    @Html.DisplayNameFor(model => model.Subject)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Contents)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sent)
-                </th>
-                <th>
+    <div class="page-content active container-fluid" id="content">
+        <div class="row pt-5">
+            <div class="col-lg-12">
 
-                </th>
-            </tr>
+                <!-- -------------------loop starts here--------------------->
+                <table class="table">
+                    <tr class="bg-white">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contents)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sent)
+                        </th>
+                        <th>
 
-            @foreach (var item in Model)
-            {
-                <tr class="bg-white ">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Subject)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Contents)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sent)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "EmailDetail", new { MailID = item.MailID }) |
-                        @Html.ActionLink("Delete", "DeleteEmail", new { MailID = item.MailID })
-                    </td>
-                </tr>
-            }
+                        </th>
+                    </tr>
 
-        </table>
-        </div>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="bg-white ">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contents)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sent)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "EmailDetail", new { MailID = item.MailID }) |
+                                @Html.ActionLink("Delete", "DeleteEmail", new { MailID = item.MailID })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <!--loop ends here-->
             </div>
+        </div>
 
     </div>
-
 
 </body>
 </html>

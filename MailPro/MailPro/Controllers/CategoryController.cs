@@ -9,11 +9,12 @@ using MailPro.Models;
 
 namespace MailPro.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         
         DataContext Db = new DataContext();
-        [Authorize]
+        
         public ActionResult AddCategory()
         {
             return View();
