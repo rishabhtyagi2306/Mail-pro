@@ -4,6 +4,9 @@
     ViewBag.Title = "show";
 }
 
+
+       
+
 <h2>show</h2>
 <table class="table">
     <tr>
@@ -12,15 +15,137 @@
         <td>Student Email</td>
         <td>Categories</td>
     </tr>
+    @{
+
+        List<string> mail = new List<string>();
+        
+    }
+
     @foreach (var item in Model)
     {
-<tr>
-    <td>@item.studentmodelvm.StudentNo</td>
-    <td>@item.studentmodelvm.StudentName</td>
-    <td>@item.studentmodelvm.StudentEmail</td>
-    <td>@item.categorymodelvm.CategoryName</td>
-</tr>
+        <tr>
+            <td>@item.studentmodelvm.StudentNo</td>
+            <td>@item.studentmodelvm.StudentName</td>
+            <td>@item.studentmodelvm.StudentEmail</td>
+            <td>@item.categorymodelvm.CategoryName</td>
+
+        </tr>
+        mail.Add(@item.categorymodelvm.CategoryName);
+        mail = mail.Distinct().ToList();
+       
+
+
+        ViewBag.orders = new MultiSelectList(@item.studentmodelvm.StudentName, "@item.studentmodelvm.StudentNo");
+        
+
+
     }
-    </table>
+    /**/
+
+
+</table>
+
+
+@*<script src="http://code.jquery.com/jquery-1.12.4.min.js"
+            ></script>
+    <link  href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"  ></script>   <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#mySkills').multiselect({
+                includeSelectAllOption: true
+            });
+
+        });
+
+    </script>*@
+
+@*< script src = "http://code.jquery.com/jquery-1.12.4.min.js" > < /script> < link href = "http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel = "stylesheet"
+    type = "text/css" / > < script src = "http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" > < /script> < link href = "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+    rel = "stylesheet" type = "text/css" / > < script src = "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js" > < /script> < script type = "text/javascript" > $(function() {
+        $('#mySkills').multiselect({
+            includeSelectAllOption: true
+        });
+    }); < /script> < h2 > Multiselect Dropdown with Checkbox < /h2>*@
+@*<div>
+    <select id="mySkills" multiple="multiple" required name="mySkillsName">*@
+
+
+
+@*@foreach (var item in Model)
+    {
+        foreach (var ch in mail)
+        {
+
+            if (@item.categorymodelvm.CategoryName == ch)
+            {*@
+@*< option value = "@item.Value" > @item.Text < /option>*@
+
+@*}
+        }
+    }
+            </select></div>*@
+
+
+
+
+@(Html.BeginForm("show", "Category", FormMethod.Post))
+            {
+
+@foreach (var ch in mail)
+{
+    @Html.Label(ch)
+    {
+        foreach (var item in Model)
+        {
+            if (@item.categorymodelvm.CategoryName == ch)
+
+            {
+
+                //<h2>@item.studentmodelvm.StudentName</h2>
+
+                @Html.CheckBoxFor(m => @item.IsSelected, @item.studentmodelvm.StudentName)
+                <br />
+
+                <br />
+
+                <input type="submit" value="Submit" />
+            }
+        }
+
+
+    };
+}
+
+            }
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+      rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.listbox').multiselect({
+            includeSelectAllOption: true
+        });
+    });
+</script>
+                if (ViewBag.Message != null)
+                {
+<script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+</script>
+}
+}
+
+
+
+
+
+
 
 

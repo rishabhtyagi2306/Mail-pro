@@ -60,5 +60,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Temp">
+      <EntityTypeMapping TypeName="DatabaseModel.Temp">
+        <MappingFragment StoreEntitySet="Temp">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="Keys" ColumnName="Keys" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+          <ScalarProperty Name="IsCR" ColumnName="IsCR" />
+          <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Section" ColumnName="Section" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="StuidentNo" ColumnName="StuidentNo" />
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

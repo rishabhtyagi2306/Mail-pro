@@ -108,6 +108,7 @@
       <End Role="FacultyTable" EntitySet="FacultyTable" />
       <End Role="Mails" EntitySet="Mails" />
     </AssociationSet>
+    <EntitySet Name="Temp" EntityType="DatabaseModel.Temp" />
   </EntityContainer>
   <EntityType Name="Mails">
     <Key>
@@ -133,4 +134,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Temp">
+    <Key>
+      <PropertyRef Name="Keys" />
+    </Key>
+    <Property Name="StudentName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="StudentEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StuidentNo" Type="Int32" Nullable="false" />
+    <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Section" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="IsHosteller" Type="Boolean" Nullable="false" />
+    <Property Name="IsCR" Type="Boolean" Nullable="false" />
+    <Property Name="StudentCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
+    <Property Name="Keys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="Boolean" Nullable="false" DefaultValue="false" />
+  </EntityType>
 </Schema>

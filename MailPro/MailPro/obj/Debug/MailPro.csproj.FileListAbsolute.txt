@@ -146,3 +146,4 @@ C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.pdb
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.xml
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\FB.Mvc.CheckBoxList.dll

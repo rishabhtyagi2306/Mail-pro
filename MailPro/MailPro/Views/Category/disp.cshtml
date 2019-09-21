@@ -1,0 +1,196 @@
+﻿@using FB.Mvc.CheckBoxList;
+@model IEnumerable<MailPro.Models.Class1>
+
+@{
+    ViewBag.Title = "disp";
+    List<string> mail = new List<string>();
+    //List<Class1> obj = new List<Class1>();
+
+}
+
+@*<h2>disp</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StuidentNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsHosteller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultyID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Keys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSelected)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StuidentNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsHosteller)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacultyID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Keys)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSelected)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+
+                </td>
+
+
+            </tr>
+        }
+
+    </table>*@
+@foreach (var item in Model)
+{
+    mail.Add(@item.CategoryName);
+    mail = mail.Distinct().ToList();
+}
+@using (Html.BeginForm("disp","Category",FormMethod.Post))
+{
+
+    foreach (var ch in mail)
+    {
+        @Html.Label(ch)
+
+        {
+
+
+            foreach (var item in Model)
+            {
+
+                if (@item.CategoryName == ch)
+                {
+                   
+                    //<h2>@item.studentmodelvm.StudentName</h2>
+                    //var abc = (bool)@item.IsSelected;
+
+                    //var abc = (bool)@item.IsSelected;
+                    @Html.CheckBoxFor(m => @item.IsSelected,@item.StudentName) @Html.Label(@item.StudentName)
+
+
+
+
+
+
+
+
+                }
+                <br>
+
+            }
+
+
+
+        }
+
+    }
+    <input type="submit" value="Submit" />
+
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+      rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.listbox').multiselect({
+            includeSelectAllOption: true
+        });
+    });
+</script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+    </script>
+}
+
+}
+
+
+
+
+
+
