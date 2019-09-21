@@ -39,44 +39,49 @@ namespace MailPro.Controllers
         [HttpGet]
         public void EmailSent(Mails model)
         {
+            List<int> fetch = (List<int>)Session["MailTransfer"];
 
             int Fac = (int)Session["FacultyID"];
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
-
-
-           var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-            var ToEmail = new MailAddress(model.Sent);
-            var FromEmailPassword = model.GmailPassword;
-            using (MailMessage mail = new MailMessage())
+            StudentTable st = new StudentTable();
+            foreach (var item in fetch)
             {
-                mail.From = new MailAddress(ft.FacultyEmail,ft.FacultyName);
-                mail.To.Add(model.Sent);
-                mail.To.Add(model.Sent);
+                st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+
+                var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+                var ToEmail = new MailAddress(st.StudentEmail);
+                var FromEmailPassword = model.GmailPassword;
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+                    mail.To.Add(model.Sent);
+                    mail.To.Add(model.Sent);
+                }
+
+                string Subject = model.Subject;
+                string Body = model.Contents;
+
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+                };
+
+                using (var message = new MailMessage(FromEmail, ToEmail)
+                {
+                    Subject = Subject,
+                    Body = Body,
+                    IsBodyHtml = true
+                })
+
+                    smtp.Send(message);
             }
-
-            string Subject = model.Subject;
-            string Body = model.Contents;
-
-            SmtpClient smtp = new SmtpClient()
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-            };
-
-            using (var message = new MailMessage(FromEmail, ToEmail)
-            {
-                Subject = Subject,
-                Body = Body,
-                IsBodyHtml = true
-            })
-
-                smtp.Send(message);
         } 
 
         public ActionResult ShowMails()
