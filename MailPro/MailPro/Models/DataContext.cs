@@ -18,7 +18,7 @@ namespace MailPro.Models
 
         public DbSet<Mails> GetMails { get; set; }
 
-        
+        public DbSet<TemplateTable> TemplateTables { get; set; }
         
     }
 }

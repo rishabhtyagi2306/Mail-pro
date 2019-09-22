@@ -74,6 +74,14 @@
     <Property Name="Keys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IsSelected" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="TemplateTable">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
     <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="*" />
@@ -129,6 +137,7 @@
     <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Temp" EntityType="Self.Temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CategoryTable_FacultyTable" Association="Self.FK_CategoryTable_FacultyTable">
       <End Role="FacultyTable" EntitySet="FacultyTable" />
       <End Role="CategoryTable" EntitySet="CategoryTable" />

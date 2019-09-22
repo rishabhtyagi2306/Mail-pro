@@ -79,6 +79,14 @@
           <Property Name="Keys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
           <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="*" />
@@ -134,6 +142,7 @@
           <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Temp" EntityType="Self.Temp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CategoryTable_FacultyTable" Association="Self.FK_CategoryTable_FacultyTable">
             <End Role="FacultyTable" EntitySet="FacultyTable" />
             <End Role="CategoryTable" EntitySet="CategoryTable" />
@@ -265,6 +274,7 @@
             <End Role="Mails" EntitySet="Mails" />
           </AssociationSet>
           <EntitySet Name="Temp" EntityType="DatabaseModel.Temp" />
+          <EntitySet Name="TemplateTable" EntityType="DatabaseModel.TemplateTable" />
         </EntityContainer>
         <EntityType Name="Mails">
           <Key>
@@ -308,6 +318,14 @@
           <Property Name="FacultyID" Type="Int32" Nullable="false" />
           <Property Name="Keys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -392,6 +410,15 @@
                 <ScalarProperty Name="StuidentNo" ColumnName="StuidentNo" />
                 <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
                 <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TemplateTable">
+            <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
+              <MappingFragment StoreEntitySet="TemplateTable">
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

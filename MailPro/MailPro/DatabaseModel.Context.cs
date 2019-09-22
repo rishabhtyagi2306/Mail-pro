@@ -31,5 +31,6 @@ namespace MailPro
         public virtual DbSet<StudentTable> StudentTable { get; set; }
         public virtual DbSet<Mails> Mails { get; set; }
         public virtual DbSet<Temp> Temp { get; set; }
+        public virtual DbSet<TemplateTable> TemplateTable { get; set; }
     }
 }

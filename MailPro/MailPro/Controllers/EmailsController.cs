@@ -40,6 +40,40 @@ namespace MailPro.Controllers
             return View();
         }
 
+        public ActionResult CreateTemplate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateTemplate(TemplateModel obj)
+        {
+            List<object> Parameters = new List<object>();
+            
+            Parameters.Add(obj.TemplateURL);
+            Parameters.Add(obj.TemplateName);
+            object[] objectarray = Parameters.ToArray();
+            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName) values(@p0,@p1)", objectarray);
+            return RedirectToAction("CreateTemplate");
+        }
+        public ActionResult ShowTemplate()
+        {
+            var Data = Db.TemplateTables.SqlQuery("Select *From TemplateTable").ToList();
+            return View(Data);
+        }
+
+        public ActionResult SelectTemplate(TemplateModel model)
+        {
+           using (var context = new MailProEntities())
+            {
+                TemplateTable tt = new TemplateTable();
+                tt = context.TemplateTable.SingleOrDefault(x => x.TemplateID == model.TemplateID);
+                string y = tt.TemplateURL;
+                Session["TemplateURL"] = y;
+            }
+            return RedirectToAction("Show", "Category");
+        }
+
         
         [HttpGet]
         public void EmailSent(Mails model)
@@ -57,10 +91,10 @@ namespace MailPro.Controllers
                 var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
                 var ToEmail = new MailAddress(st.StudentEmail);
                 var FromEmailPassword = model.GmailPassword;
-
+                string URL = Session["TemplateUrl"].ToString();
                 string Subject = model.Subject;
-                string Body = "Hello " + st.StudentName + "</br>" + model.Contents;
-                Body = PopulateBody(Body);
+                string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
+                Body = PopulateBody(Body,URL);
 
                 SmtpClient smtp = new SmtpClient()
                 {
@@ -85,10 +119,10 @@ namespace MailPro.Controllers
             
         }
 
-        public string PopulateBody(string contents)
+        public string PopulateBody(string contents, string URL)
         {
             string Body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("../Templates/template1.html")))
+            using (StreamReader reader = new StreamReader(Server.MapPath(URL)))
             {
                 Body = reader.ReadToEnd();
             }
