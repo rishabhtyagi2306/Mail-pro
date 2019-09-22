@@ -29,6 +29,18 @@ namespace MailPro.Controllers
                 //Fac.Password = Crypto.Hash(Fac.Password);
                 int Fac = (int)Session["FacultyID"];
                 model.FacultyID = Fac;
+                List<int> fetch = (List<int>)Session["MailTransfer"];
+                List<string> mailer = new List<string>();
+                StudentTable st = new StudentTable();
+                
+                foreach (var item in fetch)
+                {
+                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                    ViewBag.mail +=","+ st.StudentEmail;
+                    
+
+                }
+                model.Sent = ViewBag.mail;
                 context.Mails.Add(model);
                 context.SaveChanges();
                 EmailSent(model);
@@ -56,8 +68,8 @@ namespace MailPro.Controllers
                 using (MailMessage mail = new MailMessage())
                 {
                     mail.From = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-                    mail.To.Add(model.Sent);
-                    mail.To.Add(model.Sent);
+                    //mail.To.Add(model.Sent);
+                    //mail.To.Add(model.Sent);
                 }
 
                 string Subject = model.Subject;

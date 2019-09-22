@@ -209,14 +209,16 @@ namespace MailPro.Controllers
             {
                 List<SelectListItem> selectedItems = fruit.StudentNames.Where(p => fruit.ids.Contains(int.Parse(p.Value))).ToList();
                 List<int> StudentNoMail = new List<int>();
-                ViewBag.Message = "Selected Fruits:";
+                //ViewBag.Message = "Selected Fruits:";
                 foreach (var selectedItem in selectedItems)
                 {
                     var intno = Convert.ToInt32(selectedItem.Value);
                     selectedItem.Selected = true;
                     ViewBag.Message += "\\n" + selectedItem.Text;
                     StudentNoMail.Add(intno);
+                   
                 }
+                StudentNoMail=StudentNoMail.Distinct().ToList();
                 Session["MailTransfer"] = StudentNoMail;
             }
 

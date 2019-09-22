@@ -195,7 +195,6 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\DisplayClass.cs" />
-    <Compile Include="Models\Templates.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\ConnectModel.cs" />
@@ -207,9 +206,6 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Temp.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

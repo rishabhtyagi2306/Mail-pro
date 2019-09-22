@@ -109,6 +109,7 @@
       <End Role="Mails" EntitySet="Mails" />
     </AssociationSet>
     <EntitySet Name="Temp" EntityType="DatabaseModel.Temp" />
+    <EntitySet Name="Templates" EntityType="DatabaseModel.Templates" />
   </EntityContainer>
   <EntityType Name="Mails">
     <Key>
@@ -152,5 +153,12 @@
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="Keys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IsSelected" Type="Boolean" Nullable="false" DefaultValue="false" />
+  </EntityType>
+  <EntityType Name="Templates">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplatePath" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
 </Schema>
