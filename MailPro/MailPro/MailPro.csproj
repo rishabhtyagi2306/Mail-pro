@@ -133,6 +133,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Templates\HtmlPage1.html" />
     <Content Include="img\background 1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\DisplayClass.cs" />
+    <Compile Include="Models\Templates.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\ConnectModel.cs" />
@@ -205,6 +207,9 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Temp.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

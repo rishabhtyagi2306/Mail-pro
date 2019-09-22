@@ -149,50 +149,50 @@ namespace MailPro.Controllers
 
         }
 
-        public ActionResult disp()
-        {
-            string strConnection = "Data Source =.; Initial Catalog = MailPro; Integrated Security = True";
+        //public ActionResult disp()
+        //{
+        //    string strConnection = "Data Source =.; Initial Catalog = MailPro; Integrated Security = True";
 
-            SqlConnection con = new SqlConnection(strConnection);
+        //    SqlConnection con = new SqlConnection(strConnection);
 
-            con.Open();
+        //    con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * from Temp");
-            cmd.Connection = con;
-            Class1 variable = new Class1();
-            DataTable dt = new DataTable();
+        //    SqlCommand cmd = new SqlCommand("SELECT * from Temp");
+        //    cmd.Connection = con;
+        //    Class1 variable = new Class1();
+        //    DataTable dt = new DataTable();
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            da.Fill(dt);      
-
-
-            List<Class1> obj = new List<Class1>();
-            for (int i = 0; i < dt.Rows.Count; i++)
-                obj.Add(new Class1
-                {
-                    StuidentNo = (int)dt.Rows[i]["StuidentNo"],
-                    StudentName = dt.Rows[i]["StudentName"].ToString(),
-                    StudentEmail = dt.Rows[i]["StudentEmail"].ToString(),
-                    Branch = dt.Rows[i]["Branch"].ToString(),
-                    Section = (int)dt.Rows[i]["Section"],
-                    Year = (int)dt.Rows[i]["Year"],
-                    IsHosteller = (bool)dt.Rows[i]["IsHosteller"],
-                    IsCR = (bool)dt.Rows[i]["IsCR"],
-                    StudentCategory = dt.Rows[i]["StudentCategory"].ToString(),
-                    CategoryID = (int)dt.Rows[i]["CategoryID"],
-                    CategoryName = dt.Rows[i]["CategoryName"].ToString(),
-                    FacultyID = (int)dt.Rows[i]["FacultyID"],
-                    IsSelected=false,
+        //    da.Fill(dt);      
 
 
+        //    List<Class1> obj = new List<Class1>();
+        //    for (int i = 0; i < dt.Rows.Count; i++)
+        //        obj.Add(new Class1
+        //        {
+        //            StuidentNo = (int)dt.Rows[i]["StuidentNo"],
+        //            StudentName = dt.Rows[i]["StudentName"].ToString(),
+        //            StudentEmail = dt.Rows[i]["StudentEmail"].ToString(),
+        //            Branch = dt.Rows[i]["Branch"].ToString(),
+        //            Section = (int)dt.Rows[i]["Section"],
+        //            Year = (int)dt.Rows[i]["Year"],
+        //            IsHosteller = (bool)dt.Rows[i]["IsHosteller"],
+        //            IsCR = (bool)dt.Rows[i]["IsCR"],
+        //            StudentCategory = dt.Rows[i]["StudentCategory"].ToString(),
+        //            CategoryID = (int)dt.Rows[i]["CategoryID"],
+        //            CategoryName = dt.Rows[i]["CategoryName"].ToString(),
+        //            FacultyID = (int)dt.Rows[i]["FacultyID"],
+        //            IsSelected=false,
 
 
-                });
+
+
+        //        });
         
 
-            return View(obj);
-        }
+        //    return View(obj);
+        //}
 
       
         public ActionResult Displays()

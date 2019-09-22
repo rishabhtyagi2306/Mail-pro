@@ -43,7 +43,7 @@ namespace MailPro.Controllers
 
             int Fac = (int)Session["FacultyID"];
             FacultyTable ft = new FacultyTable();
-            var context = new MailProEntities();
+            var context = new MailProEntities();  
             ft = context.FacultyTable.Find(Fac);
             StudentTable st = new StudentTable();
             foreach (var item in fetch)
