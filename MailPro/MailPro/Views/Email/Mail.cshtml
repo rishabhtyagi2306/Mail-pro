@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../files/bootstrap.min.css">
 
 
-    <script src="../files/jquery-3.4.1.min.js"></script>
-    <script src="../files/bootstrap.min.js"></script>
+    <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("../files/bootstrap.min.js")"></script>
 
     <script>
         $(function () {
@@ -120,12 +120,13 @@
 
     </div>
     <div class="page-content active container" id="content">
-        <div class="row pt-5">
+        @using (Html.BeginForm())
+        {
+            <div class="row pt-5">
 
-            <div class="col-lg-12">
-                <form>
-                    @using (Html.BeginForm())
-                    {
+                <div class="col-lg-12">
+                    <form>
+
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -173,20 +174,20 @@
                             <div class="row pt-5 ">
                                 <div class="col-lg-3 mx-auto">
 
-                                    <button type="submit" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><em class="font-weight-bold">Send mail</em></button>
+                                    <input type="submit" value="Send" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5" />@*<em class="font-weight-bold">Send mail</em></input>*@
                                 </div>
 
                             </div>
                         </div>
-                    }
 
-                </form>
+
+                    </form>
+                </div>
+
+
+
             </div>
-
-
-
-        </div>
-
+        }
     </div>
 
 </body>

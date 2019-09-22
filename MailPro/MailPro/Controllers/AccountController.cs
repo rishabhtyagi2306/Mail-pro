@@ -79,7 +79,7 @@ namespace MailPro.Controllers
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return RedirectToAction("Login" /*new { model.IsEmailVerified }*/);
+            return View();
         }
 
         public ActionResult Logout()

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using System.Net;
 using MailPro.Models;
+using System.IO;
 
 namespace MailPro.Controllers
 {
@@ -38,41 +39,61 @@ namespace MailPro.Controllers
             }
             return View();
         }
+
+        
         [HttpGet]
         public void EmailSent(Mails model)
         {
+            List<int> fetch = (List<int>)Session["MailTransfer"];
 
             int Fac = (int)Session["FacultyID"];
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
-
-
-            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-            var ToEmail = new MailAddress(model.Sent);
-            var FromEmailPassword = model.GmailPassword;
-                  
-            string Subject = model.Subject;
-            string Body = model.Contents;
-
-            SmtpClient smtp = new SmtpClient()
+            StudentTable st = new StudentTable();
+            foreach (var item in fetch)
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-            };
+                st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+                var ToEmail = new MailAddress(st.StudentEmail);
+                var FromEmailPassword = model.GmailPassword;
 
-            using (var message = new MailMessage(FromEmail, ToEmail)
+                string Subject = model.Subject;
+                string Body = "Hello " + st.StudentName + "</br>" + model.Contents;
+                Body = PopulateBody(Body);
+
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+                };
+
+                using (var message = new MailMessage(FromEmail, ToEmail)
+                {
+                    Subject = Subject,
+                    Body = Body,
+                    IsBodyHtml = true
+                })
+
+                    smtp.Send(message);
+            }
+
+            
+        }
+
+        public string PopulateBody(string contents)
+        {
+            string Body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath("../Templates/template1.html")))
             {
-                Subject = Subject,
-                Body = Body,
-                IsBodyHtml = true
-            })
-
-                smtp.Send(message);
+                Body = reader.ReadToEnd();
+            }
+            Body = Body.Replace("{Body}", contents);
+            return Body;
         }
 
         public ActionResult ShowSentEmail()

@@ -40,24 +40,48 @@ namespace MailPro.Controllers
             Parameters.Add(obj.StudentCategory);
             Parameters.Add(obj.FacultyID);
             object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
-            if (output > 0)
+            try
             {
-                ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
+                int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
+                if (output > 0)
+                {
+                    ViewBag.Message = "Data of Student" + obj.StudentName + "is added successfully";
+                }
+                Session["StudentNo"] = obj.StudentNo;
+                int id = (int)Session["CategoryID"];
+                ConnectTable CC = new ConnectTable();
+                CC.CategoryID = id;
+                CC.StudentNo = obj.StudentNo;
+                using (var context = new MailProEntities())
+                {
+
+                    // CC.PrimaryID = 1;
+                    context.ConnectTable.Add(CC);
+                    context.SaveChanges();
+
+                }
             }
-            Session["StudentNo"] = obj.StudentNo;
-            int id = (int)Session["CategoryID"];
-            ConnectTable CC = new ConnectTable();
-            CC.CategoryID = id;
-            CC.StudentNo = obj.StudentNo;
-            using (var context = new MailProEntities())
+            catch (SqlException ex)
             {
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    Session["StudentNo"] = obj.StudentNo;
+                    int id = (int)Session["CategoryID"];
+                    ConnectTable CC = new ConnectTable();
+                    CC.CategoryID = id;
+                    CC.StudentNo = obj.StudentNo;
+                    using (var context = new MailProEntities())
+                    {
 
-                // CC.PrimaryID = 1;
-                context.ConnectTable.Add(CC);
-                context.SaveChanges();
+                        // CC.PrimaryID = 1;
+                        context.ConnectTable.Add(CC);
+                        context.SaveChanges();
 
+                    }
+                    return RedirectToAction("Create");
+                }
             }
+            
             return RedirectToAction("Create");
             
         }

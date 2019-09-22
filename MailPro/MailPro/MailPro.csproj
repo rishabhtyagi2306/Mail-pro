@@ -135,6 +135,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="img\Ajay_Kumar_Garg_Engineering_College.png" />
     <Content Include="img\background 1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -193,14 +194,19 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\ConnectModel.cs" />
     <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\DisplayClass.cs" />
     <Compile Include="Models\MailsModel.cs" />
     <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentTable.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -230,6 +236,7 @@
     <Content Include="Views\Email\EmailDetail.cshtml" />
     <Content Include="Views\Home\StudentDetails.cshtml" />
     <Content Include="Views\Category\show.cshtml" />
+    <Content Include="Views\Category\Displays.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,6 +247,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="html\" />
+    <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

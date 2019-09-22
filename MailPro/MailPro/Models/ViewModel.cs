@@ -9,6 +9,6 @@ namespace MailPro.Models
     {
         public StudentModel studentmodelvm { get; set; }
         public CategoryModel categorymodelvm { get; set; }
-        public bool IsChecked { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

@@ -58,6 +58,7 @@ namespace MailPro.Controllers
             return RedirectToAction("Create", "Home", new { area = ""});
         }
 
+
         public ActionResult DeleteCategory()
         {
             return View();
@@ -80,6 +81,7 @@ namespace MailPro.Controllers
         List<ConnectModel> info = new List<ConnectModel>();
         List<Membership> info1 = new List<Membership>();
 
+
         public ActionResult show()
         {
             int fid = (int)Session["FacultyID"];
@@ -88,7 +90,7 @@ namespace MailPro.Controllers
             InsertData1();
             InsertData2();
             InsertData3();
-
+            Temp vr = new Temp();
 
             var studentViewModel = from a in student
                                    join e in info on a.StudentNo equals e.StudentNo
@@ -96,7 +98,132 @@ namespace MailPro.Controllers
                                    join h in info1 on t.FacultyID equals h.FacultyID
                                    where h.FacultyID == fid
                                    select new ViewModel { studentmodelvm = a, categorymodelvm = t };
-            return View(studentViewModel);
+
+            List<string> mails = new List<string>();
+            List<Class1> data = new List<Class1>();
+            foreach (var item in studentViewModel)
+            {
+                mails.Add(@item.categorymodelvm.CategoryName);
+                data.Add(new Class1
+                {
+                    StudentCategory = @item.studentmodelvm.StudentCategory,
+                    StudentEmail = @item.studentmodelvm.StudentEmail,
+                    Section = item.studentmodelvm.Section,
+                    CategoryName = @item.categorymodelvm.CategoryName,
+                    CategoryID = @item.categorymodelvm.CategoryID,
+                    FacultyID = @item.categorymodelvm.FacultyID,
+                    StudentName = @item.studentmodelvm.StudentName,
+                    StuidentNo = @item.studentmodelvm.StudentNo,
+                    Branch = @item.studentmodelvm.Branch,
+                    IsHosteller = @item.studentmodelvm.IsHosteller,
+                    IsCR = @item.studentmodelvm.IsCR,
+                    IsSelected = false,
+
+
+
+                });
+
+            }
+            mails = mails.Distinct().ToList();
+            Session["mails"] = mails;
+            Session["data"] = data;
+
+
+            int output = Db.Database.ExecuteSqlCommand("delete from Temp");
+
+            foreach (var item in studentViewModel)
+            {
+                vr.StudentName = @item.studentmodelvm.StudentName;
+                vr.StudentEmail = @item.studentmodelvm.StudentEmail;
+                vr.StudentCategory = @item.studentmodelvm.StudentCategory;
+                vr.StuidentNo = @item.studentmodelvm.StudentNo;
+                vr.Year = @item.studentmodelvm.Year;
+                vr.Section = @item.studentmodelvm.Section;
+                vr.IsHosteller = @item.studentmodelvm.IsHosteller;
+                vr.IsCR = @item.studentmodelvm.IsCR;
+                vr.CategoryID = @item.categorymodelvm.CategoryID;
+                vr.Branch = @item.studentmodelvm.Branch;
+                vr.CategoryName = @item.categorymodelvm.CategoryName;
+                vr.FacultyID = @item.categorymodelvm.FacultyID;
+                context.Temp.Add(vr);
+                context.SaveChanges();
+
+            }
+
+
+            return RedirectToAction("Displays");
+            //ViewModel varr = new ViewModel();
+            //new ViewModel
+            //{
+
+
+            //};
+            //return View(studentViewModel);
+
+
+        }
+
+        public ActionResult Displays()
+        {
+            DisplayClass fruit = new DisplayClass();
+            fruit.StudentNames = PopulateNames();
+            return View(fruit);
+        }
+        [HttpPost]
+        public ActionResult Displays(DisplayClass fruit)
+        {
+            fruit.StudentNames = PopulateNames();
+            if (fruit.ids != null)
+            {
+                List<SelectListItem> selectedItems = fruit.StudentNames.Where(p => fruit.ids.Contains(int.Parse(p.Value))).ToList();
+                List<int> StudentNoMail = new List<int>();
+                ViewBag.Message = "Selected Fruits:";
+                foreach (var selectedItem in selectedItems)
+                {
+                    var intno = Convert.ToInt32(selectedItem.Value);
+                    selectedItem.Selected = true;
+                    ViewBag.Message += "\\n" + selectedItem.Text;
+                    StudentNoMail.Add(intno);
+                }
+                Session["MailTransfer"] = StudentNoMail;
+            }
+
+            return RedirectToAction("Mail", "Email");
+        }
+        private static List<SelectListItem> PopulateNames()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            List<Class1> obj = new List<Class1>();
+            List<Temp> data = new List<Temp>();
+            //string constr = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+            string strConnection = "Data Source =.; Initial Catalog = MailPro; Integrated Security = True";
+            using (SqlConnection con = new SqlConnection(strConnection))
+            {
+                string query = " SELECT StuidentNo,StudentName,CategoryName from Temp";
+                // List<List> sbc = new List<List>();
+                using (SqlCommand cmdd = new SqlCommand(query))
+                {
+                    cmdd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmdd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            items.Add(new SelectListItem
+                            {
+                                Text = sdr["StudentName"].ToString(),
+                                Value = sdr["StuidentNo"].ToString(),
+
+                            });
+
+                        }
+                    }
+                    con.Close();
+                }
+
+
+                return items;
+            }
         }
         public void InsertData()
         {
