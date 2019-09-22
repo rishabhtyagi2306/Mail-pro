@@ -96,13 +96,13 @@ namespace MailPro.Controllers
             }
         } 
 
-        //public ActionResult ShowMails()
-        //{
-        //    int fid = (int)Session["FacultyID"];
-        //    var context=new MailProEntities();
-        //    var s = context.Mails.SqlQuery("Select * from Mails where FacultyID=" + fid).ToList();
-        //    return View(s);
-        //}
+        public ActionResult ShowMails()
+        {
+            int fid = (int)Session["FacultyID"];
+            var context=new MailProEntities();
+            var s = context.Mails.SqlQuery("Select * from Mails where FacultyID=" + fid).ToList();
+            return View(s);
+        }
     }
 }
 
