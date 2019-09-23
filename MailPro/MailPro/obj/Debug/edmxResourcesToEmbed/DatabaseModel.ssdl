@@ -28,6 +28,7 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsEmailVerified" Type="bit" />
     <Property Name="ActivationCode" Type="uniqueidentifier" />
+    <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Mails">
     <Key>

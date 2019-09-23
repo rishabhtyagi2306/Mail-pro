@@ -34,6 +34,7 @@
     <Property Name="IsEmailVerified" Type="Boolean" />
     <Property Name="ActivationCode" Type="Guid" />
     <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
+    <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>

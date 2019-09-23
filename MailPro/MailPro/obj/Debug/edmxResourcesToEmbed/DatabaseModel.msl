@@ -22,6 +22,7 @@
     <EntitySetMapping Name="FacultyTable">
       <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
         <MappingFragment StoreEntitySet="FacultyTable">
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
           <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
           <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />

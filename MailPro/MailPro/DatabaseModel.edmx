@@ -33,6 +33,7 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsEmailVerified" Type="bit" />
           <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Mails">
           <Key>
@@ -198,6 +199,7 @@
           <Property Name="IsEmailVerified" Type="Boolean" />
           <Property Name="ActivationCode" Type="Guid" />
           <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -354,6 +356,7 @@
           <EntitySetMapping Name="FacultyTable">
             <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
               <MappingFragment StoreEntitySet="FacultyTable">
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />

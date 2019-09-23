@@ -79,13 +79,94 @@ namespace MailPro.Controllers
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return View();
+            return RedirectToAction("VMSent");
         }
 
+        public ActionResult VMSent(Models.Membership model)
+        {
+            ViewBag.Message = model.FacultyEmail;
+            return View();
+        }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(string EmailID)
+        {
+            string message = "";
+            bool status = false;
+
+            using(MailProEntities Mp = new MailProEntities())
+            {
+                var acc = Mp.FacultyTable.Where(x => x.FacultyEmail == EmailID).FirstOrDefault();
+                if(acc != null)
+                {
+                    string ResetCode = Guid.NewGuid().ToString();
+                    EmailVerification(acc.FacultyID, acc.FacultyEmail, ResetCode, "ResetPassword");
+                    acc.ResetPasswordCode = ResetCode;
+                    Mp.Configuration.ValidateOnSaveEnabled = false;
+                    Mp.SaveChanges();
+                }
+                else
+                {
+                    message = "Account not found";
+                }
+            }
+            return View();
+        }
+
+        public ActionResult ResetPassword(string ID)
+        {
+            using (MailProEntities Mp = new MailProEntities())
+            {
+                var user = Mp.FacultyTable.Where(x => x.ResetPasswordCode == ID).FirstOrDefault();
+                if(user !=null)
+                {
+                    ResetPasswordModel model = new ResetPasswordModel();
+                    model.ResetCode = ID;
+                    return View(model);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            var message = "";
+            if(ModelState.IsValid)
+            {
+                using (MailProEntities Mp = new MailProEntities())
+                {
+                    var user = Mp.FacultyTable.Where(x => x.ResetPasswordCode == model.ResetCode).FirstOrDefault();
+                    if(user != null)
+                    {
+                        user.Password = Crypto.Hash(model.NewPassword);
+                        user.ResetPasswordCode = "";
+                        Mp.Configuration.ValidateOnSaveEnabled = false;
+                        Mp.SaveChanges();
+                        message = "New Psssword updated successfully";
+                    }
+                }
+            }
+            else
+            {
+                message = "Something Invalid";
+            }
+            ViewBag.Message = message;
+            return View(model);
         }
 
         [HttpGet]
@@ -126,16 +207,26 @@ namespace MailPro.Controllers
 
         [NonAction]
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "<Pending>")]
-        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode )
+        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "VerifyAccount")
         {
-            var verifyUrl = "/Account/VerifyAccount/" + ActivationCode;
+            var verifyUrl = "/Account/"+EmailFor+"/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
             var FromEmailPassword = "Rishabh@2306";
-            string Subject = "Email Verification for Mail Pro Account";
-            string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
-                "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
+            string Subject = "";
+            string Body = "";
+            if(EmailFor == "VerifyAccount")
+            {
+                Subject = "Email Verification for Mail Pro Account";
+                Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" +
+                    "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
+            }
+            else if(EmailFor == "ResetPassword")
+            {
+                Subject = "Reset Password";
+                Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href= '" + link + "'>"+link+"<a/>";
+            }
 
             SmtpClient smtp = new SmtpClient()
             {

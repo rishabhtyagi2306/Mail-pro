@@ -200,6 +200,7 @@
     <Compile Include="Models\DisplayClass.cs" />
     <Compile Include="Models\MailsModel.cs" />
     <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
@@ -243,6 +244,9 @@
     <Content Include="Views\Category\Displays.cshtml" />
     <Content Include="Views\Email\ShowTemplate.cshtml" />
     <Content Include="Views\Email\CreateTemplate.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\VMSent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
