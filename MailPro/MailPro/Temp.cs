@@ -14,12 +14,6 @@ namespace MailPro
     
     public partial class Temp
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Temp()
-        {
-            this.IsSelected = false;
-        }
-    
         public string StudentName { get; set; }
         public string StudentEmail { get; set; }
         public int StuidentNo { get; set; }

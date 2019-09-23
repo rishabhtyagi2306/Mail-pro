@@ -28,6 +28,7 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsEmailVerified" Type="bit" />
     <Property Name="ActivationCode" Type="uniqueidentifier" />
+    <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Mails">
     <Key>
@@ -53,6 +54,7 @@
     <Property Name="IsHosteller" Type="bit" Nullable="false" />
     <Property Name="IsCR" Type="bit" Nullable="false" />
     <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FacultyID" Type="int" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -73,12 +75,13 @@
     <Property Name="Keys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IsSelected" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Templates">
+  <EntityType Name="TemplateTable">
     <Key>
       <PropertyRef Name="TemplateID" />
     </Key>
-    <Property Name="TemplatePath" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TemplateURL" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_CategoryTable_CategoryTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -135,7 +138,7 @@
     <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Temp" EntityType="Self.Temp" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Templates" EntityType="Self.Templates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CategoryTable_CategoryTable" Association="Self.FK_CategoryTable_CategoryTable">
       <End Role="FacultyTable" EntitySet="FacultyTable" />
       <End Role="CategoryTable" EntitySet="CategoryTable" />

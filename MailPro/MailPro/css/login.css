@@ -92,7 +92,7 @@
 @media only screen and (min-width: 1140px ) {
 	#btn{
 		font-size: 1.2em;
-		margin-top: 15%;
+		
 	}
 	
 	
@@ -130,14 +130,14 @@
 		height:300px
 	}
 	.signin{
-		font-size: 1.5em;
+		font-size: 1.8em;
 		margin-top: 10%;
 		
 	}
 	#form{
-		top:-10%;
+		top:-20%;
 	}
-		
+	
 }
 @media only screen and (max-width: 550px) {
 	#btn{
@@ -161,28 +161,27 @@
 		height:250px;
 	}
 	.signin{
-		font-size: 1.3em;
+		font-size: 1.2em;
 		margin-top: 5%;
 		margin-left: 5%;
 	}
 	#form{
 		top:-17%;
 	}
-	
 }
 
 #defaultCheck1{
 	position: absolute;
-	margin-top:0%;
+	top:0%;
 	height: 40px;
 	left:4%;
 	font-size: 01em;
 }
 .form-check-label{
 	position: absolute;
-	margin-top:1%;
+	margin-top:2%;
 	height: 40px;
-	left:6%;
+	left:5%;
 	font-size: 01em;
 }
 #form{

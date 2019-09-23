@@ -9,11 +9,10 @@
   transition: all 0.4s;
 }
 
-.page-content {
+.top-nav {
   width: calc(100% - 17rem);
-  margin-left: 3rem;
+  margin-left: 0rem;
   transition: all 0.4s;
-	color: white;
 }
 
 /* for toggle behavior */
@@ -22,10 +21,10 @@
   margin-left: -17rem;
 }
 
-#content.active {
+/*#content.active {
   width: 100%;
-  margin-left: 20rem;
-}
+  margin: 0;
+}*/
 
 @media (max-width: 768px) {
   #sidebar {

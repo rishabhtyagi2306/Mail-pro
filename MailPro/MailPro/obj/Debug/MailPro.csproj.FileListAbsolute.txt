@@ -66,11 +66,15 @@ C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Webpages.Razor.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Helpers.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Mvc.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CoreCompileInputs.cache
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.pdb
+C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.xml
+C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.xml
+C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\MailPro.dll.config
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\MailPro.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\MailPro.pdb
@@ -120,8 +124,10 @@ C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\roslyn\vbc.exe.config
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\roslyn\vbc.rsp
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\roslyn\VBCSCompiler.exe
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\CsQuery.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EntityFramework.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EntityFramework.SqlServer.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Helpers.dll
@@ -130,8 +136,10 @@ C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Razor.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.Deployment.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.Razor.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\CsQuery.xml
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EntityFramework.xml
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EntityFramework.SqlServer.xml
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.xml
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Razor.xml
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.xml
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.Deployment.xml
@@ -144,6 +152,3 @@ C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csproj.Co
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.pdb
-C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.dll
-C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\EPPlus.xml
-C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\FB.Mvc.CheckBoxList.dll

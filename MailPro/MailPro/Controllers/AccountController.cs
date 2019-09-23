@@ -21,19 +21,29 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.Membership model)
+        public ActionResult Login(Models.Membership model, FacultyTable faculty)
         {
             using (var context = new MailProEntities())
             {
+                FacultyTable Fac = new FacultyTable();
+                FacultyTable faculty1 = new FacultyTable();
+                faculty1 = context.FacultyTable.SingleOrDefault(m => m.FacultyEmail == model.FacultyEmail);
+                var abc = faculty1.IsEmailVerified;
+                Fac = context.FacultyTable.SingleOrDefault(n => n.FacultyEmail == model.FacultyEmail);
+                int fid = Fac.FacultyID;                
                 var y = Crypto.Hash(model.Password);
-                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && x.FacultyID == model.FacultyID);
+                bool IsValid = context.FacultyTable.Any(x => x.FacultyEmail == model.FacultyEmail && x.Password == y && abc!=null);
                 if (IsValid)
                 {
-                    FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
-                    //TempData["mydata"] = model.FacultyID;
-                    Session["FacultyID"] = model.FacultyID;
-                    return RedirectToAction("Home" /*new { model.FacultyID}*/);
+                    
+                        FormsAuthentication.SetAuthCookie(model.FacultyEmail, false);
+                        
+                        Session["FacultyID"] = fid;
+                        
+                        return RedirectToAction("ShowSentEmail", "Email");
+                    
                 }
+                context.SaveChanges();
                 ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
                 return View();
             }
@@ -60,17 +70,16 @@ namespace MailPro.Controllers
                 {
                     ModelState.AddModelError("Email Exist", "Email already exist");
                     return View();
-                    
                 }
                 Fac.ActivationCode = Guid.NewGuid();
-               
+                model.ActivationCode = Fac.ActivationCode;
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return RedirectToAction("Login");
+            return View();
         }
 
         public ActionResult Logout()
@@ -79,24 +88,53 @@ namespace MailPro.Controllers
             return RedirectToAction("Login");
         }
 
+        //public ActionResult ForgotPassword()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult ForgotPassword(string EmailID)
+        //{
+        //    string message = "";
+        //    bool status = false;
+
+        //    using(MailProEntities Mp = new MailProEntities())
+        //    {
+        //        var acc = Mp.FacultyTable.Where(x => x.FacultyEmail == EmailID).FirstOrDefault();
+        //        if(acc != null)
+        //        {
+        //            string ResetCode = Guid.NewGuid().ToString();
+        //        }
+        //        else
+        //        {
+        //            message = "Account not found";
+        //        }
+        //    }
+        //    return View();
+        //}
+
         [HttpGet]
-        public ActionResult VerifyAccount(string id)
+        public ActionResult VerifyAccount(string id, Models.Membership model)
         {
             bool status = false;
-            using (MailProEntities Mp = new MailProEntities())
+            using (var context = new MailProEntities())
             {
-                Mp.Configuration.ValidateOnSaveEnabled = false;
-                var v = Mp.FacultyTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                FacultyTable Fac = new FacultyTable();
+                //Mp.Configuration.ValidateOnSaveEnabled = false;
+                var v = context.FacultyTable.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
                 if(v != null)
                 {
-                    v.IsEmailVerified = true;
-                    Mp.SaveChanges();
+                    Fac.IsEmailVerified = true;
+                    v.IsEmailVerified = Convert.ToBoolean(Fac.IsEmailVerified);
+                    context.SaveChanges();
                     status = true;
                 }
                 else
                 {
                     ViewBag.Message = "invalid request";
                 }
+                Session["IsEmailVerified"] = model.IsEmailVerified;
             }
             ViewBag.Status = status;
             return View();
@@ -114,16 +152,26 @@ namespace MailPro.Controllers
 
         [NonAction]
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0067:Dispose objects before losing scope", Justification = "<Pending>")]
-        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode )
+        public void EmailVerification(int FacultyID, string FacultyEmail, string ActivationCode, string EmailFor = "VerifyAccount")
         {
-            var verifyUrl = "/Account/VerifyAccount/" + ActivationCode;
+            var verifyUrl = "/Account/"+EmailFor+"/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-            var FromEmail = new MailAddress("swasti.tiwari@gmail.com", "Mail Pro");
+            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "swastipratyush";
-            string Subject = "Email Verification for Mail Pro Account";
-            string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
-                "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
+            var FromEmailPassword = "Rishabh@2306";
+            //string Subject = "";
+            //string Body = "";
+            //if(EmailFor == "VerifyAccount")
+            //{
+                string Subject = "Email Verification for Mail Pro Account";
+                string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" +
+                    "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
+            //}
+            //else if(EmailFor == "ResetPassword")
+            //{
+            //    Subject = "Reset Password";
+            //    Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href=" + link + ">";
+            //}
 
             SmtpClient smtp = new SmtpClient()
             {
@@ -143,10 +191,6 @@ namespace MailPro.Controllers
             })
 
                 smtp.Send(message);
-        }
-        public ActionResult Home()
-        {
-            return View();
         }
     }
 }

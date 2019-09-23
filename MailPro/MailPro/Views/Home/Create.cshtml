@@ -98,6 +98,7 @@
         </div>
     </div>
 }
+
 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table>
@@ -114,8 +115,9 @@
         </tr>
     </table>
 }
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "GetAllStudents")
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>

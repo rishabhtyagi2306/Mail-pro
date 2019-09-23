@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.Web.WebPages.Html;
 
 namespace MailPro.Models
 {
@@ -17,18 +16,8 @@ namespace MailPro.Models
         [Required]
         public int StudentNo { get; set; }
 
-        internal IEnumerable<SelectListItem> ToSelectList(Func<object, object> p1, Func<object, object> p2)
-        {
-            throw new NotImplementedException();
-        }
-
         [Required]
         public string StudentName { get; set; }
-
-        internal IEnumerable<SelectListItem> ToSelectList()
-        {
-            throw new NotImplementedException();
-        }
 
         [EmailAddress]
         public string StudentEmail { get; set; }
@@ -48,9 +37,11 @@ namespace MailPro.Models
         [Required]
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
-      
+        public int FacultyID { get; set; }
+        public bool IsSelected { get; set; }
+
         public virtual ICollection<ConnectTable> ConnectTable { get; set; }
-        
+
     }
-    
+
 }

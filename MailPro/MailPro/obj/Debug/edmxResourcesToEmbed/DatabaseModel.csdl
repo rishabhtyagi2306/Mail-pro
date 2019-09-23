@@ -33,7 +33,7 @@
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
     <Property Name="IsEmailVerified" Type="Boolean" />
     <Property Name="ActivationCode" Type="Guid" />
-    <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_Mails" FromRole="FacultyTable" ToRole="Mails" />
+    <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -49,6 +49,7 @@
     <Property Name="IsCR" Type="Boolean" Nullable="false" />
     <Property Name="StudentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="ConnectTable" Relationship="Self.FK_ConnectTable_StudentTable" FromRole="StudentTable" ToRole="ConnectTable" />
+    <Property Name="FacultyID" Type="Int32" />
   </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -104,12 +105,12 @@
       <End Role="ConnectTable" EntitySet="ConnectTable" />
     </AssociationSet>
     <EntitySet Name="Mails" EntityType="DatabaseModel.Mails" />
-    <AssociationSet Name="FK_Mails_Mails" Association="DatabaseModel.FK_Mails_Mails">
+    <AssociationSet Name="FK_Mails_FacultyTable" Association="DatabaseModel.FK_Mails_FacultyTable">
       <End Role="FacultyTable" EntitySet="FacultyTable" />
       <End Role="Mails" EntitySet="Mails" />
     </AssociationSet>
     <EntitySet Name="Temp" EntityType="DatabaseModel.Temp" />
-    <EntitySet Name="Templates" EntityType="DatabaseModel.Templates" />
+    <EntitySet Name="TemplateTable" EntityType="DatabaseModel.TemplateTable" />
   </EntityContainer>
   <EntityType Name="Mails">
     <Key>
@@ -120,10 +121,10 @@
     <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_Mails" FromRole="Mails" ToRole="FacultyTable" />
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
   </EntityType>
-  <Association Name="FK_Mails_Mails">
+  <Association Name="FK_Mails_FacultyTable">
     <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
     <End Type="DatabaseModel.Mails" Role="Mails" Multiplicity="*" />
     <ReferentialConstraint>
@@ -139,7 +140,7 @@
     <Key>
       <PropertyRef Name="Keys" />
     </Key>
-    <Property Name="StudentName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="StudentEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="StuidentNo" Type="Int32" Nullable="false" />
     <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -152,13 +153,14 @@
     <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="Keys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IsSelected" Type="Boolean" Nullable="false" DefaultValue="false" />
+    <Property Name="IsSelected" Type="Boolean" Nullable="false" />
   </EntityType>
-  <EntityType Name="Templates">
+  <EntityType Name="TemplateTable">
     <Key>
       <PropertyRef Name="TemplateID" />
     </Key>
-    <Property Name="TemplatePath" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

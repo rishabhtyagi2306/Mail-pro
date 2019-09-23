@@ -36,6 +36,7 @@
     <EntitySetMapping Name="StudentTable">
       <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
         <MappingFragment StoreEntitySet="StudentTable">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
           <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
           <ScalarProperty Name="StudentName" ColumnName="StudentName" />
           <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
@@ -80,11 +81,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Templates">
-      <EntityTypeMapping TypeName="DatabaseModel.Templates">
-        <MappingFragment StoreEntitySet="Templates">
+    <EntitySetMapping Name="TemplateTable">
+      <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
+        <MappingFragment StoreEntitySet="TemplateTable">
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
-          <ScalarProperty Name="TemplatePath" ColumnName="TemplatePath" />
+          <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

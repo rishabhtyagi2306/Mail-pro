@@ -23,6 +23,8 @@ namespace MailPro.Models
         // public virtual Membership FacultyTable { get; set; }
 
         public virtual Membership FacultyTable { get => facultyTable; set => facultyTable = value; }
+        public virtual ICollection<CategoryTable> categoryTables { get; set; }
+
 
     }
 }
