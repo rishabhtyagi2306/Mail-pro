@@ -82,9 +82,11 @@ namespace MailPro.Controllers
             return RedirectToAction("VMSent");
         }
 
-        public ActionResult VMSent(Models.Membership model)
+        public ActionResult VMSent(Models.Membership model, FacultyTable faculty)
         {
-            ViewBag.Message = model.FacultyEmail;
+            FacultyTable fac = new FacultyTable();
+            String Email = fac.FacultyEmail;
+            ViewBag.Email = Email;
             return View();
         }
         public ActionResult Logout()

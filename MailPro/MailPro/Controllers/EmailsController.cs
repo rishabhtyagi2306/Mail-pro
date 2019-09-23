@@ -92,10 +92,10 @@ namespace MailPro.Controllers
                 var ToEmail = new MailAddress(st.StudentEmail);
                 var FromEmailPassword = model.GmailPassword;
                 
-                //string URL = Session["TemplateUrl"].ToString();
+                string URL = Session["TemplateUrl"].ToString();
                 string Subject = model.Subject;
                 string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                //Body = PopulateBody(Body,URL);
+                Body = PopulateBody(Body,URL);
                
                 SmtpClient smtp = new SmtpClient()
                 {
