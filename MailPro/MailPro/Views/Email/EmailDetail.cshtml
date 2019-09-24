@@ -31,7 +31,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contents)
+            @MvcHtmlString.Create(HttpUtility.HtmlDecode( Model.Contents))
+            
         </dd>
 
         <dt>

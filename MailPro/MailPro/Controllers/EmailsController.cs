@@ -16,12 +16,14 @@ namespace MailPro.Controllers
         DataContext Db = new DataContext();
         // GET: Email
         [Authorize]
+        [ValidateInput(false)]
         public ActionResult Mail()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Mail(Mails model)
         {
            
@@ -42,9 +44,19 @@ namespace MailPro.Controllers
                     ViewBag.Mailer += ',' + st.StudentEmail;
                 }
                 model.Sent = ViewBag.Mailer;
-                context.Mails.Add(model);
-                context.SaveChanges();
+                //StringWriter writer = new StringWriter();
+                //Server.HtmlDecode(model.Contents,writer);
+                //var encodes = HttpUtility.HtmlEncode(model.Contents);
+                //model.Contents = Server.HtmlDecode(encodes);
                 EmailSent(model);
+                if (ViewBag.Message != null)
+                {
+                    
+                }
+                context.Mails.Add(model);
+
+                context.SaveChanges();
+                
             }
             return View();
         }
@@ -70,7 +82,7 @@ namespace MailPro.Controllers
             var Data = Db.TemplateTables.SqlQuery("Select *From TemplateTable").ToList();
             return View(Data);
         }
-
+       
         public ActionResult SelectTemplate(TemplateModel model)
         {
            using (var context = new MailProEntities())
@@ -85,6 +97,7 @@ namespace MailPro.Controllers
 
         
         [HttpGet]
+       
         public void EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
@@ -94,46 +107,55 @@ namespace MailPro.Controllers
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
             StudentTable st = new StudentTable();
-            foreach (var item in fetch)
+            try
             {
-                st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-                var ToEmail = new MailAddress(st.StudentEmail);
-                var FromEmailPassword = model.GmailPassword;
-                
-                //string URL = Session["TemplateUrl"].ToString();
-               
-                
-                   
-                
-                string Subject = model.Subject;
-                string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                //Body = PopulateBody(Body, URL);
-
-
-                SmtpClient smtp = new SmtpClient()
+                foreach (var item in fetch)
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-                };
-                /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
-                context.Mails.Add(model);
-                context.SaveChanges();*/
-                using (var message = new MailMessage(FromEmail, ToEmail)
-                {
-                    Subject = Subject,
-                    Body = Body,
-                    IsBodyHtml = true
-                })
+                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                    var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+                    var ToEmail = new MailAddress(st.StudentEmail);
+                    var FromEmailPassword = model.GmailPassword;
 
-                    smtp.Send(message);
+                    //string URL = Session["TemplateUrl"].ToString();
+
+
+
+
+                    string Subject = model.Subject;
+                    string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
+                    //Body = PopulateBody(Body, URL);
+
+
+                    SmtpClient smtp = new SmtpClient()
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+                    };
+                    /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
+                    context.Mails.Add(model);
+                    context.SaveChanges();*/
+                    using (var message = new MailMessage(FromEmail, ToEmail)
+                    {
+                        Subject = Subject,
+                        Body = Body,
+                        IsBodyHtml = true
+                    })
+
+                        smtp.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Error in Sending Mail";
+
             }
 
-            
+
+
         }
 
         public string PopulateBody(string contents, string URL)

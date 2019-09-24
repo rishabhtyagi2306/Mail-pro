@@ -36,13 +36,14 @@
 
         <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
         <script src="@Url.Content("../files/bootstrap.min.js")"></script>
-
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        <script type="text/javascript" src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")"></script>
+        <link href="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css")"
               rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-        <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+        <script type="text/javascript" src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js")"></script>
+        <link href="@Url.Content("https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js")" type="text/javascript"></script>
+
+
 
         <script>
             $(function () {
@@ -158,94 +159,95 @@
         </div>
         <div class="page-content active container-fluid" id="content">
             @*<div class="row pt-5">
-                <div class="col-lg-12">*@
+        <div class="col-lg-12">*@
 
-                    @using (Html.BeginForm("Displays", "Category", FormMethod.Post))
+            @using (Html.BeginForm("Displays", "Category", FormMethod.Post))
+            {
+                foreach (var ch in abc)
+                {
+                    List<SelectListItem> items = new List<SelectListItem>();
+                    List<string> xyz = new List<string>();
+
+                    <br />
+                    <br />
+                    @Html.Label(ch);
+                    //foreach(var item in )
+                    // Model.StudentNames = Model.StudentNames.Distinct();
+
+                    foreach (var item in Model.StudentNames)
+
                     {
-                        foreach (var ch in abc)
+                        var sno = Convert.ToInt32(@item.Value);
+                        Temp tp = new Temp();
+                        var context = new MailProEntities();
+                        tp = context.Temp.SingleOrDefault(x => x.StuidentNo == sno && x.CategoryName == ch);
+                        if (tp != null)
                         {
-                            List<SelectListItem> items = new List<SelectListItem>();
-                            List<string> xyz = new List<string>();
-
-                            <br />
-                            <br />
-                            @Html.Label(ch);
-                            //foreach(var item in )
-                            // Model.StudentNames = Model.StudentNames.Distinct();
-
-                            foreach (var item in Model.StudentNames)
-
+                            var i = tp.StuidentNo.ToString();
+                            var ab = items.SingleOrDefault(x => x.Value == i);
+                            if (ab == null)
                             {
-                                var sno = Convert.ToInt32(@item.Value);
-                                Temp tp = new Temp();
-                                var context = new MailProEntities();
-                                tp = context.Temp.SingleOrDefault(x => x.StuidentNo == sno && x.CategoryName == ch);
-                                if (tp != null)
+                                items.Add(new SelectListItem()
                                 {
-                                    var i = tp.StuidentNo.ToString();
-                                    var ab = items.SingleOrDefault(x => x.Value == i);
-                                    if (ab == null)
-                                    {
-                                        items.Add(new SelectListItem()
-                                        {
-                                            Text = @item.Text,
-                                            Value = @item.Value,
+                                    Text = @item.Text,
+                                    Value = @item.Value,
 
-                                        });
-                                    }
-                                    //xyz.Add(@item.Text);
-                                    //@Html.ListBox(@item.Value);
-
-
-
-
-
-
-                                    // @Html.CheckBox(@item.Text); <p>@item.Text</p>
-                                    //@Html.ListBox(@item.Value,item.Text)
-
-
-
-
-                                }
-
-
-
-
+                                });
                             }
-                            Model.CategoryNames = items;
+                            //xyz.Add(@item.Text);
+                            //@Html.ListBox(@item.Value);
 
-                            @Html.ListBoxFor(m => m.ids, Model.CategoryNames, new { @class = "listbox" })
 
-                            <input type="submit" value="Submit" />
-                            @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-                            <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
-                                  rel="stylesheet" type="text/css" />
-                            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-                            <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
-                            <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
-                            *@
-                            if (ViewBag.Message != null)
-                            {
-                                <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-                                </script>
-                            }
+
+
+
+
+                            // @Html.CheckBox(@item.Text); <p>@item.Text</p>
+                            //@Html.ListBox(@item.Value,item.Text)
+
+
 
 
                         }
+
+
+
+
+                    }
+                    Model.CategoryNames = items;
+
+                    @Html.ListBoxFor(m => m.ids, Model.CategoryNames, new { @class = "listbox" })
+
+                    <input type="submit" value="Submit" />
+                    @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+                      rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+                <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+                <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+                    *@
+                    if (ViewBag.Message != null)
+                    {
+                        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                        </script>
                     }
 
 
-                    <!--loop ends here-->
-                </div>
-            @*</div>
+                }
+            }
+           
+
+            <!--loop ends here-->
+        </div>
+        
+        @*</div>
 
         </div>*@
 
-       
+
 
     </body>
 </html>

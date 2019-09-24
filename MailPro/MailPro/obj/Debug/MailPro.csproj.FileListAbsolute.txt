@@ -152,3 +152,10 @@ C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csproj.Co
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.pdb
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Antlr3.Runtime.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Newtonsoft.Json.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Optimization.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\WebGrease.dll
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Antlr3.Runtime.pdb
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\Newtonsoft.Json.xml
+C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\bin\System.Web.Optimization.xml
