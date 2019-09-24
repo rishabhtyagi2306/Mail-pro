@@ -37,6 +37,11 @@ namespace MailPro.Controllers
                 context.SaveChanges();
                 EmailSent(model);
             }
+            return RedirectToAction("SuccessfulMail");
+        }
+
+        public ActionResult SuccessfulMail()
+        {
             return View();
         }
 
@@ -56,6 +61,23 @@ namespace MailPro.Controllers
             int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName) values(@p0,@p1)", objectarray);
             return RedirectToAction("CreateTemplate");
         }
+
+        //public ActionResult DeleteTemplate()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult DeleteTemplate(int TemplateID)
+        //{
+        //    var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
+
+        //    if (productlist != 0)
+        //    {
+        //        return RedirectToAction("SelectTemplate");
+        //    }
+        //    return View(productlist);
+        //}
         public ActionResult ShowTemplate()
         {
             var Data = Db.TemplateTables.SqlQuery("Select *From TemplateTable").ToList();
