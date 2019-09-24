@@ -6,6 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MailPro.Models
 {
+    public class Students
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
     public class StudentModel
     {
         [Required]
@@ -32,6 +37,7 @@ namespace MailPro.Models
         [Required]
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
+<<<<<<< HEAD
         
         public virtual ICollection<CategoryTable> categoryTables { get; set; }
        
@@ -40,5 +46,13 @@ namespace MailPro.Models
     public class ModelOfStudent
     {
         public List<StudentTable> StudentTables { get; set; }
+=======
+        public int FacultyID { get; set; }
+        public bool IsSelected { get; set; }
+
+        public virtual ICollection<ConnectTable> ConnectTable { get; set; }
+
+>>>>>>> Rishabh
     }
+
 }

@@ -9,6 +9,7 @@ namespace MailPro.Models
 {
     public class ConnectModel
     {
+<<<<<<< HEAD
         [Key]
         [Column(Order = 1)]
         public int StudentNo { get; set; }
@@ -20,5 +21,12 @@ namespace MailPro.Models
 
         public virtual CategoryTable CategoryTable { get; set; }
         public virtual StudentTable StudentTable { get; set; }
+=======
+        public int StudentNo { get; set; }
+        public int CategoryID { get; set; }
+        public int PrimaryID { get; set; }
+        public List<StudentTable> studentTables { get; set; }
+        public List<CategoryTable> CategoryTables { get; set; }
+>>>>>>> Rishabh
     }
 }

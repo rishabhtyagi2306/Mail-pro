@@ -22,6 +22,7 @@
     <EntitySetMapping Name="FacultyTable">
       <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
         <MappingFragment StoreEntitySet="FacultyTable">
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
           <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
           <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
@@ -36,6 +37,7 @@
     <EntitySetMapping Name="StudentTable">
       <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
         <MappingFragment StoreEntitySet="StudentTable">
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
           <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
           <ScalarProperty Name="StudentName" ColumnName="StudentName" />
           <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
@@ -45,6 +47,47 @@
           <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
           <ScalarProperty Name="IsCR" ColumnName="IsCR" />
           <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mails">
+      <EntityTypeMapping TypeName="DatabaseModel.Mails">
+        <MappingFragment StoreEntitySet="Mails">
+          <ScalarProperty Name="GmailPassword" ColumnName="GmailPassword" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="Sent" ColumnName="Sent" />
+          <ScalarProperty Name="Contents" ColumnName="Contents" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="MailID" ColumnName="MailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp">
+      <EntityTypeMapping TypeName="DatabaseModel.Temp">
+        <MappingFragment StoreEntitySet="Temp">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="Keys" ColumnName="Keys" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+          <ScalarProperty Name="IsCR" ColumnName="IsCR" />
+          <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Section" ColumnName="Section" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="StuidentNo" ColumnName="StuidentNo" />
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemplateTable">
+      <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
+        <MappingFragment StoreEntitySet="TemplateTable">
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

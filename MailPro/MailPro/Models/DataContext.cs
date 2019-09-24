@@ -16,7 +16,13 @@ namespace MailPro.Models
 
         public DbSet<ConnectTable> ConnectTables { get; set; } 
 
+<<<<<<< HEAD
         
+=======
+        public DbSet<Mails> GetMails { get; set; }
+
+        public DbSet<TemplateTable> TemplateTables { get; set; }
+>>>>>>> Rishabh
         
     }
 }

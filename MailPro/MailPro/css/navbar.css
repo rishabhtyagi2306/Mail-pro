@@ -9,11 +9,18 @@
   transition: all 0.4s;
 }
 
+<<<<<<< HEAD
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 3rem;
   transition: all 0.4s;
 	color: white;
+=======
+.top-nav {
+  width: calc(100% - 17rem);
+  margin-left: 0rem;
+  transition: all 0.4s;
+>>>>>>> Rishabh
 }
 
 /* for toggle behavior */
@@ -22,10 +29,17 @@
   margin-left: -17rem;
 }
 
+<<<<<<< HEAD
 #content.active {
   width: 100%;
   margin-left: 20rem;
 }
+=======
+/*#content.active {
+  width: 100%;
+  margin: 0;
+}*/
+>>>>>>> Rishabh
 
 @media (max-width: 768px) {
   #sidebar {

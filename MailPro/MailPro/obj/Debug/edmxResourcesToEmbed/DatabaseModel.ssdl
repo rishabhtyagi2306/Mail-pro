@@ -28,6 +28,18 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsEmailVerified" Type="bit" />
     <Property Name="ActivationCode" Type="uniqueidentifier" />
+    <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Mails">
+    <Key>
+      <PropertyRef Name="MailID" />
+    </Key>
+    <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FacultyID" Type="int" Nullable="false" />
+    <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -42,6 +54,34 @@
     <Property Name="IsHosteller" Type="bit" Nullable="false" />
     <Property Name="IsCR" Type="bit" Nullable="false" />
     <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FacultyID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Temp">
+    <Key>
+      <PropertyRef Name="Keys" />
+    </Key>
+    <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StuidentNo" Type="int" Nullable="false" />
+    <Property Name="Branch" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Section" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="IsHosteller" Type="bit" Nullable="false" />
+    <Property Name="IsCR" Type="bit" Nullable="false" />
+    <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FacultyID" Type="int" Nullable="false" />
+    <Property Name="Keys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsSelected" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TemplateTable">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -79,11 +119,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mails_FacultyTable">
+    <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
+    <End Role="Mails" Type="Self.Mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacultyTable">
+        <PropertyRef Name="FacultyID" />
+      </Principal>
+      <Dependent Role="Mails">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConnectTable" EntityType="Self.ConnectTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FacultyTable" EntityType="Self.FacultyTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temp" EntityType="Self.Temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CategoryTable_FacultyTable" Association="Self.FK_CategoryTable_FacultyTable">
       <End Role="FacultyTable" EntitySet="FacultyTable" />
       <End Role="CategoryTable" EntitySet="CategoryTable" />
@@ -95,6 +150,10 @@
     <AssociationSet Name="FK_ConnectTable_StudentTable" Association="Self.FK_ConnectTable_StudentTable">
       <End Role="StudentTable" EntitySet="StudentTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mails_FacultyTable" Association="Self.FK_Mails_FacultyTable">
+      <End Role="FacultyTable" EntitySet="FacultyTable" />
+      <End Role="Mails" EntitySet="Mails" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

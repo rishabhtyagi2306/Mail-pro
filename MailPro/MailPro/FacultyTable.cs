@@ -18,6 +18,7 @@ namespace MailPro
         public FacultyTable()
         {
             this.CategoryTable = new HashSet<CategoryTable>();
+            this.Mails = new HashSet<Mails>();
         }
     
         public int FacultyID { get; set; }
@@ -28,8 +29,11 @@ namespace MailPro
         public string Password { get; set; }
         public Nullable<bool> IsEmailVerified { get; set; }
         public Nullable<System.Guid> ActivationCode { get; set; }
+        public string ResetPasswordCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryTable> CategoryTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mails> Mails { get; set; }
     }
 }

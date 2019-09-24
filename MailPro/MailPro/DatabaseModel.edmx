@@ -33,6 +33,18 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsEmailVerified" Type="bit" />
           <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="ResetPasswordCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Mails">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
+          <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -47,6 +59,34 @@
           <Property Name="IsHosteller" Type="bit" Nullable="false" />
           <Property Name="IsCR" Type="bit" Nullable="false" />
           <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="Keys" />
+          </Key>
+          <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StuidentNo" Type="int" Nullable="false" />
+          <Property Name="Branch" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Section" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="IsHosteller" Type="bit" Nullable="false" />
+          <Property Name="IsCR" Type="bit" Nullable="false" />
+          <Property Name="StudentCategory" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyID" Type="int" Nullable="false" />
+          <Property Name="Keys" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsSelected" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -84,11 +124,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Mails_FacultyTable">
+          <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
+          <End Role="Mails" Type="Self.Mails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacultyTable">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="Mails">
+              <PropertyRef Name="FacultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConnectTable" EntityType="Self.ConnectTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FacultyTable" EntityType="Self.FacultyTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temp" EntityType="Self.Temp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CategoryTable_FacultyTable" Association="Self.FK_CategoryTable_FacultyTable">
             <End Role="FacultyTable" EntitySet="FacultyTable" />
             <End Role="CategoryTable" EntitySet="CategoryTable" />
@@ -100,6 +155,10 @@
           <AssociationSet Name="FK_ConnectTable_StudentTable" Association="Self.FK_ConnectTable_StudentTable">
             <End Role="StudentTable" EntitySet="StudentTable" />
             <End Role="ConnectTable" EntitySet="ConnectTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mails_FacultyTable" Association="Self.FK_Mails_FacultyTable">
+            <End Role="FacultyTable" EntitySet="FacultyTable" />
+            <End Role="Mails" EntitySet="Mails" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -139,6 +198,8 @@
           <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
           <Property Name="IsEmailVerified" Type="Boolean" />
           <Property Name="ActivationCode" Type="Guid" />
+          <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -154,6 +215,7 @@
           <Property Name="IsCR" Type="Boolean" Nullable="false" />
           <Property Name="StudentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ConnectTable" Relationship="Self.FK_ConnectTable_StudentTable" FromRole="StudentTable" ToRole="ConnectTable" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -208,7 +270,65 @@
             <End Role="StudentTable" EntitySet="StudentTable" />
             <End Role="ConnectTable" EntitySet="ConnectTable" />
           </AssociationSet>
+          <EntitySet Name="Mails" EntityType="DatabaseModel.Mails" />
+          <AssociationSet Name="FK_Mails_FacultyTable" Association="DatabaseModel.FK_Mails_FacultyTable">
+            <End Role="FacultyTable" EntitySet="FacultyTable" />
+            <End Role="Mails" EntitySet="Mails" />
+          </AssociationSet>
+          <EntitySet Name="Temp" EntityType="DatabaseModel.Temp" />
+          <EntitySet Name="TemplateTable" EntityType="DatabaseModel.TemplateTable" />
         </EntityContainer>
+        <EntityType Name="Mails">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
+          <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
+        </EntityType>
+        <Association Name="FK_Mails_FacultyTable">
+          <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
+          <End Type="DatabaseModel.Mails" Role="Mails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacultyTable">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="Mails">
+              <PropertyRef Name="FacultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="Keys" />
+          </Key>
+          <Property Name="StudentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudentEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StuidentNo" Type="Int32" Nullable="false" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Section" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="IsHosteller" Type="Boolean" Nullable="false" />
+          <Property Name="IsCR" Type="Boolean" Nullable="false" />
+          <Property Name="StudentCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyID" Type="Int32" Nullable="false" />
+          <Property Name="Keys" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -236,6 +356,7 @@
           <EntitySetMapping Name="FacultyTable">
             <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
               <MappingFragment StoreEntitySet="FacultyTable">
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
@@ -250,6 +371,7 @@
           <EntitySetMapping Name="StudentTable">
             <EntityTypeMapping TypeName="DatabaseModel.StudentTable">
               <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
                 <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
                 <ScalarProperty Name="StudentName" ColumnName="StudentName" />
                 <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
@@ -259,6 +381,47 @@
                 <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
                 <ScalarProperty Name="IsCR" ColumnName="IsCR" />
                 <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="DatabaseModel.Mails">
+              <MappingFragment StoreEntitySet="Mails">
+                <ScalarProperty Name="GmailPassword" ColumnName="GmailPassword" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="Sent" ColumnName="Sent" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temp">
+            <EntityTypeMapping TypeName="DatabaseModel.Temp">
+              <MappingFragment StoreEntitySet="Temp">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="Keys" ColumnName="Keys" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="StudentCategory" ColumnName="StudentCategory" />
+                <ScalarProperty Name="IsCR" ColumnName="IsCR" />
+                <ScalarProperty Name="IsHosteller" ColumnName="IsHosteller" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="StuidentNo" ColumnName="StuidentNo" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TemplateTable">
+            <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
+              <MappingFragment StoreEntitySet="TemplateTable">
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
