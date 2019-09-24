@@ -43,8 +43,12 @@ namespace MailPro.Controllers
                         return RedirectToAction("ShowSentEmail", "Email");
                     
                 }
+                else
+                {
+                    ViewBag.Msg = "Invalid Email or Password";
+                }
                 context.SaveChanges();
-                ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
+                ModelState.AddModelError("", "Invalid Email or Password");
                 return View();
             }
 
@@ -76,16 +80,18 @@ namespace MailPro.Controllers
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
+                Session["FacultyEmail"] = model.FacultyEmail;
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
+                //ViewBag.Message = "A veification link has been sent to your email , Please verify to continue access";
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
             return RedirectToAction("VMSent");
+            //return View(model);
         }
 
-        public ActionResult VMSent(Models.Membership model, FacultyTable faculty)
+        public ActionResult VMSent()
         {
-            FacultyTable fac = new FacultyTable();
-            String Email = fac.FacultyEmail;
+            String Email = Session["FacultyEmail"].ToString();
             ViewBag.Email = Email;
             return View();
         }
@@ -116,12 +122,14 @@ namespace MailPro.Controllers
                     acc.ResetPasswordCode = ResetCode;
                     Mp.Configuration.ValidateOnSaveEnabled = false;
                     Mp.SaveChanges();
+                    message = "Reset password link has been sent your your email";
                 }
                 else
                 {
                     message = "Account not found";
                 }
             }
+            ViewBag.Message = message;
             return View();
         }
 

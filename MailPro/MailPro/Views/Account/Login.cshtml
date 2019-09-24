@@ -78,7 +78,9 @@
                 <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
             </div>
         </div>*@
-
+                    <div class="text-success">
+                        @ViewBag.Msg
+                    </div>
                     <div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
                         @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })

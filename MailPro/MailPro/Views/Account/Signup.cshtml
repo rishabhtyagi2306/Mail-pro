@@ -57,39 +57,39 @@
                     </div>
 
                     <!--<div id="form">
-                    <label class="" id="fid">Faculty I'd</label>
-                    <input type="email" placeholder="Enter id" class="input"/>
-                    <label class="" id="name" >Name</label>
-                    <input type="password" placeholder="Enter name"  class="input"/>
-                    <label class="" id="email" >Email Address</label>
-                    <input type="password" placeholder="Enter email address"  class="input"/>
-                    <label class="" id="phone" >Contact no.</label>
-                    <input type="password" placeholder="Enter contact number"  class="input"/>
-                    <label class="" id="dpt" >Department</label>
-                    <input type="password" placeholder="Enter department"  class="input"/>
-                    <label class="" id="password" >Password</label>
-                    <input type="password" placeholder="Enter password"  class="input"/>
-                    <input type="button" value="CONTINUE" id="btn"/>
-                    <span id="check">
-                        <input type="checkbox">
-                        By signing up, I agree to the terms and conditions.
-                    </span>
-                    </div>-->
+    <label class="" id="fid">Faculty I'd</label>
+    <input type="email" placeholder="Enter id" class="input"/>
+    <label class="" id="name" >Name</label>
+    <input type="password" placeholder="Enter name"  class="input"/>
+    <label class="" id="email" >Email Address</label>
+    <input type="password" placeholder="Enter email address"  class="input"/>
+    <label class="" id="phone" >Contact no.</label>
+    <input type="password" placeholder="Enter contact number"  class="input"/>
+    <label class="" id="dpt" >Department</label>
+    <input type="password" placeholder="Enter department"  class="input"/>
+    <label class="" id="password" >Password</label>
+    <input type="password" placeholder="Enter password"  class="input"/>
+    <input type="button" value="CONTINUE" id="btn"/>
+    <span id="check">
+        <input type="checkbox">
+        By signing up, I agree to the terms and conditions.
+    </span>
+    </div>-->
                     <!--<form id="form">-->
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     @*<div class="form-group row" style="padding-top:175px">
-                        <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
-                        @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
+            <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
+            @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
 
-                        <div class="col-sm-7">
+            <div class="col-sm-7">
 
 
-                            @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", @id = "inputId", @placeholder = "Faculty I'd" } })
-                            @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
-                            <!--<input type="number" class="form-control" id="inputId" placeholder="Faculty I'd">-->
-                        </div>
-                    </div>*@
+                @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", @id = "inputId", @placeholder = "Faculty I'd" } })
+                @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
+                <!--<input type="number" class="form-control" id="inputId" placeholder="Faculty I'd">-->
+            </div>
+        </div>*@
                     <div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputName" class="col-sm-5 col-form-label">Enter Faculty Name</label>-->
                         @Html.LabelFor(model => model.FacultyName, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputName" })
@@ -156,23 +156,26 @@
                         </div>
 
                     </div>
-                    <div class="form-group row" >
-                        <h6>Already had an Account ? Click here to @Html.ActionLink("Login","Login","Account")</h6>
+                    <div class="form-group row">
+                        <h6>Already had an Account ? Click here to @Html.ActionLink("Login", "Login", "Account")</h6>
                     </div>
                     @*<div class="form-group row">
-                        <div class="col-sm-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    By signing up, I agree to the Terms and Conditions.
-                                </label>
-                            </div>
-                        </div>
-                    </div>*@
+            <div class="col-sm-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        By signing up, I agree to the Terms and Conditions.
+                    </label>
+                </div>
+            </div>
+        </div>*@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="submit" value="CONTINUE" id="btn" @*onclick="signup()"*@ />
                         </div>
+                    </div>
+                    <div class="text-success">
+                        @ViewBag.Message
                     </div>
 
                     <!--</form>-->
