@@ -224,11 +224,6 @@ namespace MailPro.Controllers
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
             var FromEmailPassword = "Rishabh@2306";
-<<<<<<< HEAD
-            string Subject = "Email Verification for Mail Pro Account";
-            string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" + 
-                "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
-=======
             string Subject = "";
             string Body = "";
             if(EmailFor == "VerifyAccount")
@@ -242,7 +237,6 @@ namespace MailPro.Controllers
                 Subject = "Reset Password";
                 Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href= '" + link + "'>"+link+"<a/>";
             }
->>>>>>> Rishabh
 
             SmtpClient smtp = new SmtpClient()
             {

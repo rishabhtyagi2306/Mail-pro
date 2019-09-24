@@ -11,12 +11,12 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TemplateID)
+        @*<th>
+            @Html.HiddenFor(model => model.TemplateID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TemplateURL)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.TemplateName)
         </th>
@@ -26,10 +26,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TemplateID)
+            @Html.HiddenFor(modelItem => item.TemplateID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TemplateURL)
+            @Html.HiddenFor(modelItem => item.TemplateURL)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TemplateName)

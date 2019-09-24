@@ -21,15 +21,11 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<<<<<<< HEAD
-
-=======
     @*<script>
         function signup{
             alert("A verification link has been sent on your email i'd. click on it to access your account.");
         }
     </script>*@
->>>>>>> Rishabh
 </head>
 @using (Html.BeginForm(new { @id = "" }))
 
@@ -61,26 +57,6 @@
                     </div>
 
                     <!--<div id="form">
-<<<<<<< HEAD
-                    <label class="" id="fid">Faculty I'd</label>
-                    <input type="email" placeholder="Enter id" class="input"/>
-                    <label class="" id="name" >Name</label>
-                    <input type="password" placeholder="Enter name"  class="input"/>
-                    <label class="" id="email" >Email Address</label>
-                    <input type="password" placeholder="Enter email address"  class="input"/>
-                    <label class="" id="phone" >Contact no.</label>
-                    <input type="password" placeholder="Enter contact number"  class="input"/>
-                    <label class="" id="dpt" >Department</label>
-                    <input type="password" placeholder="Enter department"  class="input"/>
-                    <label class="" id="password" >Password</label>
-                    <input type="password" placeholder="Enter password"  class="input"/>
-                    <input type="button" value="CONTINUE" id="btn"/>
-                    <span id="check">
-                        <input type="checkbox">
-                        By signing up, I agree to the terms and conditions.
-                    </span>
-                    </div>-->
-=======
     <label class="" id="fid">Faculty I'd</label>
     <input type="email" placeholder="Enter id" class="input"/>
     <label class="" id="name" >Name</label>
@@ -99,106 +75,10 @@
         By signing up, I agree to the terms and conditions.
     </span>
     </div>-->
->>>>>>> Rishabh
                     <!--<form id="form">-->
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     @*<div class="form-group row" style="padding-top:175px">
-<<<<<<< HEAD
-                        <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
-                        @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
-
-                        <div class="col-sm-7">
-
-
-                            @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", @id = "inputId", @placeholder = "Faculty I'd" } })
-                            @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
-                            <!--<input type="number" class="form-control" id="inputId" placeholder="Faculty I'd">-->
-                        </div>
-                    </div>*@
-                    <div class="form-group row" style="padding-top:175px">
-                        <!--<label for="inputName" class="col-sm-5 col-form-label">Enter Faculty Name</label>-->
-                        @Html.LabelFor(model => model.FacultyName, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputName" })
-                        <div class="col-sm-7">
-                            @Html.EditorFor(model => model.FacultyName, new
-                       {
-                           htmlAttributes = new
-                                {
-                                    @class = "form-control",
-                                    @id = "inputName",
-                                    @placeholder = "FacultyName"
-                           }
-                       })
-                            @Html.ValidationMessageFor(model => model.FacultyName, "", new { @class = "text-danger" })
-
-                            <!-- <input type="text" class="form-control" id="inputName" placeholder="Faculty Name">-->
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <!--<label for="inputEmail" class="col-sm-5 col-form-label">Enter email address</label>-->
-                        @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputEmail" })
-                        <div class="col-sm-7">
-
-                            @Html.EditorFor(model => model.FacultyEmail, new { htmlAttributes = new { @class = "form-control", @id = "inputEmail", @placeholder = "Email" } })
-                            @Html.ValidationMessageFor(model => model.FacultyEmail, "", new { @class = "text-danger" })
-                            @Html.ValidationMessage("Email exist", new { @class = "text-danger" })
-                            <!-- <input type="email" class="form-control" id="inputEmail" placeholder="Email">-->
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <!--<label for="inputPhone" class="col-sm-5 col-form-label">Enter Contact Number</label>-->
-                        @Html.LabelFor(model => model.FacultyPhoneNo, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputPhone" })
-                        <div class="col-sm-7">
-                            @Html.EditorFor(model => model.FacultyPhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "inputPhone", @placeholder = "Contact number" } })
-                            @Html.ValidationMessageFor(model => model.FacultyPhoneNo, "", new { @class = "text-danger" })
-                            <!-- <input type="text" class="form-control" id="inputPhone" placeholder="Contact number">-->
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <!--<label for="inputDept" class="col-sm-5 col-form-label">Enter Department Name</label>-->
-                        @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputDept" })
-                        <div class="col-sm-7">
-                            @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control", @id = "inputDept", @placeholder = "Department Name" } })
-                            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })    <!--<input type="text" class="form-control" id="inputDept" placeholder="Department Name">-->
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <!-- <label for="inputPassword" class="col-sm-5 col-form-label">Password</label>-->
-                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputPassword" })
-                        <div class="col-sm-7">
-                            @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "inputPassword", @placeholder = "Password" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password">-->
-                        </div>
-
-                    </div>
-                    <div class="form-group row">
-                        <!-- <label for="inputPassword" class="col-sm-5 col-form-label">Password</label>-->
-                        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputPassword" })
-                        <div class="col-sm-7">
-                            @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "inputPassword", @placeholder = "Password" } })
-                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                            <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password">-->
-                        </div>
-
-                    </div>
-                    @*<div class="form-group row">
-                        <div class="col-sm-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    By signing up, I agree to the Terms and Conditions.
-                                </label>
-                            </div>
-                        </div>
-                    </div>*@
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="submit" value="CONTINUE" id="btn" />
-                        </div>
-                    </div>
-
-=======
             <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
             @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
 
@@ -298,7 +178,6 @@
                         @ViewBag.Message
                     </div>
 
->>>>>>> Rishabh
                     <!--</form>-->
                 </div>
             </div>

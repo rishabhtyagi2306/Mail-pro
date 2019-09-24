@@ -5,50 +5,6 @@
     <meta charset="utf-8">
     <title>View Category</title>
 
-<<<<<<< HEAD
-@{
-    ViewBag.Title = "ShowCategory";
-}
-
-<h2>ShowCategory</h2>
-
-<p>
-    @Html.ActionLink("Create New", "AddCategory")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FacultyID)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FacultyID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { CategoryID=item.CategoryID }) |
-            @Html.ActionLink("Delete", "DeleteCategory", new { CategoryID=item.CategoryID })
-        </td>
-    </tr>
-}
-
-</table>
-=======
     <link rel="stylesheet" href="../files/bootstrap.min.css">
     <link rel="stylesheet" href="../css/view category.css" type="text/css">
     <link rel="stylesheet" href="../files/fontawesome.min.css">
@@ -209,4 +165,3 @@
 
 </body>
 </html>
->>>>>>> Rishabh
