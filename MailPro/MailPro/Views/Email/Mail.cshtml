@@ -143,12 +143,12 @@
                             </div>
 
                             @*<div class="form-group">
-                                    @Html.LabelFor(model => model.Contents, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Contents, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>*@
+            @Html.LabelFor(model => model.Contents, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contents, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contents, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
                             <div class="form-group">
                                 <div class="col-md-10">
                                     @Html.LabelFor(m => m.Contents)<br />
@@ -156,24 +156,24 @@
                                     @Html.ValidationMessageFor(m => m.Contents, "", new { @class = "error" })
 
                                     @*@Html.TextAreaFor(m => m.Contents, new
-                                        {
-                                            rows = "20",
-                                            style = "resize:none;width:400px;",
-                                            placeholder = Html.DisplayNameFor(m => m.Contents),
-                                            @class = "form-control input-lg textarea-editor"
-                                        })*@
+                {
+                    rows = "20",
+                    style = "resize:none;width:400px;",
+                    placeholder = Html.DisplayNameFor(m => m.Contents),
+                    @class = "form-control input-lg textarea-editor"
+                })*@
                                     @*@Scripts.Render("~/bundles/jquery") @Scripts.Render("~/bundles/bootstrap") @RenderSection("scripts", required: false)*@
                                 </div>
 
                             </div>
 
                             @*<div class="form-group">
-                                    @Html.LabelFor(model => model.Sent, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Sent, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Sent, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>*@
+            @Html.LabelFor(model => model.Sent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sent, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.GmailPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -181,7 +181,9 @@
                                     @Html.ValidationMessageFor(model => model.GmailPassword, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <h6>@ViewBag.Message</h6>
+                            </div>
 
 
 

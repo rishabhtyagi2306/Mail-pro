@@ -148,6 +148,8 @@ namespace MailPro.Controllers
                         UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
                     };
+
+                    ViewBag.Message = "Your Mail Has been sent successfully";
                     /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
                     context.Mails.Add(model);
                     context.SaveChanges();*/
