@@ -42,7 +42,7 @@
           <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sent" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="FacultyID" Type="int" Nullable="false" />
           <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -87,6 +87,7 @@
           <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TemplateImage" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_CategoryTable_FacultyTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -285,7 +286,7 @@
           <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sent" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="FacultyID" Type="Int32" Nullable="false" />
           <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
@@ -328,6 +329,7 @@
           <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -419,6 +421,7 @@
           <EntitySetMapping Name="TemplateTable">
             <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
               <MappingFragment StoreEntitySet="TemplateTable">
+                <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
                 <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
                 <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
                 <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />

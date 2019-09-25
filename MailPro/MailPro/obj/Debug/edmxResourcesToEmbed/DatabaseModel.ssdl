@@ -37,7 +37,7 @@
     <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sent" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="FacultyID" Type="int" Nullable="false" />
     <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -82,6 +82,7 @@
     <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TemplateURL" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="TemplateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TemplateImage" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />

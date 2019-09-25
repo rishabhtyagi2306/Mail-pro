@@ -11,35 +11,36 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TemplateID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TemplateURL)
-        </th>
+        @*<th>
+                @Html.HiddenFor(model => model.TemplateID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TemplateURL)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.TemplateName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemplateID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemplateURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemplateName)
-        </td>
-        <td>
-            @Html.ActionLink("Select Template", "SelectTemplate", new { TemplateID = item.TemplateID }) |
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-            @Html.ActionLink("Delete", "DeleteTemplate", new {  TemplateID=item.TemplateID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.TemplateID)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.TemplateURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TemplateName)
+            </td>
+            <td>
+                @Html.ActionLink("Select Template", "SelectTemplate", new { TemplateID = item.TemplateID }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Delete", "DeleteTemplate", new { TemplateID = item.TemplateID })
+            </td>
+        </tr>
+    }
 
 </table>

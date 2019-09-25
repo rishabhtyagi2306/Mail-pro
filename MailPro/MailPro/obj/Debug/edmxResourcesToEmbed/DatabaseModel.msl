@@ -85,6 +85,7 @@
     <EntitySetMapping Name="TemplateTable">
       <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
         <MappingFragment StoreEntitySet="TemplateTable">
+          <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
           <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />

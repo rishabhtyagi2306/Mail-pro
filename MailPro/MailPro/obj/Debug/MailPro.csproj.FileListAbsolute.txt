@@ -75,3 +75,10 @@ C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.dll
 C:\Users\hp\source\repos\MailPro\MailPro\bin\CsQuery.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\EPPlus.xml
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\MailPro\MailPro\bin\Antlr3.Runtime.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\Newtonsoft.Json.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Optimization.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\WebGrease.dll
+C:\Users\hp\source\repos\MailPro\MailPro\bin\Antlr3.Runtime.pdb
+C:\Users\hp\source\repos\MailPro\MailPro\bin\Newtonsoft.Json.xml
+C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Optimization.xml
