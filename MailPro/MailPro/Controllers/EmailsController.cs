@@ -157,8 +157,8 @@ namespace MailPro.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Message = "Error in Sending Mail";
-
+                ModelState.AddModelError("", "There was some error in sending Mail, Recheck your Password and Internet Connection");
+                
             }
 
 
