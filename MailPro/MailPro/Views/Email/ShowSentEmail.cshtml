@@ -2,6 +2,9 @@
 <!doctype html>
 <html>
 <head>
+    @*@{ 
+        ViewBag.Sentmails = Model.Count(x=>(bool)x.Sent);
+    }*@
     <meta charset="utf-8">
     <title>Inbox</title>
 
@@ -151,9 +154,10 @@
                             </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Sent)
+                                
                             </td>
                             <td>
-                                @Html.ActionLink("Details", "EmailDetail", new { MailID = item.MailID }) |
+                                @Html.ActionLink("Details", "EmailDetail", new { MailID = item.MailID }) 
                                 @Html.ActionLink("Delete", "DeleteEmail", new { MailID = item.MailID })
                             </td>
                         </tr>

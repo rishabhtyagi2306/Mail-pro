@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Net;
 using MailPro.Models;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MailPro.Controllers
 {
@@ -41,7 +42,7 @@ namespace MailPro.Controllers
                 foreach (var item in fetch)
                 {
                     st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                    ViewBag.Mailer += ',' + st.StudentEmail;
+                    ViewBag.Mailer +=  st.StudentEmail+',';
                 }
                 model.Sent = ViewBag.Mailer;
                 //StringWriter writer = new StringWriter();
@@ -106,12 +107,17 @@ namespace MailPro.Controllers
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
-            StudentTable st = new StudentTable();
+
             try
             {
+
+                //Parallel.ForEach(fetch, item =>
                 foreach (var item in fetch)
                 {
-                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                    var context1 = new MailProEntities();
+                    StudentTable st = new StudentTable();
+
+                    st = context1.StudentTable.SingleOrDefault(x => x.StudentNo == item);
                     var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
                     var ToEmail = new MailAddress(st.StudentEmail);
                     var FromEmailPassword = model.GmailPassword;
@@ -143,9 +149,10 @@ namespace MailPro.Controllers
                         Subject = Subject,
                         Body = Body,
                         IsBodyHtml = true
-                    })
+                    }) 
 
                         smtp.Send(message);
+
                 }
             }
             catch (Exception ex)
