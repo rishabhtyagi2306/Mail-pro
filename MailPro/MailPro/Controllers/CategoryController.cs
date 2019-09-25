@@ -37,7 +37,8 @@ namespace MailPro.Controllers
             c1 = context1.CategoryTable.SingleOrDefault(x => x.CategoryName == s1 && x.FacultyID==fid);
             if (c1 != null)
             {
-                ModelState.AddModelError(" ", "Category Already Exists");
+                ModelState.AddModelError("", "Category Already Exists");
+                return View();
 
             }
             else
