@@ -15,6 +15,7 @@ namespace MailPro.Controllers
         
         DataContext Db = new DataContext();
         
+        [Authorize]
         public ActionResult AddCategory()
         {
             return View();
@@ -81,13 +82,21 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult DeleteCategory(int CategoryID)
         {
-            var productlist = Db.Database.ExecuteSqlCommand("delete from CategoryTable where CategoryID = " + CategoryID);
-
-            if (productlist != 0)
+            try
             {
+                var productlist = Db.Database.ExecuteSqlCommand("delete from CategoryTable where CategoryID = " + CategoryID);
+
+                if (productlist != 0)
+                {
+                    return RedirectToAction("ShowCategory");
+                }
                 return RedirectToAction("ShowCategory");
             }
-            return RedirectToAction("ShowCategory");
+            catch (SqlException ex) when (ex.Number == 547)
+            {
+                ViewBag.MSG = "Delete all students from this category , after that delete the category";
+                return View();
+            }
         }
 
         List<StudentModel> student = new List<StudentModel>();

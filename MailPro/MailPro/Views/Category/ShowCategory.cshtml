@@ -126,30 +126,30 @@
                 <!-- -------------------loop starts here--------------------->
                 <table class="table">
                 <tr class="bg-white">
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.CategoryID)
-                    </th>
+                    </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.CategoryName)
                     </th>
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.FacultyID)
-                    </th>
+                    </th>*@
                     <th></th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
                     <tr class="bg-white" >
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.CategoryID)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.CategoryName)
                         </td>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.FacultyID)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.ActionLink("Add Student", "AddStudentToCategory", new { CategoryID = item.CategoryID }) |
                             @Html.ActionLink("Delete", "DeleteCategory", new { CategoryID = item.CategoryID })
