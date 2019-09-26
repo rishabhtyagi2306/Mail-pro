@@ -45,9 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
     </Reference>
@@ -61,9 +64,12 @@
       <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <Reference Include="PresentationCore" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -77,9 +83,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mobile" />
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -87,9 +96,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -255,18 +267,27 @@
     <Content Include="Views\Home\StudentDetails.cshtml" />
     <Content Include="Views\Category\show.cshtml" />
     <Content Include="Views\Category\Displays.cshtml" />
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
+=======
+    <Content Include="Views\Email\ShowTemplate.cshtml" />
+    <Content Include="Views\Email\CreateTemplate.cshtml" />
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\VMSent.cshtml" />
     <Content Include="Views\Email\SuccessfulMail.cshtml" />
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
     <Content Include="Views\Email\CreateTemplate.cshtml" />
     <Content Include="Views\Email\ShowTemplate.cshtml" />
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+<<<<<<< HEAD:MailPro/MailPro/MailPro.csproj
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +296,15 @@
     <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
+=======
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="html\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:CRUDdemo/CRUDdemo.csproj
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>

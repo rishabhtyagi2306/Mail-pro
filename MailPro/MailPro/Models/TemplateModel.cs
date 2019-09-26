@@ -10,6 +10,9 @@ namespace MailPro.Models
         public int TemplateID { get; set; }
         public string TemplateURL { get; set; }
         public string TemplateName { get; set; }
+<<<<<<< HEAD
         public string TemplateImage { get; set; }
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
     }
 }

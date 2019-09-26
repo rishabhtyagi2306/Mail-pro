@@ -27,7 +27,11 @@
     <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+<<<<<<< HEAD
     <Property Name="FacultyPhoneNo" Type="String" Nullable="false" />
+=======
+    <Property Name="FacultyPhoneNo" Type="Int32" Nullable="false" />
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
     <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
@@ -120,7 +124,11 @@
     <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+<<<<<<< HEAD
     <Property Name="Sent" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+=======
+    <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
@@ -163,6 +171,9 @@
     <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+<<<<<<< HEAD
     <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+=======
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
   </EntityType>
 </Schema>

@@ -11,6 +11,7 @@
 </p>
 <table class="table">
     <tr>
+<<<<<<< HEAD
         <th>
             @Html.DisplayNameFor(model => model.TemplateID)
         </th>
@@ -23,21 +24,40 @@
         <th>
             @Html.DisplayNameFor(model => model.TemplateImage)
         </th>
+=======
+        @*<th>
+            @Html.HiddenFor(model => model.TemplateID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateURL)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateName)
+        </th>
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+<<<<<<< HEAD
             @Html.DisplayFor(modelItem => item.TemplateID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TemplateURL)
+=======
+            @Html.HiddenFor(modelItem => item.TemplateID)
+        </td>
+        <td>
+            @Html.HiddenFor(modelItem => item.TemplateURL)
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TemplateName)
         </td>
         <td>
+<<<<<<< HEAD
             @{
                 using (var context = new MailProEntities())
                 {
@@ -53,6 +73,11 @@
             @Html.ActionLink("Select Template", "SelectTemplate", new { TemplateID=item.TemplateID }) |
             
             @Html.ActionLink("Delete", "DeleteTemplate", new { TemplateID=item.TemplateID })
+=======
+            @Html.ActionLink("Select Template", "SelectTemplate", new { TemplateID = item.TemplateID }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Delete", "DeleteTemplate", new {  TemplateID=item.TemplateID })
+>>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
         </td>
     </tr>
 }
