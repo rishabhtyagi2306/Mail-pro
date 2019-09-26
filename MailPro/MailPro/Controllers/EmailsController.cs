@@ -7,7 +7,6 @@ using System.Net.Mail;
 using System.Net;
 using MailPro.Models;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace MailPro.Controllers
 {
@@ -38,21 +37,28 @@ namespace MailPro.Controllers
                 model.FacultyID = Fac;
                 List<int> fetch = (List<int>)Session["MailTransfer"];
                 StudentTable st = new StudentTable();
-                
-                foreach (var item in fetch)
+
+                foreach ( var item in fetch)
                 {
                     st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                    ViewBag.Mailer +=  st.StudentEmail+',';
+                    ViewBag.Mailer += st.StudentEmail + ',';
                 }
                 model.Sent = ViewBag.Mailer;
-             
-                 EmailSent(model);
-               
-                context.Mails.Add(model);
 
+                EmailSent(model);
+                if(ViewBag.Message != null)
+                { 
+
+                }
+                context.Mails.Add(model);
                 context.SaveChanges();
                 
             }
+            return View();
+        }
+
+        public ActionResult SuccessfulMail()
+        {
             return View();
         }
 
@@ -62,22 +68,46 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTemplate(TemplateModel obj)
+        public ActionResult CreateTemplate(FormCollection formCollection, TemplateModel obj )
         {
+            HttpPostedFileBase postedFile = Request.Files["postedFile"];
+            string filename = Path.GetFileName(postedFile.FileName);
+            string TempPath = "~/Templates/" + filename;
+            postedFile.SaveAs(Server.MapPath(TempPath));
+            obj.TemplateURL = TempPath;
+
             List<object> Parameters = new List<object>();
             
             Parameters.Add(obj.TemplateURL);
             Parameters.Add(obj.TemplateName);
+            Parameters.Add(obj.TemplateImage);
             object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName) values(@p0,@p1)", objectarray);
+            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
             return RedirectToAction("CreateTemplate");
         }
+
+        //public ActionResult DeleteTemplate()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult DeleteTemplate(int TemplateID)
+        //{
+        //    var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
+
+        //    if (productlist != 0)
+        //    {
+        //        return RedirectToAction("SelectTemplate");
+        //    }
+        //    return View(productlist);
+        //}
         public ActionResult ShowTemplate()
         {
             var Data = Db.TemplateTables.SqlQuery("Select *From TemplateTable").ToList();
             return View(Data);
         }
-       
+
         public ActionResult SelectTemplate(TemplateModel model)
         {
            using (var context = new MailProEntities())
@@ -92,8 +122,7 @@ namespace MailPro.Controllers
 
         
         [HttpGet]
-       
-        public async Task EmailSent(Mails model)
+        public void EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
 
@@ -101,30 +130,20 @@ namespace MailPro.Controllers
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
-
             try
             {
-                
-                 Parallel.ForEach(fetch, async item =>
-                //foreach (var item in fetch)
+                StudentTable st = new StudentTable();
+                foreach (var item in fetch)
                 {
-                    var context1 = new MailProEntities();
-                    StudentTable st = new StudentTable();
-
-                    st = context1.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
                     var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
                     var ToEmail = new MailAddress(st.StudentEmail);
                     var FromEmailPassword = model.GmailPassword;
 
-                    //string URL = Session["TemplateUrl"].ToString();
-
-
-
-
+                    string URL = Session["TemplateUrl"].ToString();
                     string Subject = model.Subject;
                     string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                    //Body = PopulateBody(Body, URL);
-
+                    Body = PopulateBody(Body, URL);
 
                     SmtpClient smtp = new SmtpClient()
                     {
@@ -135,6 +154,8 @@ namespace MailPro.Controllers
                         UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
                     };
+
+                  
                     /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
                     context.Mails.Add(model);
                     context.SaveChanges();*/
@@ -145,18 +166,17 @@ namespace MailPro.Controllers
                         IsBodyHtml = true
                     })
 
-                        await  smtp.SendMailAsync(message);
-
-                });
+                        smtp.Send(message);
+                    ViewBag.Message = "Your Mail Has been sent successfully";
+                }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                ModelState.AddModelError("", "There was some error in sending Mail, Recheck your Password and Internet Connection");
-                
+                ModelState.AddModelError("", "There was some error in sending mail , Recheck your password and internet connection");
             }
+            
 
-
-
+            
         }
 
         public string PopulateBody(string contents, string URL)

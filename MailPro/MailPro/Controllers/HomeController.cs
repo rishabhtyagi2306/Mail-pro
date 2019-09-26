@@ -7,6 +7,7 @@ using MailPro.Models;
 using System.Data.SqlClient;
 using OfficeOpenXml;
 using System.Web.UI.MobileControls;
+using System.Net;
 
 namespace MailPro.Controllers
 {
@@ -94,13 +95,14 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int StudentNo)
         {
-            //var Data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = @p0");
-            return View();
+            var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
+            return View(data);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int StudentNo, StudentModel obj)
         {
             List<object> Parameters = new List<object>();
@@ -114,12 +116,13 @@ namespace MailPro.Controllers
             Parameters.Add(obj.IsCR);
             Parameters.Add(obj.StudentCategory);
             object[] objectarray = Parameters.ToArray();
+            //var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
             int Output = Db.Database.ExecuteSqlCommand("Update StudentTable set StudentNo = @p0, StudentName = @p1, StudentEmail = @p2, Branch = @p3, Section = @p4, Year = @p5, IsHosteller = @p6, IsCR = @p7, StudentCategory = @p8 where StudentNo = @p0", objectarray);
 
-            return View();
+            return RedirectToAction("GetAllStudents");
         }
 
-       
+
 
         public ActionResult Delete()
         {

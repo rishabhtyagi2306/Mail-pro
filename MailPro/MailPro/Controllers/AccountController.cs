@@ -43,8 +43,12 @@ namespace MailPro.Controllers
                         return RedirectToAction("ShowSentEmail", "Email");
                     
                 }
+                else
+                {
+                    ViewBag.Msg = "Invalid Email or Password";
+                }
                 context.SaveChanges();
-                ModelState.AddModelError("", "Invalid Email,Password or Faculty ID");
+                ModelState.AddModelError("", "Invalid Email or Password");
                 return View();
             }
 
@@ -76,43 +80,104 @@ namespace MailPro.Controllers
                 model.Password = Crypto.Hash(model.Password);
                 context.FacultyTable.Add(model);
                 context.SaveChanges();
+                Session["FacultyEmail"] = model.FacultyEmail;
                 EmailVerification(model.FacultyID, model.FacultyEmail, Fac.ActivationCode.ToString());
+                //ViewBag.Message = "A veification link has been sent to your email , Please verify to continue access";
             }
             //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-            return View();
+            return RedirectToAction("VMSent");
+            //return View(model);
         }
 
+        public ActionResult VMSent()
+        {
+            String Email = Session["FacultyEmail"].ToString();
+            ViewBag.Email = Email;
+            return View();
+        }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
 
-        //public ActionResult ForgotPassword()
-        //{
-        //    return View();
-        //}
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //public ActionResult ForgotPassword(string EmailID)
-        //{
-        //    string message = "";
-        //    bool status = false;
+        [HttpPost]
+        public ActionResult ForgotPassword(string EmailID)
+        {
+            string message = "";
+            bool status = false;
 
-        //    using(MailProEntities Mp = new MailProEntities())
-        //    {
-        //        var acc = Mp.FacultyTable.Where(x => x.FacultyEmail == EmailID).FirstOrDefault();
-        //        if(acc != null)
-        //        {
-        //            string ResetCode = Guid.NewGuid().ToString();
-        //        }
-        //        else
-        //        {
-        //            message = "Account not found";
-        //        }
-        //    }
-        //    return View();
-        //}
+            using(MailProEntities Mp = new MailProEntities())
+            {
+                var acc = Mp.FacultyTable.Where(x => x.FacultyEmail == EmailID).FirstOrDefault();
+                if(acc != null)
+                {
+                    string ResetCode = Guid.NewGuid().ToString();
+                    EmailVerification(acc.FacultyID, acc.FacultyEmail, ResetCode, "ResetPassword");
+                    acc.ResetPasswordCode = ResetCode;
+                    Mp.Configuration.ValidateOnSaveEnabled = false;
+                    Mp.SaveChanges();
+                    message = "Reset password link has been sent your your email";
+                }
+                else
+                {
+                    message = "Account not found";
+                }
+            }
+            ViewBag.Message = message;
+            return View();
+        }
+
+        public ActionResult ResetPassword(string ID)
+        {
+            using (MailProEntities Mp = new MailProEntities())
+            {
+                var user = Mp.FacultyTable.Where(x => x.ResetPasswordCode == ID).FirstOrDefault();
+                if(user !=null)
+                {
+                    ResetPasswordModel model = new ResetPasswordModel();
+                    model.ResetCode = ID;
+                    return View(model);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            var message = "";
+            if(ModelState.IsValid)
+            {
+                using (MailProEntities Mp = new MailProEntities())
+                {
+                    var user = Mp.FacultyTable.Where(x => x.ResetPasswordCode == model.ResetCode).FirstOrDefault();
+                    if(user != null)
+                    {
+                        user.Password = Crypto.Hash(model.NewPassword);
+                        user.ResetPasswordCode = "";
+                        Mp.Configuration.ValidateOnSaveEnabled = false;
+                        Mp.SaveChanges();
+                        message = "New Psssword updated successfully";
+                    }
+                }
+            }
+            else
+            {
+                message = "Something Invalid";
+            }
+            ViewBag.Message = message;
+            return View(model);
+        }
 
         [HttpGet]
         public ActionResult VerifyAccount(string id, Models.Membership model)
@@ -159,19 +224,19 @@ namespace MailPro.Controllers
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
             var FromEmailPassword = "Rishabh@2306";
-            //string Subject = "";
-            //string Body = "";
-            //if(EmailFor == "VerifyAccount")
-            //{
-                string Subject = "Email Verification for Mail Pro Account";
-                string Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" +
+            string Subject = "";
+            string Body = "";
+            if(EmailFor == "VerifyAccount")
+            {
+                Subject = "Email Verification for Mail Pro Account";
+                Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" +
                     "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
-            //}
-            //else if(EmailFor == "ResetPassword")
-            //{
-            //    Subject = "Reset Password";
-            //    Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href=" + link + ">";
-            //}
+            }
+            else if(EmailFor == "ResetPassword")
+            {
+                Subject = "Reset Password";
+                Body = "Hi,<br/><br/>Forgot your password , Don't worry click on the link below to reset your password<br/><br/><a href= '" + link + "'>"+link+"<a/>";
+            }
 
             SmtpClient smtp = new SmtpClient()
             {

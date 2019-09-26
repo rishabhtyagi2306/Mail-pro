@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 
 namespace MailPro.Models
 {
@@ -16,7 +15,6 @@ namespace MailPro.Models
         [Required]
         public string Subject { get; set; }
         [Required]
-        [AllowHtml]
         public string Contents { get; set; }
         [EmailAddress]
         public string Sent { get; set; }

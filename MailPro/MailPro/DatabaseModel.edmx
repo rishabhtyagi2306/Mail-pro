@@ -28,7 +28,7 @@
           <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FacultyEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FacultyPhoneNo" Type="int" />
+          <Property Name="FacultyPhoneNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsEmailVerified" Type="bit" />
@@ -87,6 +87,7 @@
           <Property Name="TemplateURL" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TemplateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TemplateImage" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_CategoryTable_CategoryTable">
           <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -192,13 +193,14 @@
           <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FacultyPhoneNo" Type="Int32" />
+          <Property Name="FacultyPhoneNo" Type="String" Unicode="true" FixedLength="false" MaxLength="50" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
           <Property Name="IsEmailVerified" Type="Boolean" />
           <Property Name="ActivationCode" Type="Guid" />
           <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StudentTable">
           <Key>
@@ -327,6 +329,7 @@
           <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -355,6 +358,7 @@
           <EntitySetMapping Name="FacultyTable">
             <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
               <MappingFragment StoreEntitySet="FacultyTable">
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
@@ -417,6 +421,7 @@
           <EntitySetMapping Name="TemplateTable">
             <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
               <MappingFragment StoreEntitySet="TemplateTable">
+                <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
                 <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
                 <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
                 <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />

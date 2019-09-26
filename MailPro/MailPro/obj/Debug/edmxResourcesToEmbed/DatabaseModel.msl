@@ -22,6 +22,7 @@
     <EntitySetMapping Name="FacultyTable">
       <EntityTypeMapping TypeName="DatabaseModel.FacultyTable">
         <MappingFragment StoreEntitySet="FacultyTable">
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
           <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
           <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
@@ -84,6 +85,7 @@
     <EntitySetMapping Name="TemplateTable">
       <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
         <MappingFragment StoreEntitySet="TemplateTable">
+          <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
           <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />

@@ -23,7 +23,7 @@
     <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FacultyEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="FacultyPhoneNo" Type="int" />
+    <Property Name="FacultyPhoneNo" Type="nvarchar" MaxLength="50" />
     <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsEmailVerified" Type="bit" />
@@ -82,6 +82,7 @@
     <Property Name="TemplateURL" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TemplateName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TemplateImage" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_CategoryTable_CategoryTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />

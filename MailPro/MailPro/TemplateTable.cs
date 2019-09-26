@@ -17,5 +17,6 @@ namespace MailPro
         public string TemplateURL { get; set; }
         public int TemplateID { get; set; }
         public string TemplateName { get; set; }
+        public string TemplateImage { get; set; }
     }
 }

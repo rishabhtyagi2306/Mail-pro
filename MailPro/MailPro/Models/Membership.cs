@@ -24,8 +24,7 @@ namespace MailPro.Models
         public string Department { get; set; }
 
         [Required]
-        //[MinLength(7,ErrorMessage = "Minimum 7 charracters required")]
-        [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{7,}$",ErrorMessage = "Password must be atleast 7 characters long with Atleast one capital letter,Number and Special symbol (e.g. !@#$%^&*)")]
+        [MinLength(7,ErrorMessage = "Minimum 7 charracters required")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm Your Password")]

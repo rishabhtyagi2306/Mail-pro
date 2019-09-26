@@ -152,7 +152,6 @@
     <Content Include="img\background 1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\script-custom-editor.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -214,6 +213,7 @@
     <Compile Include="Models\DisplayClass.cs" />
     <Compile Include="Models\MailsModel.cs" />
     <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Models\ViewModel.cs" />
@@ -255,9 +255,12 @@
     <Content Include="Views\Home\StudentDetails.cshtml" />
     <Content Include="Views\Category\show.cshtml" />
     <Content Include="Views\Category\Displays.cshtml" />
-    <Content Include="Views\Email\ShowTemplate.cshtml" />
-    <Content Include="Views\Email\CreateTemplate.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\VMSent.cshtml" />
+    <Content Include="Views\Email\SuccessfulMail.cshtml" />
+    <Content Include="Views\Email\CreateTemplate.cshtml" />
+    <Content Include="Views\Email\ShowTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -268,6 +271,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="html\" />
+    <Folder Include="TemplatesImage\" />
     <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
