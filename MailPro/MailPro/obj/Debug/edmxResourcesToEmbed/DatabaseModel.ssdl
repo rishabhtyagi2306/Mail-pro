@@ -23,7 +23,7 @@
     <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FacultyEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="FacultyPhoneNo" Type="int" Nullable="false" />
+    <Property Name="FacultyPhoneNo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsEmailVerified" Type="bit" />

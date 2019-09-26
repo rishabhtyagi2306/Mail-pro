@@ -95,13 +95,14 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int StudentNo)
         {
-            //var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
-            return View();
+            var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
+            return View(data);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int StudentNo, StudentModel obj)
         {
             List<object> Parameters = new List<object>();

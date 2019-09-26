@@ -68,8 +68,14 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTemplate(TemplateModel obj)
+        public ActionResult CreateTemplate(HttpPostedFileBase file, TemplateModel obj )
         {
+            var fileName = Path.GetFileName(file.FileName);
+            //string filename = Path.GetFileName(File.FileName);
+            //string TempPath = "~/Templates/" + filename;
+            var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
+            obj.TemplateURL = path;
+
             List<object> Parameters = new List<object>();
             
             Parameters.Add(obj.TemplateURL);
@@ -149,7 +155,7 @@ namespace MailPro.Controllers
                         Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
                     };
 
-                    ViewBag.Message = "Your Mail Has been sent successfully";
+                    
                     /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
                     context.Mails.Add(model);
                     context.SaveChanges();*/
@@ -161,6 +167,7 @@ namespace MailPro.Controllers
                     })
 
                         smtp.Send(message);
+                    ViewBag.Message = "Your Mail Has been sent successfully";
                 }
             }
             catch(Exception ex)

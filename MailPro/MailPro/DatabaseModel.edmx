@@ -28,7 +28,7 @@
           <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FacultyName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FacultyEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FacultyPhoneNo" Type="int" Nullable="false" />
+          <Property Name="FacultyPhoneNo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsEmailVerified" Type="bit" />
@@ -193,7 +193,7 @@
           <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FacultyPhoneNo" Type="Int32" Nullable="false" />
+          <Property Name="FacultyPhoneNo" Type="String" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
