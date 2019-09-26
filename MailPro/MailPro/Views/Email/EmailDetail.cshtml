@@ -1,0 +1,54 @@
+﻿@model MailPro.Mails
+
+@{
+    ViewBag.Title = "EmailDetail";
+}
+
+<h2>EmailDetail</h2>
+
+<div>
+    <h4>Mails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.MailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contents)
+        </dt>
+
+        <dd>
+            @MvcHtmlString.Create(HttpUtility.HtmlDecode(Model.Contents))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sent)
+        </dd>
+
+        
+
+        
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "ShowSentEmail")
+</p>

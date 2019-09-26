@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MailPro.TemplateTable>
+
+@{
+    ViewBag.Title = "ShowTemplate";
+}
+
+<h2>ShowTemplate</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemplateID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemplateURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemplateName)
+        </td>
+        <td>
+            @{
+                using (var context = new MailProEntities())
+                {
+                    TemplateTable tt = new TemplateTable();
+                    tt = context.TemplateTable.SingleOrDefault(x => x.TemplateID == item.TemplateID);
+                    string TI = tt.TemplateImage;
+                }
+
+            }
+            <img src="@Url.Content(item.TemplateImage)" alt="" />
+        </td>
+        <td>
+            @Html.ActionLink("Select Template", "SelectTemplate", new { TemplateID=item.TemplateID }) |
+            
+            @Html.ActionLink("Delete", "DeleteTemplate", new { TemplateID=item.TemplateID })
+        </td>
+    </tr>
+}
+
+</table>
