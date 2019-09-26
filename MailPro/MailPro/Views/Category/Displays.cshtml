@@ -31,7 +31,6 @@
         <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
         <link rel="stylesheet" href="@Url.Content("../css/sent mails.css")" type="text/css">
         <link rel="stylesheet" href="@Url.Content("../files/fontawesome.min.css")">
-        <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
 
 
         <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
@@ -252,67 +251,7 @@
     </body>
 </html>
 
-@*@using (Html.BeginForm("Displays", "Category", FormMethod.Post))
-{
-    foreach (var ch in abc)
-    {
-        List<SelectListItem> items = new List<SelectListItem>();
-        List<string> xyz = new List<string>();
 
-        <br />
-        <br />
-        @Html.Label(ch);
-        //foreach(var item in )
-        // Model.StudentNames = Model.StudentNames.Distinct();
-
-        foreach (var item in Model.StudentNames)
-
-        {
-            var sno = Convert.ToInt32(@item.Value);
-            Temp tp = new Temp();
-            var context = new MailProEntities();
-            tp = context.Temp.SingleOrDefault(x => x.StuidentNo == sno && x.CategoryName == ch);
-            if (tp != null)
-            {
-                var i = tp.StuidentNo.ToString();
-                var ab = items.SingleOrDefault(x => x.Value == i);
-                if (ab == null)
-                {
-                    items.Add(new SelectListItem()
-                    {
-                        Text = @item.Text,
-                        Value = @item.Value,
-
-                    });
-                }
-                //xyz.Add(@item.Text);
-                //@Html.ListBox(@item.Value);
-
-
-
-
-
-
-                // @Html.CheckBox(@item.Text); <p>@item.Text</p>
-                //@Html.ListBox(@item.Value,item.Text)
-
-
-
-
-            }
-
-
-
-
-        }
-        Model.CategoryNames = items;
-
-        @Html.ListBoxFor(m => m.ids, Model.CategoryNames, new { @class = "listbox" })
-
-        <input type="submit" value="Submit" />
-
-    }
-}*@
 
 
 <h2>Displays</h2>

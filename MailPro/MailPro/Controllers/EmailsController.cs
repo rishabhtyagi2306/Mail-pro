@@ -45,15 +45,9 @@ namespace MailPro.Controllers
                     ViewBag.Mailer +=  st.StudentEmail+',';
                 }
                 model.Sent = ViewBag.Mailer;
-                //StringWriter writer = new StringWriter();
-                //Server.HtmlDecode(model.Contents,writer);
-                //var encodes = HttpUtility.HtmlEncode(model.Contents);
-                //model.Contents = Server.HtmlDecode(encodes);
-                EmailSent(model);
-                if (ViewBag.Message != null)
-                {
-                    
-                }
+             
+                 EmailSent(model);
+               
                 context.Mails.Add(model);
 
                 context.SaveChanges();
@@ -99,7 +93,7 @@ namespace MailPro.Controllers
         
         [HttpGet]
        
-        public void EmailSent(Mails model)
+        public async Task EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
 
@@ -110,9 +104,9 @@ namespace MailPro.Controllers
 
             try
             {
-
-                //Parallel.ForEach(fetch, item =>
-                foreach (var item in fetch)
+                
+                 Parallel.ForEach(fetch, async item =>
+                //foreach (var item in fetch)
                 {
                     var context1 = new MailProEntities();
                     StudentTable st = new StudentTable();
@@ -149,11 +143,11 @@ namespace MailPro.Controllers
                         Subject = Subject,
                         Body = Body,
                         IsBodyHtml = true
-                    }) 
+                    })
 
-                        smtp.Send(message);
+                        await  smtp.SendMailAsync(message);
 
-                }
+                });
             }
             catch (Exception ex)
             {

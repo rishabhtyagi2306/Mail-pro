@@ -37,7 +37,7 @@
     <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Sent" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sent" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="FacultyID" Type="int" Nullable="false" />
     <Property Name="GmailPassword" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
