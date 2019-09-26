@@ -17,9 +17,13 @@ namespace MailPro.Controllers
         // GET: Email
         [Authorize]
 <<<<<<< HEAD
+<<<<<<< HEAD
         [ValidateInput(false)]
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+        [ValidateInput(false)]
+>>>>>>> swasti
         public ActionResult Mail()
         {
             return View();
@@ -27,9 +31,13 @@ namespace MailPro.Controllers
 
         [HttpPost]
 <<<<<<< HEAD
+<<<<<<< HEAD
         [ValidateInput(false)]
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+        [ValidateInput(false)]
+>>>>>>> swasti
         public ActionResult Mail(Mails model)
         {
            
@@ -42,6 +50,9 @@ namespace MailPro.Controllers
                 int Fac = (int)Session["FacultyID"];
                 model.FacultyID = Fac;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> swasti
                 List<int> fetch = (List<int>)Session["MailTransfer"];
                 StudentTable st = new StudentTable();
 
@@ -62,6 +73,7 @@ namespace MailPro.Controllers
                 
             }
             return View();
+<<<<<<< HEAD
 =======
                 context.Mails.Add(model);
                 context.SaveChanges();
@@ -69,6 +81,8 @@ namespace MailPro.Controllers
             }
             return RedirectToAction("SuccessfulMail");
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+>>>>>>> swasti
         }
 
         public ActionResult SuccessfulMail()
@@ -83,6 +97,9 @@ namespace MailPro.Controllers
 
         [HttpPost]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> swasti
         public ActionResult CreateTemplate(FormCollection formCollection, TemplateModel obj )
         {
             HttpPostedFileBase postedFile = Request.Files["postedFile"];
@@ -91,14 +108,18 @@ namespace MailPro.Controllers
             postedFile.SaveAs(Server.MapPath(TempPath));
             obj.TemplateURL = TempPath;
 
+<<<<<<< HEAD
 =======
         public ActionResult CreateTemplate(TemplateModel obj)
         {
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+>>>>>>> swasti
             List<object> Parameters = new List<object>();
             
             Parameters.Add(obj.TemplateURL);
             Parameters.Add(obj.TemplateName);
+<<<<<<< HEAD
 <<<<<<< HEAD
             Parameters.Add(obj.TemplateImage);
             object[] objectarray = Parameters.ToArray();
@@ -107,6 +128,11 @@ namespace MailPro.Controllers
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName) values(@p0,@p1)", objectarray);
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+            Parameters.Add(obj.TemplateImage);
+            object[] objectarray = Parameters.ToArray();
+            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
+>>>>>>> swasti
             return RedirectToAction("CreateTemplate");
         }
 
@@ -155,6 +181,9 @@ namespace MailPro.Controllers
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> swasti
             try
             {
                 StudentTable st = new StudentTable();
@@ -180,7 +209,11 @@ namespace MailPro.Controllers
                         Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
                     };
 
+<<<<<<< HEAD
                     ViewBag.Message = "Your Mail Has been sent successfully";
+=======
+                  
+>>>>>>> swasti
                     /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
                     context.Mails.Add(model);
                     context.SaveChanges();*/
@@ -192,6 +225,10 @@ namespace MailPro.Controllers
                     })
 
                         smtp.Send(message);
+<<<<<<< HEAD
+=======
+                    ViewBag.Message = "Your Mail Has been sent successfully";
+>>>>>>> swasti
                 }
             }
             catch(Exception ex)
@@ -199,6 +236,7 @@ namespace MailPro.Controllers
                 ModelState.AddModelError("", "There was some error in sending mail , Recheck your password and internet connection");
             }
             
+<<<<<<< HEAD
 =======
             StudentTable st = new StudentTable();
             foreach (var item in fetch)
@@ -235,6 +273,8 @@ namespace MailPro.Controllers
                     smtp.Send(message);
             }
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+>>>>>>> swasti
 
             
         }

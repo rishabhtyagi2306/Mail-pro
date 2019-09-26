@@ -86,12 +86,19 @@
       <EntityTypeMapping TypeName="DatabaseModel.TemplateTable">
         <MappingFragment StoreEntitySet="TemplateTable">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
           <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+=======
+          <ScalarProperty Name="TemplateImage" ColumnName="TemplateImage" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="TemplateURL" ColumnName="TemplateURL" />
+>>>>>>> swasti
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

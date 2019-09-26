@@ -28,17 +28,25 @@
     <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Property Name="FacultyPhoneNo" Type="String" Nullable="false" />
 =======
     <Property Name="FacultyPhoneNo" Type="Int32" Nullable="false" />
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+    <Property Name="FacultyPhoneNo" Type="String" Unicode="true" FixedLength="false" MaxLength="50" />
+>>>>>>> swasti
     <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
     <Property Name="IsEmailVerified" Type="Boolean" />
     <Property Name="ActivationCode" Type="Guid" />
     <NavigationProperty Name="Mails" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="FacultyTable" ToRole="Mails" />
+<<<<<<< HEAD
     <Property Name="ResetPasswordCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+=======
+    <Property Name="ResetPasswordCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+>>>>>>> swasti
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -54,7 +62,11 @@
     <Property Name="IsCR" Type="Boolean" Nullable="false" />
     <Property Name="StudentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="ConnectTable" Relationship="Self.FK_ConnectTable_StudentTable" FromRole="StudentTable" ToRole="ConnectTable" />
+<<<<<<< HEAD
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
+=======
+    <Property Name="FacultyID" Type="Int32" />
+>>>>>>> swasti
   </EntityType>
   <Association Name="FK_CategoryTable_FacultyTable">
     <End Role="FacultyTable" Type="Self.FacultyTable" Multiplicity="1" />
@@ -122,6 +134,7 @@
       <PropertyRef Name="MailID" />
     </Key>
     <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+<<<<<<< HEAD
     <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
 <<<<<<< HEAD
@@ -131,6 +144,13 @@
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+=======
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Sent" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="FacultyID" Type="Int32" Nullable="false" />
+    <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+>>>>>>> swasti
     <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
   </EntityType>
   <Association Name="FK_Mails_FacultyTable">
@@ -149,7 +169,11 @@
     <Key>
       <PropertyRef Name="Keys" />
     </Key>
+<<<<<<< HEAD
     <Property Name="StudentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+=======
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+>>>>>>> swasti
     <Property Name="StudentEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="StuidentNo" Type="Int32" Nullable="false" />
     <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -168,6 +192,7 @@
     <Key>
       <PropertyRef Name="TemplateID" />
     </Key>
+<<<<<<< HEAD
     <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -175,5 +200,11 @@
     <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+    <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+>>>>>>> swasti
   </EntityType>
 </Schema>

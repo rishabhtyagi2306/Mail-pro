@@ -14,6 +14,7 @@ namespace MailPro
     
     public partial class TemplateTable
     {
+<<<<<<< HEAD:MailPro/MailPro/TemplateTable.cs
         public int TemplateID { get; set; }
         public string TemplateURL { get; set; }
         public string TemplateName { get; set; }
@@ -21,5 +22,11 @@ namespace MailPro
         public string TemplateImage { get; set; }
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7:demoDB.Db/user.cs
+=======
+        public string TemplateURL { get; set; }
+        public int TemplateID { get; set; }
+        public string TemplateName { get; set; }
+        public string TemplateImage { get; set; }
+>>>>>>> swasti:demoDB.Db/user.cs
     }
 }

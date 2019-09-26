@@ -25,10 +25,14 @@ namespace MailPro
         public string FacultyName { get; set; }
         public string FacultyEmail { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string FacultyPhoneNo { get; set; }
 =======
         public int FacultyPhoneNo { get; set; }
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+        public string FacultyPhoneNo { get; set; }
+>>>>>>> swasti
         public string Department { get; set; }
         public string Password { get; set; }
         public Nullable<bool> IsEmailVerified { get; set; }
