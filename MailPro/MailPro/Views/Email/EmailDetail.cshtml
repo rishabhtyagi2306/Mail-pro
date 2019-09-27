@@ -1,54 +1,260 @@
 ﻿@model MailPro.Mails
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Details</title>
 
-@{
-    ViewBag.Title = "EmailDetail";
-}
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/email details.css" type="text/css">
+    <link rel="stylesheet" href="../files/fontawesome.min.css">
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
 
-<h2>EmailDetail</h2>
 
-<div>
-    <h4>Mails</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.MailID)
-        </dt>
+    <script src="../files/jquery-3.4.1.min.js"></script>
+    <script src="../files/bootstrap.min.js"></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.MailID)
-        </dd>*@
+    <script>
+		$(function() {
+  			// Sidebar toggle
+  			$('#sidebarCollapse').on('click', function() {
+    			$('#sidebar, #content').toggleClass('active');
+  			});
+		});
+    </script>
+    <style>
+        #cc {
+            border: rgba(255,255,255,1.00) thick 22px
+        }
+    </style>
+</head>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 83px">
 
-        <dd>
-            @Html.DisplayFor(model => model.Subject)
-        </dd>
+        <div class="media nav-item ml-1" style="width: 100px; ">
+            <!--<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.71 96"><defs><style>.cls-1,.cls-2{fill:#fff;}.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:2px;}.cls-3{fill:#e6e6e6;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M605.71,274.83c0,15.92-15.58,28.83-34.8,28.83h-9.22L560.88,342H540.09L540,286.37l3.9-5.44L585.24,267l-45.16.16V246h30.82c13.73,0,25.61,6.59,31.27,16.16A24.74,24.74,0,0,1,605.71,274.83Z" transform="translate(-540.01 -246)"/><path class="cls-2" d="M550.4,281.33" transform="translate(-540.01 -246)"/><path class="cls-2" d="M537,262.81" transform="translate(-540.01 -246)"/><polyline class="cls-3" points="3.9 34.92 8.61 51.09 45.73 20.95"/></svg>-->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contents)
-        </dt>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 177 180" style="enable-background:new 0 0 177 180;" xml:space="preserve">
+<g id="Layer_3" style="display:none;">
+            <rect x="-489" y="-195" style="display:inline;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" width="1798" height="1920" />
 
-        <dd>
-            @MvcHtmlString.Create(HttpUtility.HtmlDecode(Model.Contents))
-        </dd>
+</g>
+<g id="Layer_1" style="display:none;">
+            <rect x="-366.5" y="547.5" style="display:inline;fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;" width="54" height="494" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sent)
-        </dt>
+            <rect x="-100.5" y="547.5" style="display:inline;fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;" width="54" height="494" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Sent)
-        </dd>
 
-        
+	
+            <rect x="-366.5" y="360.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -529.0046 -62.1301)" style="display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;" width="54" height="494" />
 
-        
 
-    </dl>
-</div>
-<p>
-   
-    @Html.ActionLink("Back to List", "ShowSentEmail")
-</p>
+	
+            <rect x="-100.5" y="360.5" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -555.0397 985.095)" style="display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;" width="54" height="494" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="1596" x2="319" y2="1539.74" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="911.93" x2="319" y2="622" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="423" x2="319" y2="406" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="518" y1="1596" x2="518" y2="1540.31" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="518" y1="813.13" x2="518" y2="622" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="518" y1="423" x2="518" y2="380" />
+
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="423" x2="39" y2="423" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="1254" y1="423" x2="698.5" y2="423" />
+
+            <polyline style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" points="42,622 313.49,622
+		319,622 	" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="1266" y1="622" x2="1083.51" y2="622" />
+
+            <path style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M903,622L518,813.13l-199,98.8V943
+		c-5-7.88-9.66-15.93-13.94-24.15C282.5,875.67,270,828.05,270,778c0-55.97,15.63-108.92,43.49-156c1.78-3.03,3.62-6.02,5.51-9v9
+		H903z" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="1133" x2="197" y2="1133" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="1221" y1="1133" x2="698.5" y2="1133" />
+
+            <polyline style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" points="57,1042 305.06,918.85
+		319,911.93 	" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="1104" y1="1542" x2="518" y2="1540.31" />
+
+
+	
+            <line style="display:inline;fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" x1="319" y1="1539.74" x2="63" y2="1539" />
+
+</g>
+<g id="Layer_2">
+	
+            <image style="overflow:visible;opacity:0.62;" width="106" height="131" xlink:href="3C60F391.png" transform="matrix(1 0 0 1 34 37)">
+	</image>
+            <g>
+            <g>
+            <path style="fill:#FFFFFF;" d="M111.701,77.73c0,14.763-14.446,26.73-32.264,26.73H70.89L70.137,140H50.861l-0.075-51.578
+				l3.614-5.045l38.326-12.876l-41.865,0.151v-1.581V51h28.575c12.732,0,23.742,6.11,28.99,14.984
+				C110.524,69.529,111.701,73.516,111.701,77.73z" />
+
+            <path style="fill:#FFFFFF;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M60.424,83.754" />
+
+            <path style="fill:#FFFFFF;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" d="M48,66.586" />
+
+            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="70.1393" y1="74.2904" x2="77.7193" y2="87.4193">
+            <stop offset="0" style="stop-color:#CCCCCC" />
+
+            <stop offset="1" style="stop-color:#808080" />
+
+			</linearGradient>
+            <polyline style="fill:url(#SVGID_1_);" points="54.4,83.377 58.767,98.361 93.178,70.426 			" />
+
+		</g>
+	</g>
+</g>
+</svg>
+
+        </div>
+        <div class="media-body nav-item ml-0">
+            <h4 class="m-1" style="font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">MAIL PRO</h4>
+
+
+
+        </div>
+
+
+
+        <div class=" collapse navbar-collapse nav-item active">
+        </div>
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Toggle</small></button>
+
+
+
+    </nav>
+    <div class="vertical-nav bg-white shadow-none" id="sidebar">
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 py-3 pb-4 mb-0">MENU</p>
+        <a href="https://localhost:44378/Email/ShowTemplate">
+            <button type="button" class="btn btn-light bg-light rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><em class="text-uppercase font-weight-bold">Compose</em></button>
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Email/ShowSentEmail" class="nav-link text-dark bg-light opt">
+                        <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                    -->
+                        Sent Mail
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark opt">
+                        <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    -->
+                        Browse Templates
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/ShowCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                    -->
+                        View Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/AddCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                    -->
+                        Add Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Home/GetAllStudents" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                    -->
+                        View Students
+                    </a>
+                </li>
+                @*<li class="nav-item">
+                    <a href="#" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                    -->
+                        Add Students
+                    </a>
+                </li>*@
+            <li class="nav-item mx-5">
+                <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+    -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button id="logout" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">@Html.ActionLink("Logout", "Logout", "Account")</small></button>
+                }
+
+            </li>
+
+            </ul>
+
+
+    </div>
+    <div class="page-content active container-fluid p-5" id="content">
+        <div class="row pt-2">
+            <div class="col-lg-2">
+                <a href="https://localhost:44378/Email/ShowSentEmail">
+                <button id="back" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">Back</small></button>
+                </a>
+            </div>
+        </div>
+        <div class="row mt-5 p-3 border rounded-pill" id="cc">
+            <div class="col-lg-2 ml-3">
+                <strong>To</strong>
+            </div>
+            <div class="col-lg-6 ml-5">
+                @Html.DisplayFor(model => model.Sent)
+            </div>
+        </div>
+        <div class="row p-3 mt-4 border rounded-pill">
+            <div class="col-lg-2 ml-3">
+                <strong>Subject</strong>
+            </div>
+            <div class="col-lg-6 ml-5">
+                @Html.DisplayFor(model => model.Subject)
+            </div>
+        </div>
+        <div class="row p-3 mt-4 border rounded-pill">
+            <div class="col-lg-2 ml-3">
+                <strong>Content</strong>
+            </div>
+            <div class="col-lg-6 ml-5">
+                @MvcHtmlString.Create(HttpUtility.HtmlDecode(Model.Contents))
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

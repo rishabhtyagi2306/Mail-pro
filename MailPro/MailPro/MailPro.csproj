@@ -258,7 +258,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\VMSent.cshtml" />
-    <Content Include="Views\Email\SuccessfulMail.cshtml" />
     <Content Include="Views\Email\CreateTemplate.cshtml" />
     <Content Include="Views\Email\ShowTemplate.cshtml" />
     <None Include="Web.Debug.config">

@@ -22,6 +22,7 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddCategory(CategoryModel obj)
         {
             int fid = (int)Session["FacultyID"];
@@ -53,12 +54,14 @@ namespace MailPro.Controllers
                     c = context.CategoryTable.SingleOrDefault(x => x.CategoryName == s);
                     Session["CategoryID"] = c.CategoryID;
                 }
+                ViewBag.MSG = "Category Added";
             }
             
 
-            return RedirectToAction("AddCategory");
+            return View();
         }
 
+        [Authorize]
         public ActionResult ShowCategory()
         {
             int fid = (int)Session["FacultyID"];
@@ -66,6 +69,7 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
+        [Authorize]
         public ActionResult AddStudentToCategory(CategoryModel model)
         {
             CategoryTable c = new CategoryTable();

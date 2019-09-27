@@ -132,13 +132,14 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult Delete(int StudentNo)
         {
-            var productlist = Db.Database.ExecuteSqlCommand("delete from StudentTable where StudentNo=@p0", StudentNo);
+            var ConnectTable = Db.Database.ExecuteSqlCommand("delete from ConnectTable Where StudentNo=@P0", StudentNo);
+            var Studentlist = Db.Database.ExecuteSqlCommand("delete from StudentTable where StudentNo=@p0", StudentNo);
 
-            if (productlist != 0)
+            if (Studentlist != 0)
             {
                 return RedirectToAction("GetAllStudents");
             }
-            return View(productlist);
+            return View(Studentlist);
         }
 
        /* public ActionResult StudentDetails(int StudentNo)
