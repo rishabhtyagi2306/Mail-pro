@@ -60,7 +60,7 @@ namespace MailPro.Controllers
             }
             catch(Exception ex)
             {
-                ModelState.AddModelError("", "it Seems Like you haven't selected your recipients or you have not given subject in your mail");
+                ModelState.AddModelError("", "");
                 //ViewBag.Msg = "It seems like you haven't selected your recipients";
                 return View();
             }
@@ -74,13 +74,13 @@ namespace MailPro.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTemplate(HttpPostedFileBase file, TemplateModel obj )
+        public ActionResult CreateTemplate(TemplateModel obj )
         {
-            var fileName = Path.GetFileName(file.FileName);
-            //string filename = Path.GetFileName(File.FileName);
-            //string TempPath = "~/Templates/" + filename;
-            var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
-            obj.TemplateURL = path;
+            //var fileName = Path.GetFileName(file.FileName);
+            ////string filename = Path.GetFileName(File.FileName);
+            ////string TempPath = "~/Templates/" + filename;
+            //var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
+            //obj.TemplateURL = path;
 
             List<object> Parameters = new List<object>();
             
@@ -178,14 +178,8 @@ namespace MailPro.Controllers
 
                     
                     smtp.Send(message);
-                    if (Subject == null)
-                    {
-                        msg = "Your mail has been sent successfully without subject";
-                    }
-                    else
-                    {
-                        msg = "Your Mail Has been sent successfully";
-                    }
+
+                    msg = "Your Mail Has been sent successfully";
                     ViewBag.Message = msg;
                 }
             }

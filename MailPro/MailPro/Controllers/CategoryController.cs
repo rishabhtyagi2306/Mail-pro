@@ -192,30 +192,35 @@ namespace MailPro.Controllers
 
         public ActionResult Displays()
         {
-            DisplayClass fruit = new DisplayClass();
-            fruit.StudentNames = PopulateNames();
-            return View(fruit);
+            DisplayClass Stud = new DisplayClass();
+            Stud.StudentNames = PopulateNames();
+            return View(Stud);
         }
         [HttpPost]
-        public ActionResult Displays(DisplayClass fruit)
+        public ActionResult Displays(DisplayClass Stud)
         {
-            fruit.StudentNames = PopulateNames();
-            if (fruit.ids != null)
+            Stud.StudentNames = PopulateNames();
+            if (Stud.ids != null)
             {
-                List<SelectListItem> selectedItems = fruit.StudentNames.Where(p => fruit.ids.Contains(int.Parse(p.Value))).ToList();
+                List<SelectListItem> selectedItems = Stud.StudentNames.Where(p => Stud.ids.Contains(int.Parse(p.Value))).ToList();
                 List<int> StudentNoMail = new List<int>();
                 ViewBag.Message = "Selected Fruits:";
                 foreach (var selectedItem in selectedItems)
                 {
                     var intno = Convert.ToInt32(selectedItem.Value);
                     selectedItem.Selected = true;
-                    ViewBag.Message += "\\n" + selectedItem.Text;
+                    
                     StudentNoMail.Add(intno);
                 }
                 Session["MailTransfer"] = StudentNoMail;
+                return RedirectToAction("Mail", "Email");
+            }
+            else
+            {
+                return RedirectToAction("Displays");
             }
 
-            return RedirectToAction("Mail", "Email");
+            
         }
         private static List<SelectListItem> PopulateNames()
         {
