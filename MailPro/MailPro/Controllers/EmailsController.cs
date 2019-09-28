@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Net;
 using MailPro.Models;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MailPro.Controllers
 {
@@ -24,30 +25,38 @@ namespace MailPro.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Mail(Mails model)
+        public async Task<ViewResult> Mail(Mails model)
         {
            
             try
             {
                 using (var context = new MailProEntities())
                 {
-                    //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-                    //FacultyTable Fac = new FacultyTable();
-
-                    //Fac.Password = Crypto.Hash(Fac.Password);
+                    
                     int Fac = (int)Session["FacultyID"];
                     model.FacultyID = Fac;
                     List<int> fetch = (List<int>)Session["MailTransfer"];
                     StudentTable st = new StudentTable();
-
+                    int i = 0;
+                    int count = 0;
                     foreach (var item in fetch)
                     {
                         st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                        ViewBag.Mailer += st.StudentEmail + ',';
+                        ViewBag.Mailer += st.StudentEmail + ",<br/>";
+                        i = i + 1;
+                        if(i<=2)
+                        {
+                            ViewBag.MailPreview += st.StudentEmail + ',';
+                        }
+                        else
+                        {
+                            count++;
+                        }
                     }
+                    ViewBag.MailPreview += "and " + count + " others";
                     model.Sent = ViewBag.Mailer;
-
-                    EmailSent(model);
+                    model.MailPreview = ViewBag.MailPreview;
+                    await EmailSent(model);
                     if (ViewBag.Message != null)
                     {
 
@@ -131,7 +140,7 @@ namespace MailPro.Controllers
 
         
         [HttpGet]
-        public void EmailSent(Mails model)
+        public async Task EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
 
@@ -145,42 +154,7 @@ namespace MailPro.Controllers
                 foreach (var item in fetch)
                 {
                     st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                    var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-                    var ToEmail = new MailAddress(st.StudentEmail);
-                    var FromEmailPassword = model.GmailPassword;
-
-                    string msg;
-                    string URL = Session["TemplateUrl"].ToString();
-                    string Subject = model.Subject;
-                    string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                    Body = PopulateBody(Body, URL);
-
-                    SmtpClient smtp = new SmtpClient()
-                    {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-                    };
-
-                    
-                    /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
-                    context.Mails.Add(model);
-                    context.SaveChanges();*/
-                    using (var message = new MailMessage(FromEmail, ToEmail)
-                    {
-                        Subject = Subject,
-                        Body = Body,
-                        IsBodyHtml = true
-                    })
-
-                    
-                    smtp.Send(message);
-
-                    msg = "Your Mail Has been sent successfully";
-                    ViewBag.Message = msg;
+                    await sendprocess(st, ft, model);
                 }
             }
             catch(Exception ex)
@@ -190,6 +164,47 @@ namespace MailPro.Controllers
             
 
             
+        }
+
+        public async Task sendprocess(StudentTable st, FacultyTable ft, Mails model)
+        {
+
+            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+            var ToEmail = new MailAddress(st.StudentEmail);
+            var FromEmailPassword = model.GmailPassword;
+
+            string URL = Session["TemplateUrl"].ToString();
+            string Subject = model.Subject;
+            string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
+            Body = PopulateBody(Body, URL);
+
+            SmtpClient smtp = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+            };
+
+
+            /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
+            context.Mails.Add(model);
+            context.SaveChanges();*/
+            using (var message = new MailMessage(FromEmail, ToEmail)
+            {
+                Subject = Subject,
+                Body = Body,
+                IsBodyHtml = true
+            })
+
+                await smtp.SendMailAsync(message);
+            ViewBag.Message = "Your Mail Has been sent successfully";
+
+
+
+
         }
 
         public string PopulateBody(string contents, string URL)
@@ -224,9 +239,9 @@ namespace MailPro.Controllers
 
             if (productlist != 0)
             {
-                return RedirectToAction("ShowSentEmails");
+                return RedirectToAction("ShowSentEmail");
             }
-            return RedirectToAction("ShowSentMails");
+            return RedirectToAction("ShowSentMail");
         }
 
         public ActionResult EmailDetail(int MailID)

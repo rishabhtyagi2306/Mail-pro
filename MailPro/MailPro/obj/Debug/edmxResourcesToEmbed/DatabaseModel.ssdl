@@ -40,6 +40,7 @@
     <Property Name="Sent" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="FacultyID" Type="int" Nullable="false" />
     <Property Name="GmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MailPreview" Type="nvarchar" MaxLength="4000" />
   </EntityType>
   <EntityType Name="StudentTable">
     <Key>
@@ -108,7 +109,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ConnectTable_StudentTable">
+  <Association Name="FK_ConnectTable_StudentTable1">
     <End Role="StudentTable" Type="Self.StudentTable" Multiplicity="1" />
     <End Role="ConnectTable" Type="Self.ConnectTable" Multiplicity="*" />
     <ReferentialConstraint>
@@ -136,7 +137,7 @@
       <End Role="CategoryTable" EntitySet="CategoryTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
     </AssociationSet>
-    <AssociationSet Name="FK_ConnectTable_StudentTable" Association="Self.FK_ConnectTable_StudentTable">
+    <AssociationSet Name="FK_ConnectTable_StudentTable1" Association="Self.FK_ConnectTable_StudentTable1">
       <End Role="StudentTable" EntitySet="StudentTable" />
       <End Role="ConnectTable" EntitySet="ConnectTable" />
     </AssociationSet>

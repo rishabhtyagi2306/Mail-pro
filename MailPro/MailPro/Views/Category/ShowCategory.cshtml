@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="px-3 bg-light">
             <div class="media d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="96.412" height="68" viewBox="0 0 96.412 68" class="mr-3 ">
@@ -40,7 +40,7 @@
                 </svg>
 
                 <div class="media-body">
-                    <h4 class="m-0">Name</h4>
+                    <h4 class="m-0">Mail Pro</h4>
 
 
                 </div>
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">
+                    <a href="https://localhost:44378/Email/ShowTemplate" class="nav-link text-dark">
                         <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                 -->
                         Browse Templates
@@ -121,41 +121,44 @@
 </div>
     <div class="page-content active container-fluid" id="content">
         <div class="row pt-5">
+
+        </div>
+        <div class="row pt-5">
             <div class="col-lg-12">
 
                 <!-- -------------------loop starts here--------------------->
                 <table class="table">
-                <tr class="bg-white">
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.CategoryID)
-                    </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.CategoryName)
-                    </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.FacultyID)
-                    </th>*@
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr class="bg-white" >
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.CategoryID)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CategoryName)
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.FacultyID)
-                        </td>*@
-                        <td>
-                            @Html.ActionLink("Add Student", "AddStudentToCategory", new { CategoryID = item.CategoryID }) |
-                            @Html.ActionLink("Delete", "DeleteCategory", new { CategoryID = item.CategoryID })
-                        </td>
+                    <tr class="bg-white">
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.CategoryID)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.FacultyID)
+                        </th>*@
+                        <th></th>
                     </tr>
-                }
+
+                    @foreach (var item in Model)
+                    {
+                        <tr class="bg-white">
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.CategoryID)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.FacultyID)
+                            </td>*@
+                            <td>
+                                @Html.ActionLink("Add Student", "AddStudentToCategory", new { CategoryID = item.CategoryID }) |
+                                @Html.ActionLink("Delete", "DeleteCategory", new { CategoryID = item.CategoryID })
+                            </td>
+                        </tr>
+                    }
                 </table>
                 <!--loop ends here-->
             </div>

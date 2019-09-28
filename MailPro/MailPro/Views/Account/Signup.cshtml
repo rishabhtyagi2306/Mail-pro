@@ -43,7 +43,7 @@
                             <ellipse cx="75.5" cy="73" rx="30" ry="30" fill="none" />
                         </g>
                     </svg>
-                    <div id="logo-name">NAME</div>
+                    <div id="logo-name">Mail Pro</div>
                     <div class="welcome">
                         <div>Welcome!</div>
                         <div id="sign">Get started absolutely free.</div>
@@ -56,40 +56,9 @@
                         <div class="signup"><b>SIGN UP</b></div>
                     </div>
 
-                    <!--<div id="form">
-    <label class="" id="fid">Faculty I'd</label>
-    <input type="email" placeholder="Enter id" class="input"/>
-    <label class="" id="name" >Name</label>
-    <input type="password" placeholder="Enter name"  class="input"/>
-    <label class="" id="email" >Email Address</label>
-    <input type="password" placeholder="Enter email address"  class="input"/>
-    <label class="" id="phone" >Contact no.</label>
-    <input type="password" placeholder="Enter contact number"  class="input"/>
-    <label class="" id="dpt" >Department</label>
-    <input type="password" placeholder="Enter department"  class="input"/>
-    <label class="" id="password" >Password</label>
-    <input type="password" placeholder="Enter password"  class="input"/>
-    <input type="button" value="CONTINUE" id="btn"/>
-    <span id="check">
-        <input type="checkbox">
-        By signing up, I agree to the terms and conditions.
-    </span>
-    </div>-->
-                    <!--<form id="form">-->
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    @*<div class="form-group row" style="padding-top:175px">
-            <!--<label for="inputId" class="col-sm-5 col-form-label">Enter Faculty I'd</label>-->
-            @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputId" })
-
-            <div class="col-sm-7">
-
-
-                @Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", @id = "inputId", @placeholder = "Faculty I'd" } })
-                @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
-                <!--<input type="number" class="form-control" id="inputId" placeholder="Faculty I'd">-->
-            </div>
-        </div>*@
+                    
                     <div class="form-group row" style="padding-top:175px">
                         <!--<label for="inputName" class="col-sm-5 col-form-label">Enter Faculty Name</label>-->
                         @Html.LabelFor(model => model.FacultyName, htmlAttributes: new { @class = "col-sm-5 col-form-label", @id = "inputName" })

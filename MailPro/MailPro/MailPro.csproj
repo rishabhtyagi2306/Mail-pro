@@ -250,9 +250,7 @@
     <Content Include="Views\Category\DeleteCategory.cshtml" />
     <Content Include="Views\Email\Mail.cshtml" />
     <Content Include="Views\Email\ShowSentEmail.cshtml" />
-    <Content Include="Views\Email\DeleteEmail.cshtml" />
     <Content Include="Views\Email\EmailDetail.cshtml" />
-    <Content Include="Views\Home\StudentDetails.cshtml" />
     <Content Include="Views\Category\show.cshtml" />
     <Content Include="Views\Category\Displays.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
@@ -260,6 +258,7 @@
     <Content Include="Views\Account\VMSent.cshtml" />
     <Content Include="Views\Email\ShowTemplate.cshtml" />
     <Content Include="Views\Email\CreateTemplate.cshtml" />
+    <Content Include="Views\Email\DeleteEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

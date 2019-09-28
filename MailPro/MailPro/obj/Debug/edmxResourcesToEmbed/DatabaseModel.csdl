@@ -124,6 +124,7 @@
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
+    <Property Name="MailPreview" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Mails_FacultyTable">
     <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />

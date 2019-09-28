@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 83px">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 83px">
 
         <div class="media nav-item ml-1" style="width: 100px; ">
             <!--<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.71 96"><defs><style>.cls-1,.cls-2{fill:#fff;}.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:2px;}.cls-3{fill:#e6e6e6;}</style></defs><title>Untitled-1</title><path class="cls-1" d="M605.71,274.83c0,15.92-15.58,28.83-34.8,28.83h-9.22L560.88,342H540.09L540,286.37l3.9-5.44L585.24,267l-45.16.16V246h30.82c13.73,0,25.61,6.59,31.27,16.16A24.74,24.74,0,0,1,605.71,274.83Z" transform="translate(-540.01 -246)"/><path class="cls-2" d="M550.4,281.33" transform="translate(-540.01 -246)"/><path class="cls-2" d="M537,262.81" transform="translate(-540.01 -246)"/><polyline class="cls-3" points="3.9 34.92 8.61 51.09 45.73 20.95"/></svg>-->
@@ -173,7 +173,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark opt">
+                    <a href="https://localhost:44378/Email/ShowTemplate" class="nav-link text-dark opt">
                         <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                     -->
                         Browse Templates
@@ -200,13 +200,7 @@
                         View Students
                     </a>
                 </li>
-                @*<li class="nav-item">
-                    <a href="#" class="nav-link text-dark opt">
-                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                    -->
-                        Add Students
-                    </a>
-                </li>*@
+                
             <li class="nav-item mx-5">
                 <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
     -->
@@ -222,10 +216,13 @@
 
     </div>
     <div class="page-content active container-fluid p-5" id="content">
+        <div class="row pt-5">
+
+        </div>
         <div class="row pt-2">
             <div class="col-lg-2">
                 <a href="https://localhost:44378/Email/ShowSentEmail">
-                <button id="back" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">Back</small></button>
+                    <button id="back" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">Back</small></button>
                 </a>
             </div>
         </div>
@@ -234,7 +231,7 @@
                 <strong>To</strong>
             </div>
             <div class="col-lg-6 ml-5">
-                @Html.DisplayFor(model => model.Sent)
+                @MvcHtmlString.Create(HttpUtility.HtmlDecode(Model.Sent))
             </div>
         </div>
         <div class="row p-3 mt-4 border rounded-pill">

@@ -53,6 +53,7 @@
     <EntitySetMapping Name="Mails">
       <EntityTypeMapping TypeName="DatabaseModel.Mails">
         <MappingFragment StoreEntitySet="Mails">
+          <ScalarProperty Name="MailPreview" ColumnName="MailPreview" />
           <ScalarProperty Name="GmailPassword" ColumnName="GmailPassword" />
           <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
           <ScalarProperty Name="Sent" ColumnName="Sent" />

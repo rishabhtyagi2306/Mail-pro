@@ -207,8 +207,17 @@ namespace MailPro.Controllers
                             Parameters.Add(obj.FacultyID);
 
                             object[] objectarray = Parameters.ToArray();
-                            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
-                            Session["StudentNo"] = obj.StudentNo;
+
+                            try
+                            {
+                                int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
+                                Session["StudentNo"] = obj.StudentNo;
+                            }
+                            catch(Exception)
+                            {
+                                ModelState.AddModelError("", "There is some error please recheck your data");
+                                return View();
+                            }
                             int id = (int)Session["CategoryID"];
                             ConnectTable CC = new ConnectTable();
                             CC.CategoryID = id;

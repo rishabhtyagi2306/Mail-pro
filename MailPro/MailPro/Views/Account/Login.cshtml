@@ -28,13 +28,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6" id="back">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="151" height="146" viewBox="0 0 151 146">
-                        <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#fff" stroke-width="6">
-                            <ellipse cx="75.5" cy="73" rx="30" ry="30" stroke="none" />
-                            <ellipse cx="75.5" cy="73" rx="30" ry="30" fill="none" />
-                        </g>
-                    </svg>
-                    <div id="logo-name">NAME</div>
+                    <div class="row ml-1 mt-1">
+                        <div class="col-2 ">
+                            <img src="../img/LOGO2.png" style="width: 75px; height:auto" id="logo">
+
+                        </div>
+                        <div class="col-9 text-white text-left mt-3 ml-n5">
+                            <b class="m-1" style="font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace; font-size: 25px">MAIL PRO</b>
+                        </div>
+                    </div>
+                    
                     <div class="welcome">
                         <div>Welcome Back!</div>
                         <div id="sign">Sign in to continue access</div>
@@ -43,48 +46,20 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="signin"><b>SIGN IN</b></div>
-                    <!--<div id="form">
-        <div class="row">
-        <div class="col-12">
-        <label class="signin" id="email">Email</label>
-        <input type="email" placeholder="Enter email address" class="input"/>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-12 ">
-        <label class="signin" id="password" >Password</label>
-        <input type="password" placeholder="Enter password"  class="input"/>
-                </div>
-                </div>
-        <input type="button" value="CONTINUE" id="btn"/>
-        <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-      <label class="form-check-label" for="defaultCheck1">
-       Keep me logged in
-      </label>
-    </div>
-        </div>-->
-                    <!--<form id="form">-->
-                    @*<div class="form-group row" style="padding-top:175px">
-            <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
-            @Html.LabelFor(model => model.FacultyID, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
-            <div class="col-sm-10">
-                @Html.EditorFor(model => model.FacultyID, new
-           {
-               htmlAttributes = new { @class = "form-control", @id = "inputEmail13", @placeholder = "Email" }
-           })
-                @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
-                <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
-            </div>
-        </div>*@
-                    <div class="text-success">
+                    <div class="row">
+                        <div class="col-lg-12 mb-3 ml-2">
+                            <div class="signin"><b>SIGN IN</b></div>
+                        </div>
+
+                    </div>
+       
+                    <div class="text-danger" style="top: 42%; right: 25%; position: fixed">
                         @ViewBag.Msg
                     </div>
-                    <div class="form-group row" style="padding-top:175px">
+                    <div class="form-group row ml-5 mt-3" style="padding-top:175px">
                         <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>-->
                         @Html.LabelFor(model => model.FacultyEmail, htmlAttributes: new { @class = " col-sm-2 col form label", @id = "inputEmail13" })
-                        <div class="col-sm-10">
+                        <div class="col-sm-7">
                             @Html.EditorFor(model => model.FacultyEmail, new
                        {
                            htmlAttributes = new { @class = "form-control", @id = "inputEmail13", @placeholder = "Email" }
@@ -93,7 +68,7 @@
                             <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row ml-5 mt-3">
                         <!--<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>-->
                         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-sm-2 col-form-label", @id = "inputPassword3" })
                         <div class="col-sm-10">
@@ -103,18 +78,18 @@
                             <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row ml-5 mt-5">
                         <div class="col-lg-12">
                             <h6>New to Mail Pro ? Click here to @Html.ActionLink("SignUp", "Signup", "Account")</h6>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row ml-5 mt-3">
                         <div class="col-lg-12">
                             <h6>@Html.ActionLink("Forgot Password?", "ForgotPassword", "Account")</h6>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mt-n5 ml-n5">
                             <input type="submit" value="CONTINUE" id="btn" />
                         </div>
                     </div>
