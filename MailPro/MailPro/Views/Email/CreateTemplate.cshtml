@@ -1,64 +1,142 @@
 ﻿@model MailPro.Models.TemplateModel
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Student</title>
 
-@{
-    ViewBag.Title = "CreateTemplate";
-}
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/add student.css" type="text/css">
+    <link rel="stylesheet" href="../files/fontawesome.min.css">
+    <link rel="stylesheet" href="../files/bootstrap.min.css">
 
-<h2>CreateTemplate</h2>
+
+    <script src="../files/jquery-3.4.1.min.js"></script>
+    <script src="../files/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            // Sidebar toggle
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="sticky">
+        <div class="px-3 bg-light">
+            <div class="media d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96.412" height="68" viewBox="0 0 96.412 68" class="mr-3 ">
+                    <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#fff" stroke-width="6">
+                        <ellipse cx="35.164" cy="34" rx="35.164" ry="34" stroke="none" />
+                        <ellipse cx="35.164" cy="34" rx="32.164" ry="31" fill="none" />
+                    </g>
+                    <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(44.713 9.315)" fill="none" stroke="#fff" stroke-width="6">
+                        <ellipse cx="25.849" cy="24.918" rx="25.849" ry="24.918" stroke="none" />
+                        <ellipse cx="25.849" cy="24.918" rx="22.849" ry="21.918" fill="none" />
+                    </g>
+                </svg>
+
+                <div class="media-body">
+                    <h4 class="m-0">Mail Pro</h4>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TemplateModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateURL, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateName, "", new { @class = "text-danger" })
-            </div>
+        <div class=" collapse navbar-collapse nav-item active" id="navbarSupportedContent">
+            <!--
+            <a class="nav-link" href="#"	>Signout</a>-->
         </div>
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+
+    </nav>
+    <div class="vertical-nav bg-white shadow-none" id="sidebar">
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 py-3 pb-4 mb-0">MENU</p>
+        <a href="https://localhost:44378/Email/ShowTemplate">
+            <button type="button" class="btn btn-light bg-light rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><small class="text-uppercase font-weight-bold">Compose</small></button>
+            <ul class="nav flex-column bg-white mb-0">
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Email/ShowSentEmail" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        -->
+                        Sent Mail
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Email/ShowTemplate" class="nav-link text-dark opt">
+                        <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                        -->
+                        Browse Templates
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/ShowCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        -->
+                        View Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Category/AddCategory" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                        -->
+                        Add Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://localhost:44378/Home/GetAllStudents" class="nav-link text-dark opt">
+                        <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        -->
+                        View Students
+                    </a>
+                </li>
+                
+                <li class="nav-item mx-5">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button id="logout" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold text-black-50">@Html.ActionLink("Logout", "Logout", "Account")</small></button>
+                    }
+                </li>
+
+            </ul>
+
+
     </div>
-}
+    <div class="page-content active container" id="content">
+        <div class="row pt-3">
+            <div class="col-lg-12">
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                <!-- loop starts here-->
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                    <div class="form-horizontal">
+                        <h4>Add Your Pesonalised Template Here</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                }
+                @using (Html.BeginForm("CreateTemplate", "Email", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="postedFile" />
+                    <input type="submit" name="Submit" value="Submit" />
+                }
+
+                <!--loop ends here-->
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -75,31 +75,31 @@ namespace MailPro.Controllers
             }
         }
 
-        
 
-        public ActionResult CreateTemplate()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public ActionResult CreateTemplate(TemplateModel obj )
-        {
-            //var fileName = Path.GetFileName(file.FileName);
-            ////string filename = Path.GetFileName(File.FileName);
-            ////string TempPath = "~/Templates/" + filename;
-            //var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
-            //obj.TemplateURL = path;
+        //public ActionResult CreateTemplate()
+        //{
+        //    return View();
+        //}
 
-            List<object> Parameters = new List<object>();
-            
-            Parameters.Add(obj.TemplateURL);
-            Parameters.Add(obj.TemplateName);
-            Parameters.Add(obj.TemplateImage);
-            object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
-            return RedirectToAction("CreateTemplate");
-        }
+        //[HttpPost]
+        //public ActionResult CreateTemplate(TemplateModel obj )
+        //{
+        //    //var fileName = Path.GetFileName(file.FileName);
+        //    ////string filename = Path.GetFileName(File.FileName);
+        //    ////string TempPath = "~/Templates/" + filename;
+        //    //var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
+        //    //obj.TemplateURL = path;
+
+        //    List<object> Parameters = new List<object>();
+
+        //    Parameters.Add(obj.TemplateURL);
+        //    Parameters.Add(obj.TemplateName);
+        //    Parameters.Add(obj.TemplateImage);
+        //    object[] objectarray = Parameters.ToArray();
+        //    int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
+        //    return RedirectToAction("CreateTemplate");
+        //}
 
         //public ActionResult DeleteTemplate()
         //{
@@ -117,6 +117,33 @@ namespace MailPro.Controllers
         //    }
         //    return View(productlist);
         //}
+
+        public ActionResult CreateTemplate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateTemplate(FormCollection formCollection, TemplateModel obj)
+        {
+            HttpPostedFileBase postedFile = Request.Files["postedFile"];
+            string filename = Path.GetFileName(postedFile.FileName);
+            string TempPath = "~/Templates/" + filename;
+            postedFile.SaveAs(Server.MapPath(TempPath));
+            obj.TemplateURL = TempPath;
+            obj.TemplateName = filename;
+            obj.TemplateImage = "../TemplatesImage/NotAvailable.jpg";
+
+            List<object> Parameters = new List<object>();
+
+            Parameters.Add(obj.TemplateURL);
+            Parameters.Add(obj.TemplateName);
+            Parameters.Add(obj.TemplateImage);
+            object[] objectarray = Parameters.ToArray();
+            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
+            return RedirectToAction("CreateTemplate");
+        }
+
 
         [Authorize]
         public ActionResult ShowTemplate()
