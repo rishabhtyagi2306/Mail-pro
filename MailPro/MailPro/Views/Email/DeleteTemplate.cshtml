@@ -1,4 +1,4 @@
-﻿@model MailPro.Models.StudentModel
+﻿@model MailPro.Models.TemplateModel
 
 @{
     ViewBag.Title = "Delete";
@@ -40,7 +40,9 @@
             width: 500px;
             height: auto;
         }
-
+        nav{
+		background: linear-gradient(to bottom, #6C006D, #0F092C);
+	}
         body {
             background: #fff;
             overflow-x: hidden;
@@ -59,9 +61,6 @@
         .text-gray {
             color: #aaa;
         }
-        nav{
-		background: linear-gradient(to bottom, #6C006D, #0F092C);
-	}
     </style>
     <!--<script>
             $(function() {
@@ -75,39 +74,23 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!--<a class="navbar-brand" href="#">Navbar</a>-->
-        <div class="px-3 bg-light">
-            <div class="media d-flex align-items-center">
-                <!--<img src="" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="96.412" height="68" viewBox="0 0 96.412 68" class="mr-3 ">
-                    <g id="Ellipse_1" data-name="Ellipse 1" fill="none" stroke="#fff" stroke-width="6">
-                        <ellipse cx="35.164" cy="34" rx="35.164" ry="34" stroke="none" />
-                        <ellipse cx="35.164" cy="34" rx="32.164" ry="31" fill="none" />
-                    </g>
-                    <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(44.713 9.315)" fill="none" stroke="#fff" stroke-width="6">
-                        <ellipse cx="25.849" cy="24.918" rx="25.849" ry="24.918" stroke="none" />
-                        <ellipse cx="25.849" cy="24.918" rx="22.849" ry="21.918" fill="none" />
-                    </g>
-                </svg>
+        @*<div class="media nav-item ml-1" >
+            <img src="../img/LOGO2.png" style="height: 70px;width:"20px">
 
-                <div class="media-body">
-                    <h4 class="m-0">Name</h4>
-
-                </div>
-            </div>
+        </div>*@
+        <div class="media-body nav-item ml-0">
+            <b class="m-1" style="font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">MAIL PRO</b>
         </div>
 
-
-        <div class=" collapse navbar-collapse nav-item active page-content" id="navbarSupportedContent">
+        <div class=" collapse navbar-collapse nav-item active " id="navbarSupportedContent">
             <!--
-            <a class="nav-link" href="#">Signout</a>-->
+            <a class="nav-link" href="#"	>Signout</a>-->
         </div>
-        @*<a href="https://localhost:44378/Home/GetAllStudents">
-            <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active page-content"><small class="text-uppercase font-weight-bold">Back</small></button>
-        </a>*@
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">menu</small></button>
+
+
 
     </nav>
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -128,7 +111,7 @@
             <div class="row pt-3">
                 <div class="col-lg-2 mx-auto"></div>
                 <div class="col-lg-2 mx-auto">
-                    <a href="https://localhost:44378/Home/GetAllStudents">
+                    <a href="https://localhost:44378/Email/ShowSentEmail">
                         <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active page-content"><small class="text-uppercase font-weight-bold">Back</small></button>
                     </a>
                 </div>

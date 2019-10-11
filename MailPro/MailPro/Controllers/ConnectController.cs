@@ -12,6 +12,8 @@ namespace MailPro.Controllers
     {
         // GET: Connect
         DataContext Db = new DataContext();
+
+        [Authorize]
         public ActionResult Connection()
         {
             return View();

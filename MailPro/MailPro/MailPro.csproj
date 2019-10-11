@@ -259,6 +259,7 @@
     <Content Include="Views\Email\ShowTemplate.cshtml" />
     <Content Include="Views\Email\CreateTemplate.cshtml" />
     <Content Include="Views\Email\DeleteEmail.cshtml" />
+    <Content Include="Views\Email\DeleteTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

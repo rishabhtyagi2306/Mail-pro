@@ -15,7 +15,7 @@ namespace MailPro.Controllers
     public class EmailController : Controller
     {
         DataContext Db = new DataContext();
-        // GET: Email
+        
         [Authorize]
         [ValidateInput(false)]
         public ActionResult Mail()
@@ -61,6 +61,7 @@ namespace MailPro.Controllers
                     {
 
                     }
+                    model.GmailPassword = "unknown";
                     context.Mails.Add(model);
                     context.SaveChanges();
 
@@ -77,47 +78,25 @@ namespace MailPro.Controllers
 
 
 
-        //public ActionResult CreateTemplate()
-        //{
-        //    return View();
-        //}
+        [Authorize]
+        public ActionResult DeleteTemplate()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //public ActionResult CreateTemplate(TemplateModel obj )
-        //{
-        //    //var fileName = Path.GetFileName(file.FileName);
-        //    ////string filename = Path.GetFileName(File.FileName);
-        //    ////string TempPath = "~/Templates/" + filename;
-        //    //var path = Path.Combine(Server.MapPath("~/Templates/"), fileName);
-        //    //obj.TemplateURL = path;
+        [HttpPost]
+        public ActionResult DeleteTemplate(int TemplateID)
+        {
+            var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
 
-        //    List<object> Parameters = new List<object>();
+            if (productlist != 0)
+            {
+                return RedirectToAction("ShowTemplate");
+            }
+            return View(productlist);
+        }
 
-        //    Parameters.Add(obj.TemplateURL);
-        //    Parameters.Add(obj.TemplateName);
-        //    Parameters.Add(obj.TemplateImage);
-        //    object[] objectarray = Parameters.ToArray();
-        //    int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
-        //    return RedirectToAction("CreateTemplate");
-        //}
-
-        //public ActionResult DeleteTemplate()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult DeleteTemplate(int TemplateID)
-        //{
-        //    var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
-
-        //    if (productlist != 0)
-        //    {
-        //        return RedirectToAction("SelectTemplate");
-        //    }
-        //    return View(productlist);
-        //}
-
+        [Authorize]
         public ActionResult CreateTemplate()
         {
             return View();
@@ -128,7 +107,7 @@ namespace MailPro.Controllers
         {
             HttpPostedFileBase postedFile = Request.Files["postedFile"];
             string filename = Path.GetFileName(postedFile.FileName);
-            string TempPath = "~/Templates/" + filename;
+            string TempPath = "/Templates/" + filename;
             postedFile.SaveAs(Server.MapPath(TempPath));
             obj.TemplateURL = TempPath;
             obj.TemplateName = filename;
@@ -165,7 +144,7 @@ namespace MailPro.Controllers
             return RedirectToAction("Show", "Category");
         }
 
-        
+        [Authorize]
         [HttpGet]
         public async Task EmailSent(Mails model)
         {

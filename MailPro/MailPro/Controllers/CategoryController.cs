@@ -77,7 +77,7 @@ namespace MailPro.Controllers
             return RedirectToAction("Create", "Home", new { area = ""});
         }
 
-
+        [Authorize]
         public ActionResult DeleteCategory()
         {
             return View();
@@ -108,7 +108,7 @@ namespace MailPro.Controllers
         List<ConnectModel> info = new List<ConnectModel>();
         List<Membership> info1 = new List<Membership>();
 
-
+        [Authorize]
         public ActionResult show()
         {
             int fid = (int)Session["FacultyID"];
@@ -190,6 +190,7 @@ namespace MailPro.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Displays()
         {
             DisplayClass Stud = new DisplayClass();
@@ -204,7 +205,7 @@ namespace MailPro.Controllers
             {
                 List<SelectListItem> selectedItems = Stud.StudentNames.Where(p => Stud.ids.Contains(int.Parse(p.Value))).ToList();
                 List<int> StudentNoMail = new List<int>();
-                ViewBag.Message = "Selected Fruits:";
+                ViewBag.Message = "Selected Student:";
                 foreach (var selectedItem in selectedItems)
                 {
                     var intno = Convert.ToInt32(selectedItem.Value);
