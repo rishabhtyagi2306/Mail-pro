@@ -26,6 +26,7 @@ namespace MailPro
         public string FacultyEmail { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string FacultyPhoneNo { get; set; }
 =======
         public int FacultyPhoneNo { get; set; }
@@ -33,6 +34,9 @@ namespace MailPro
 =======
         public string FacultyPhoneNo { get; set; }
 >>>>>>> swasti
+=======
+        public string FacultyPhoneNo { get; set; }
+>>>>>>> Rishabh
         public string Department { get; set; }
         public string Password { get; set; }
         public Nullable<bool> IsEmailVerified { get; set; }

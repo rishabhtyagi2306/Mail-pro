@@ -8,7 +8,6 @@
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
 }
-
 .opt:hover{
 	background-color: rgba(199,199,199,1.00);
 }
@@ -29,7 +28,6 @@
 #content {
   width: 100%;
   margin-left: 0rem;
-
 }
 
   #content.active {

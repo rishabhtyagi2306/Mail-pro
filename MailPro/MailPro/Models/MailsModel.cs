@@ -18,6 +18,7 @@ namespace MailPro.Models
         public string Contents { get; set; }
         [EmailAddress]
         public string Sent { get; set; }
+        public string MailPreview { get; set; }
 
         [ForeignKey("FacultyID")]
         public int FacultyID { get; set; }

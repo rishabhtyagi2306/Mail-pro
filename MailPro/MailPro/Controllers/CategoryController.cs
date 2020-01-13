@@ -15,12 +15,14 @@ namespace MailPro.Controllers
         
         DataContext Db = new DataContext();
         
+        [Authorize]
         public ActionResult AddCategory()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddCategory(CategoryModel obj)
         {
             int fid = (int)Session["FacultyID"];
@@ -31,16 +33,15 @@ namespace MailPro.Controllers
             Parameters.Add(obj.FacultyID);
             //string CName = obj.CategoryName;
             object[] objectarray = Parameters.ToArray();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
+
+
 
             var context1 = new MailProEntities();
             CategoryTable c1 = new CategoryTable();
             var s1 = obj.CategoryName;
             c1 = context1.CategoryTable.SingleOrDefault(x => x.CategoryName == s1 && x.FacultyID == fid);
             if(c1 != null)
+
             {
                 ModelState.AddModelError("", "Category Already Exists");
                 return View();
@@ -58,24 +59,32 @@ namespace MailPro.Controllers
                 }
             }
             
-<<<<<<< HEAD
-=======
-            int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
-            CategoryTable c = new CategoryTable();
-            using (var context = new MailProEntities())
+
+
             {
-                var s = obj.CategoryName;
-
-                c = context.CategoryTable.SingleOrDefault(x => x.CategoryName == s);
-                Session["CategoryID"] = c.CategoryID;
+                ModelState.AddModelError("", "Category Already Exists");
+                return View();
             }
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
+            else
+            {
+                int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
+                CategoryTable c = new CategoryTable();
+                using (var context = new MailProEntities())
+                {
+                    var s = obj.CategoryName;
 
-            return RedirectToAction("AddCategory");
+                    c = context.CategoryTable.SingleOrDefault(x => x.CategoryName == s);
+                    Session["CategoryID"] = c.CategoryID;
+                }
+                ViewBag.MSG = "Category Added";
+            }
+
+
+
+            return View();
         }
 
+        [Authorize]
         public ActionResult ShowCategory()
         {
             int fid = (int)Session["FacultyID"];
@@ -83,6 +92,7 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
+        [Authorize]
         public ActionResult AddStudentToCategory(CategoryModel model)
         {
             CategoryTable c = new CategoryTable();
@@ -90,7 +100,7 @@ namespace MailPro.Controllers
             return RedirectToAction("Create", "Home", new { area = ""});
         }
 
-
+        [Authorize]
         public ActionResult DeleteCategory()
         {
             return View();
@@ -99,13 +109,21 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult DeleteCategory(int CategoryID)
         {
-            var productlist = Db.Database.ExecuteSqlCommand("delete from CategoryTable where CategoryID = " + CategoryID);
-
-            if (productlist != 0)
+            try
             {
+                var productlist = Db.Database.ExecuteSqlCommand("delete from CategoryTable where CategoryID = " + CategoryID);
+
+                if (productlist != 0)
+                {
+                    return RedirectToAction("ShowCategory");
+                }
                 return RedirectToAction("ShowCategory");
             }
-            return RedirectToAction("ShowCategory");
+            catch (SqlException ex) when (ex.Number == 547)
+            {
+                ViewBag.MSG = "Delete all students from this category , after that delete the category";
+                return View();
+            }
         }
 
         List<StudentModel> student = new List<StudentModel>();
@@ -113,7 +131,7 @@ namespace MailPro.Controllers
         List<ConnectModel> info = new List<ConnectModel>();
         List<Membership> info1 = new List<Membership>();
 
-
+        [Authorize]
         public ActionResult show()
         {
             int fid = (int)Session["FacultyID"];
@@ -195,32 +213,38 @@ namespace MailPro.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Displays()
         {
-            DisplayClass fruit = new DisplayClass();
-            fruit.StudentNames = PopulateNames();
-            return View(fruit);
+            DisplayClass Stud = new DisplayClass();
+            Stud.StudentNames = PopulateNames();
+            return View(Stud);
         }
         [HttpPost]
-        public ActionResult Displays(DisplayClass fruit)
+        public ActionResult Displays(DisplayClass Stud)
         {
-            fruit.StudentNames = PopulateNames();
-            if (fruit.ids != null)
+            Stud.StudentNames = PopulateNames();
+            if (Stud.ids != null)
             {
-                List<SelectListItem> selectedItems = fruit.StudentNames.Where(p => fruit.ids.Contains(int.Parse(p.Value))).ToList();
+                List<SelectListItem> selectedItems = Stud.StudentNames.Where(p => Stud.ids.Contains(int.Parse(p.Value))).ToList();
                 List<int> StudentNoMail = new List<int>();
-                ViewBag.Message = "Selected Fruits:";
+                ViewBag.Message = "Selected Student:";
                 foreach (var selectedItem in selectedItems)
                 {
                     var intno = Convert.ToInt32(selectedItem.Value);
                     selectedItem.Selected = true;
-                    ViewBag.Message += "\\n" + selectedItem.Text;
+                    
                     StudentNoMail.Add(intno);
                 }
                 Session["MailTransfer"] = StudentNoMail;
+                return RedirectToAction("Mail", "Email");
+            }
+            else
+            {
+                return RedirectToAction("Displays");
             }
 
-            return RedirectToAction("Mail", "Email");
+            
         }
         private static List<SelectListItem> PopulateNames()
         {

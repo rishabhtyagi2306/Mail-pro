@@ -3,20 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <title>Template 2</title>
-  <link rel="stylesheet" href="../css/template2.css">
-  <link rel="stylesheet" href="../files/bootstrap.min.css">
-<link rel="stylesheet" href="../files/fontawesome.min.css">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+	
+* { 
+	margin:0;
+	padding:0;
+}
+* { font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+
+img { 
+	max-width: 100%; 
+}
+#header,#footer{
+	background-color:black;
+	color: white;
+}
+
+.container {
+	display:block!important;
+	max-width:600px!important;
+	margin:0 auto!important; 
+
+}
+
+.content {
+	padding:15px;
+	max-width:600px;
+	margin:0 auto;
+	display:block; 
+}
 
 
-<script src="../files/jquery-3.4.1.min.js"></script>
-<script src="../files/bootstrap.min.js"></script>
 
+</style>
 </head>
 <body>
-  <div class="container" >
-		<div class="row pt-3" id="header">
-			<div class="col-md-3 my-auto" >
-				<img src="" alt="Logo" title="Logo" width="60" height="60" data-max-width="100">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <div class="container" >
+		<div class="row py-4" id="header">
+			<div class="col-md-3 my-auto bg-none">
+				<!--<img src="" alt="" title="Logo" width="60" height="60" data-max-width="100">-->
 				
 			</div>
 			<div class="col-md-8 my-auto">
@@ -26,8 +54,8 @@
 		</div> 
 		 
 		<div class="row bg-light pt-3 ">
-			<div class="col-md-3 my-auto">
-				<img src="images/logo.png" alt="" title="Logo" width="100%" height="60">
+			<div class="col-md-12 my-auto">
+				<img src="https://images.pexels.com/photos/462353/pexels-photo-462353.jpeg?cs=srgb&dl=alphabet-cube-mission-462353.jpg&fm=jpg" alt="" title="Logo" width="100%" height="auto">
 				
 			</div>
 			 </div>   
@@ -43,6 +71,7 @@
 			<div class="col-md-12 my-auto">
 			<small class="text-black-50">
 				{Body}
+
 			</small>
 			<hr/>	
 			</div>
@@ -112,9 +141,9 @@
 	  <div class="row ">
 	  <div class="col-md-6 mt-3">
 	  
-	  	<div class="row bg-white pt-3 ">
+	  	<div class="row bg-white pt-1 ">
 			<div class="col-md-12 my-auto border-top-1">
-				<img src="" alt="img" title="image" width="100%" >
+				<img src="https://images.pexels.com/photos/316465/pexels-photo-316465.jpeg?cs=srgb&dl=art-artist-artistic-316465.jpg&fm=jpg" alt="img" title="image" width="100%" >
 			</div>
 		  </div>
 		</div>
@@ -131,15 +160,17 @@
 				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Has been the industry's standard dummy text ever since the 1500s.
 
 			</small>
-			<hr/>	
+				
 			</div>
-		  </div>
-			 </div> 
+			
 		  </div>
 		  
-		  <div class="row bg-light p-5 text-black-50">
+			 </div> 
+		  </div>
+		  <hr/>
+		  <div class="row bg-light p-5 text-black-50" id="footer">
 	 
-			<div class="col-md-4 mx-auto my-auto border-top-1">
+			<div class="col-md-4 mx-auto my-auto border-top-1 bg-transparent" >
 				<small> Contact Info:<br/>
 
 						Phone: 408.341.0600<br/>

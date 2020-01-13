@@ -29,6 +29,7 @@
     <Property Name="FacultyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Property Name="FacultyPhoneNo" Type="String" Nullable="false" />
 =======
     <Property Name="FacultyPhoneNo" Type="Int32" Nullable="false" />
@@ -36,6 +37,9 @@
 =======
     <Property Name="FacultyPhoneNo" Type="String" Unicode="true" FixedLength="false" MaxLength="50" />
 >>>>>>> swasti
+=======
+    <Property Name="FacultyPhoneNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+>>>>>>> Rishabh
     <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CategoryTable" Relationship="Self.FK_CategoryTable_FacultyTable" FromRole="FacultyTable" ToRole="CategoryTable" />
@@ -135,6 +139,7 @@
     </Key>
     <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Contents" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
 <<<<<<< HEAD
@@ -142,6 +147,11 @@
 =======
     <Property Name="Sent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
+=======
+    <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contents" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sent" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+>>>>>>> Rishabh
     <Property Name="FacultyID" Type="Int32" Nullable="false" />
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
 =======
@@ -152,6 +162,7 @@
     <Property Name="GmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
 >>>>>>> swasti
     <NavigationProperty Name="FacultyTable" Relationship="DatabaseModel.FK_Mails_FacultyTable" FromRole="Mails" ToRole="FacultyTable" />
+    <Property Name="MailPreview" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Mails_FacultyTable">
     <End Type="DatabaseModel.FacultyTable" Role="FacultyTable" Multiplicity="1" />
@@ -197,6 +208,7 @@
     <Property Name="TemplateURL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
 =======
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
@@ -206,5 +218,8 @@
     <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
 >>>>>>> swasti
+=======
+    <Property Name="TemplateImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+>>>>>>> Rishabh
   </EntityType>
 </Schema>

@@ -97,6 +97,7 @@ namespace MailPro.Controllers
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> swasti
         public ActionResult Edit(int StudentNo)
@@ -119,6 +120,16 @@ namespace MailPro.Controllers
 >>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
 =======
 >>>>>>> swasti
+=======
+        public ActionResult Edit(int StudentNo)
+        {
+            var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+>>>>>>> Rishabh
         public ActionResult Edit(int StudentNo, StudentModel obj)
         {
             List<object> Parameters = new List<object>();
@@ -148,13 +159,14 @@ namespace MailPro.Controllers
         [HttpPost]
         public ActionResult Delete(int StudentNo)
         {
-            var productlist = Db.Database.ExecuteSqlCommand("delete from StudentTable where StudentNo=@p0", StudentNo);
+            var ConnectTable = Db.Database.ExecuteSqlCommand("delete from ConnectTable Where StudentNo=@P0", StudentNo);
+            var Studentlist = Db.Database.ExecuteSqlCommand("delete from StudentTable where StudentNo=@p0", StudentNo);
 
-            if (productlist != 0)
+            if (Studentlist != 0)
             {
                 return RedirectToAction("GetAllStudents");
             }
-            return View(productlist);
+            return View(Studentlist);
         }
 
        /* public ActionResult StudentDetails(int StudentNo)
@@ -222,8 +234,17 @@ namespace MailPro.Controllers
                             Parameters.Add(obj.FacultyID);
 
                             object[] objectarray = Parameters.ToArray();
-                            int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
-                            Session["StudentNo"] = obj.StudentNo;
+
+                            try
+                            {
+                                int output = Db.Database.ExecuteSqlCommand("insert into StudentTable(StudentNo, StudentName, StudentEmail, Branch, Section, Year, IsHosteller, IsCR, StudentCategory, FacultyID) values(@p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", objectarray);
+                                Session["StudentNo"] = obj.StudentNo;
+                            }
+                            catch(Exception)
+                            {
+                                ModelState.AddModelError("", "There is some error please recheck your data");
+                                return View();
+                            }
                             int id = (int)Session["CategoryID"];
                             ConnectTable CC = new ConnectTable();
                             CC.CategoryID = id;

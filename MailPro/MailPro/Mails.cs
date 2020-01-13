@@ -20,6 +20,7 @@ namespace MailPro
         public string Sent { get; set; }
         public int FacultyID { get; set; }
         public string GmailPassword { get; set; }
+        public string MailPreview { get; set; }
     
         public virtual FacultyTable FacultyTable { get; set; }
     }

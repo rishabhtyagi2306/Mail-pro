@@ -57,6 +57,10 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+.opt:hover{
+	background-color: rgba(199,199,199,1.00);
+}
+
 
 /*.separator {
   margin: 3rem 0;

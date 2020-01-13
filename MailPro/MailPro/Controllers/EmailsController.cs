@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Net;
 using MailPro.Models;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MailPro.Controllers
 {
@@ -14,150 +15,124 @@ namespace MailPro.Controllers
     public class EmailController : Controller
     {
         DataContext Db = new DataContext();
-        // GET: Email
+        
         [Authorize]
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         [ValidateInput(false)]
-=======
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
-        [ValidateInput(false)]
->>>>>>> swasti
         public ActionResult Mail()
         {
             return View();
         }
 
         [HttpPost]
-<<<<<<< HEAD
-<<<<<<< HEAD
         [ValidateInput(false)]
-=======
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
-        [ValidateInput(false)]
->>>>>>> swasti
-        public ActionResult Mail(Mails model)
+        public async Task<ViewResult> Mail(Mails model)
         {
            
-            using (var context = new MailProEntities())
+            try
             {
-                //FacultyTable.Password = Crypto.Hash(FacultyTable.Password);
-                //FacultyTable Fac = new FacultyTable();
-
-                //Fac.Password = Crypto.Hash(Fac.Password);
-                int Fac = (int)Session["FacultyID"];
-                model.FacultyID = Fac;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
-                List<int> fetch = (List<int>)Session["MailTransfer"];
-                StudentTable st = new StudentTable();
-
-                foreach ( var item in fetch)
+                using (var context = new MailProEntities())
                 {
-                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                    ViewBag.Mailer += st.StudentEmail + ',';
-                }
-                model.Sent = ViewBag.Mailer;
+                    
+                    int Fac = (int)Session["FacultyID"];
+                    model.FacultyID = Fac;
+                    List<int> fetch = (List<int>)Session["MailTransfer"];
+                    StudentTable st = new StudentTable();
+                    int i = 0;
+                    int count = 0;
+                    foreach (var item in fetch)
+                    {
+                        st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                        ViewBag.Mailer += st.StudentEmail + ",<br/>";
+                        i = i + 1;
+                        if(i<=2)
+                        {
+                            ViewBag.MailPreview += st.StudentEmail + ',';
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                    }
+                    ViewBag.MailPreview += "and " + count + " others";
+                    model.Sent = ViewBag.Mailer;
+                    model.MailPreview = ViewBag.MailPreview;
+                    await EmailSent(model);
+                    if (ViewBag.Message != null)
+                    {
 
-                EmailSent(model);
-                if(ViewBag.Message != null)
-                { 
+                    }
+                    model.GmailPassword = "unknown";
+                    context.Mails.Add(model);
+                    context.SaveChanges();
 
                 }
-                context.Mails.Add(model);
-                context.SaveChanges();
-                
+                return View();
             }
-            return View();
-<<<<<<< HEAD
-=======
-                context.Mails.Add(model);
-                context.SaveChanges();
-                EmailSent(model);
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "");
+                //ViewBag.Msg = "It seems like you haven't selected your recipients";
+                return View();
             }
-            return RedirectToAction("SuccessfulMail");
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
         }
 
-        public ActionResult SuccessfulMail()
+
+
+        [Authorize]
+        public ActionResult DeleteTemplate()
         {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult DeleteTemplate(int TemplateID)
+        {
+            var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
+
+            if (productlist != 0)
+            {
+                return RedirectToAction("ShowTemplate");
+            }
+            return View(productlist);
+        }
+
+        [Authorize]
         public ActionResult CreateTemplate()
         {
             return View();
         }
 
         [HttpPost]
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
-        public ActionResult CreateTemplate(FormCollection formCollection, TemplateModel obj )
+        public ActionResult CreateTemplate(FormCollection formCollection, TemplateModel obj)
         {
             HttpPostedFileBase postedFile = Request.Files["postedFile"];
             string filename = Path.GetFileName(postedFile.FileName);
-            string TempPath = "~/Templates/" + filename;
+            string TempPath = "/Templates/" + filename;
             postedFile.SaveAs(Server.MapPath(TempPath));
             obj.TemplateURL = TempPath;
+            obj.TemplateName = filename;
+            obj.TemplateImage = "../TemplatesImage/NotAvailable.jpg";
 
-<<<<<<< HEAD
-=======
-        public ActionResult CreateTemplate(TemplateModel obj)
-        {
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
             List<object> Parameters = new List<object>();
-            
+
             Parameters.Add(obj.TemplateURL);
             Parameters.Add(obj.TemplateName);
-<<<<<<< HEAD
-<<<<<<< HEAD
             Parameters.Add(obj.TemplateImage);
             object[] objectarray = Parameters.ToArray();
             int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
-=======
-            object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName) values(@p0,@p1)", objectarray);
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
-            Parameters.Add(obj.TemplateImage);
-            object[] objectarray = Parameters.ToArray();
-            int output = Db.Database.ExecuteSqlCommand("insert into TemplateTable(TemplateURL, TemplateName, TemplateImage) values(@p0,@p1,@p2)", objectarray);
->>>>>>> swasti
             return RedirectToAction("CreateTemplate");
         }
 
-        //public ActionResult DeleteTemplate()
-        //{
-        //    return View();
-        //}
 
-        //[HttpPost]
-        //public ActionResult DeleteTemplate(int TemplateID)
-        //{
-        //    var productlist = Db.Database.ExecuteSqlCommand("delete from TemplateTable where TemplateID=@p0", TemplateID);
-
-        //    if (productlist != 0)
-        //    {
-        //        return RedirectToAction("SelectTemplate");
-        //    }
-        //    return View(productlist);
-        //}
+        [Authorize]
         public ActionResult ShowTemplate()
         {
             var Data = Db.TemplateTables.SqlQuery("Select *From TemplateTable").ToList();
             return View(Data);
         }
 
+        [Authorize]
         public ActionResult SelectTemplate(TemplateModel model)
         {
            using (var context = new MailProEntities())
@@ -170,9 +145,9 @@ namespace MailPro.Controllers
             return RedirectToAction("Show", "Category");
         }
 
-        
+        [Authorize]
         [HttpGet]
-        public void EmailSent(Mails model)
+        public async Task EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
 
@@ -180,55 +155,13 @@ namespace MailPro.Controllers
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
             ft = context.FacultyTable.Find(Fac);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
             try
             {
                 StudentTable st = new StudentTable();
                 foreach (var item in fetch)
                 {
                     st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                    var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-                    var ToEmail = new MailAddress(st.StudentEmail);
-                    var FromEmailPassword = model.GmailPassword;
-
-                    string URL = Session["TemplateUrl"].ToString();
-                    string Subject = model.Subject;
-                    string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                    Body = PopulateBody(Body, URL);
-
-                    SmtpClient smtp = new SmtpClient()
-                    {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-                    };
-
-<<<<<<< HEAD
-                    ViewBag.Message = "Your Mail Has been sent successfully";
-=======
-                  
->>>>>>> swasti
-                    /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
-                    context.Mails.Add(model);
-                    context.SaveChanges();*/
-                    using (var message = new MailMessage(FromEmail, ToEmail)
-                    {
-                        Subject = Subject,
-                        Body = Body,
-                        IsBodyHtml = true
-                    })
-
-                        smtp.Send(message);
-<<<<<<< HEAD
-=======
-                    ViewBag.Message = "Your Mail Has been sent successfully";
->>>>>>> swasti
+                    await sendprocess(st, ft, model);
                 }
             }
             catch(Exception ex)
@@ -236,47 +169,49 @@ namespace MailPro.Controllers
                 ModelState.AddModelError("", "There was some error in sending mail , Recheck your password and internet connection");
             }
             
-<<<<<<< HEAD
-=======
-            StudentTable st = new StudentTable();
-            foreach (var item in fetch)
-            {
-                st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-                var ToEmail = new MailAddress(st.StudentEmail);
-                var FromEmailPassword = model.GmailPassword;
-                
-                string URL = Session["TemplateUrl"].ToString();
-                string Subject = model.Subject;
-                string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-                Body = PopulateBody(Body,URL);
-               
-                SmtpClient smtp = new SmtpClient()
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-                };
-                /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
-                context.Mails.Add(model);
-                context.SaveChanges();*/
-                using (var message = new MailMessage(FromEmail, ToEmail)
-                {
-                    Subject = Subject,
-                    Body = Body,
-                    IsBodyHtml = true
-                })
-
-                    smtp.Send(message);
-            }
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
 
             
+        }
+
+        public async Task sendprocess(StudentTable st, FacultyTable ft, Mails model)
+        {
+
+            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+            var ToEmail = new MailAddress(st.StudentEmail);
+            var FromEmailPassword = model.GmailPassword;
+
+            string URL = Session["TemplateUrl"].ToString();
+            string Subject = model.Subject;
+            string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
+            Body = PopulateBody(Body, URL);
+
+            SmtpClient smtp = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+            };
+
+
+            /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
+            context.Mails.Add(model);
+            context.SaveChanges();*/
+            using (var message = new MailMessage(FromEmail, ToEmail)
+            {
+                Subject = Subject,
+                Body = Body,
+                IsBodyHtml = true
+            })
+
+                await smtp.SendMailAsync(message);
+            ViewBag.Message = "Your Mail Has been sent successfully";
+
+
+
+
         }
 
         public string PopulateBody(string contents, string URL)
@@ -290,6 +225,7 @@ namespace MailPro.Controllers
             return Body;
         }
 
+        [Authorize]
         public ActionResult ShowSentEmail()
         {
             int fac = (int)Session["FacultyID"];
@@ -297,6 +233,7 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
+        [Authorize]
         public ActionResult DeleteEmail()
         {
             return View();
@@ -309,9 +246,9 @@ namespace MailPro.Controllers
 
             if (productlist != 0)
             {
-                return RedirectToAction("ShowSentEmails");
+                return RedirectToAction("ShowSentEmail");
             }
-            return View(productlist);
+            return RedirectToAction("ShowSentMail");
         }
 
         public ActionResult EmailDetail(int MailID)

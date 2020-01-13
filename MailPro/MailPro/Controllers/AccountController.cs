@@ -229,7 +229,7 @@ namespace MailPro.Controllers
             if(EmailFor == "VerifyAccount")
             {
                 Subject = "Email Verification for Mail Pro Account";
-                Body = "Your Faculty ID" + " = '" + FacultyID + "'" + "<br/>Please click on the link below to verify your account" +
+                Body = "<br/>Please click on the link below to verify your account" +
                     "<br/><br/><a href = '" + link + "'>" + link + "<a/>";
             }
             else if(EmailFor == "ResetPassword")

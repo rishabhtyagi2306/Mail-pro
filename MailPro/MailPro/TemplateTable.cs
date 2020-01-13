@@ -18,6 +18,7 @@ namespace MailPro
         public int TemplateID { get; set; }
         public string TemplateURL { get; set; }
         public string TemplateName { get; set; }
+<<<<<<< HEAD
 <<<<<<< HEAD:MailPro/MailPro/TemplateTable.cs
         public string TemplateImage { get; set; }
 =======
@@ -28,5 +29,8 @@ namespace MailPro
         public string TemplateName { get; set; }
         public string TemplateImage { get; set; }
 >>>>>>> swasti:demoDB.Db/user.cs
+=======
+        public string TemplateImage { get; set; }
+>>>>>>> Rishabh
     }
 }

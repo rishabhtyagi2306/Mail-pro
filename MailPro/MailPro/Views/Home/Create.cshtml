@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="sticky">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="sticky">
         <div class="px-3 bg-light">
             <div class="media d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="96.412" height="68" viewBox="0 0 96.412 68" class="mr-3 ">
@@ -41,7 +41,7 @@
                 </svg>
 
                 <div class="media-body">
-                    <h4 class="m-0">Name</h4>
+                    <h4 class="m-0">Mail Pro</h4>
 
 
                 </div>
@@ -53,7 +53,7 @@
             <!--
             <a class="nav-link" href="#"	>Signout</a>-->
         </div>
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Toggle</small></button>
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Menu</small></button>
 
 
 
@@ -61,48 +61,48 @@
     <div class="vertical-nav bg-white shadow-none" id="sidebar">
 
         <p class="text-gray font-weight-bold text-uppercase px-3 py-3 pb-4 mb-0">MENU</p>
-        <a href="https://localhost:44378/Email/Mail">
+        <a href="https://localhost:44378/Email/ShowTemplate">
             <button type="button" class="btn btn-light bg-light rounded-pill shadow-sm px-4 nav-item active mb-4 ml-5"><small class="text-uppercase font-weight-bold">Compose</small></button>
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
                     <a href="https://localhost:44378/Email/ShowSentEmail" class="nav-link text-dark opt">
                         <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         Sent Mail
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark opt">
+                    <a href="https://localhost:44378/Email/ShowTemplate" class="nav-link text-dark opt">
                         <!--<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         Browse Templates
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://localhost:44378/Category/ShowCategory" class="nav-link text-dark opt">
                         <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         View Categories
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://localhost:44378/Category/AddCategory" class="nav-link text-dark opt">
                         <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         Add Categories
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://localhost:44378/Home/GetAllStudents" class="nav-link text-dark opt">
                         <!-- <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         View Students
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-dark bg-light opt">
                         <!-- <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                    -->
+                -->
                         Add Students
                     </a>
                 </li>
@@ -116,7 +116,7 @@
             </ul>
 
 
-    </div>
+</div>
     <div class="page-content active container" id="content">
         <div class="row pt-3">
             <div class="col-lg-12">
