@@ -34,33 +34,11 @@ namespace MailPro.Controllers
             //string CName = obj.CategoryName;
             object[] objectarray = Parameters.ToArray();
 
-
-
             var context1 = new MailProEntities();
             CategoryTable c1 = new CategoryTable();
             var s1 = obj.CategoryName;
             c1 = context1.CategoryTable.SingleOrDefault(x => x.CategoryName == s1 && x.FacultyID == fid);
             if(c1 != null)
-
-            {
-                ModelState.AddModelError("", "Category Already Exists");
-                return View();
-            }
-            else
-            {
-                int output = Db.Database.ExecuteSqlCommand("insert into CategoryTable(CategoryName,FacultyID) values(@p0,@p1)", objectarray);
-                CategoryTable c = new CategoryTable();
-                using (var context = new MailProEntities())
-                {
-                    var s = obj.CategoryName;
-
-                    c = context.CategoryTable.SingleOrDefault(x => x.CategoryName == s);
-                    Session["CategoryID"] = c.CategoryID;
-                }
-            }
-            
-
-
             {
                 ModelState.AddModelError("", "Category Already Exists");
                 return View();
@@ -78,8 +56,7 @@ namespace MailPro.Controllers
                 }
                 ViewBag.MSG = "Category Added";
             }
-
-
+            
 
             return View();
         }

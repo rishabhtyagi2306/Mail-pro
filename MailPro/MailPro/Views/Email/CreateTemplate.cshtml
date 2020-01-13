@@ -5,73 +5,6 @@
     <meta charset="utf-8">
     <title>Add Student</title>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
-
->>>>>>> swasti
-@{
-    ViewBag.Title = "CreateTemplate";
-}
-
-<h2>CreateTemplate</h2>
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-<<<<<<< HEAD
-=======
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
-    <div class="form-horizontal">
-        <h4>TemplateModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TemplateID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
-            @using (Html.BeginForm("CreateTemplate", "Emails", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <input type="file" name="postedFile" />
-                <input type="submit" name="Submit" value="Submit" />
-            }
-            @*@Html.LabelFor(model => model.TemplateURL, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TemplateURL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TemplateURL, "", new { @class = "text-danger" })
-                </div>*@
-<<<<<<< HEAD
-=======
-            @Html.LabelFor(model => model.TemplateURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateURL, "", new { @class = "text-danger" })
-=======
     <link rel="stylesheet" href="../files/bootstrap.min.css">
     <link rel="stylesheet" href="../css/add student.css" type="text/css">
     <link rel="stylesheet" href="../files/fontawesome.min.css">
@@ -112,11 +45,7 @@
 
 
                 </div>
->>>>>>> Rishabh
             </div>
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
         </div>
 
 
@@ -127,28 +56,6 @@
         <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">Menu</small></button>
 
 
-<<<<<<< HEAD
-        <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
-            @Html.LabelFor(model => model.TemplateImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TemplateImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TemplateImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-<<<<<<< HEAD
-=======
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-=======
 
     </nav>
     <div class="vertical-nav bg-white shadow-none" id="sidebar">
@@ -226,7 +133,6 @@
                 }
 
                 <!--loop ends here-->
->>>>>>> Rishabh
             </div>
         </div>
 

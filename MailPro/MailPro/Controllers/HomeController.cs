@@ -95,11 +95,6 @@ namespace MailPro.Controllers
             return View(Data);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> swasti
         public ActionResult Edit(int StudentNo)
         {
             var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
@@ -108,28 +103,6 @@ namespace MailPro.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-=======
-        public ActionResult Edit()
-        {
-            //var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
-            return View();
-        }
-
-        [HttpPost]
->>>>>>> ba1c07d870058e9fc152c107e680f299f4ef66c7
-=======
->>>>>>> swasti
-=======
-        public ActionResult Edit(int StudentNo)
-        {
-            var data = Db.StudentTables.SqlQuery("Select *From StudentTable where StudentNo = " + StudentNo).SingleOrDefault();
-            return View(data);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
->>>>>>> Rishabh
         public ActionResult Edit(int StudentNo, StudentModel obj)
         {
             List<object> Parameters = new List<object>();

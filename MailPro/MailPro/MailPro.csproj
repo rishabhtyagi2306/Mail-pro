@@ -257,16 +257,10 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\VMSent.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Email\SuccessfulMail.cshtml" />
-    <Content Include="Views\Email\CreateTemplate.cshtml" />
-    <Content Include="Views\Email\ShowTemplate.cshtml" />
-=======
     <Content Include="Views\Email\ShowTemplate.cshtml" />
     <Content Include="Views\Email\CreateTemplate.cshtml" />
     <Content Include="Views\Email\DeleteEmail.cshtml" />
     <Content Include="Views\Email\DeleteTemplate.cshtml" />
->>>>>>> Rishabh
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

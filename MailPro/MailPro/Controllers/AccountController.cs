@@ -122,7 +122,7 @@ namespace MailPro.Controllers
                     acc.ResetPasswordCode = ResetCode;
                     Mp.Configuration.ValidateOnSaveEnabled = false;
                     Mp.SaveChanges();
-                    message = "Reset password link has been sent your your email";
+                    message = "Reset password link has been sent to your email";
                 }
                 else
                 {
@@ -221,9 +221,9 @@ namespace MailPro.Controllers
         {
             var verifyUrl = "/Account/"+EmailFor+"/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-            var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
+            var FromEmail = new MailAddress("your email", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "Rishabh@2306";
+            var FromEmailPassword = "Your password";
             string Subject = "";
             string Body = "";
             if(EmailFor == "VerifyAccount")

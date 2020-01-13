@@ -17,7 +17,6 @@ namespace MailPro.Controllers
         DataContext Db = new DataContext();
         
         [Authorize]
-
         [ValidateInput(false)]
         public ActionResult Mail()
         {

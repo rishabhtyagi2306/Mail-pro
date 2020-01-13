@@ -29,11 +29,7 @@ namespace MailPro
         public bool IsHosteller { get; set; }
         public bool IsCR { get; set; }
         public string StudentCategory { get; set; }
-<<<<<<< HEAD
         public int FacultyID { get; set; }
-=======
-        public Nullable<int> FacultyID { get; set; }
->>>>>>> swasti
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConnectTable> ConnectTable { get; set; }

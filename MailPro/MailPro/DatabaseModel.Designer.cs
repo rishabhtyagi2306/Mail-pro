@@ -1,8 +1,4 @@
-<<<<<<< HEAD:MailPro/MailPro/DatabaseModel.Designer.cs
 ﻿// T4 code generation is enabled for model 'C:\Users\hp\source\repos\MailPro\MailPro\DatabaseModel.edmx'. 
-=======
-﻿// T4 code generation is enabled for model 'C:\Users\HP\Desktop\project\Mail-pro\MailPro\MailPro\DatabaseModel.edmx'. 
->>>>>>> swasti:demoDB.Db/studentModel.Designer.cs
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
