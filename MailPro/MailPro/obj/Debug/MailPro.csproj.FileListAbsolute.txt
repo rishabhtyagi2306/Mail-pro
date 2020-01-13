@@ -161,7 +161,6 @@ C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\bin\System.Web.Webpages.Razor.xml
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\bin\System.Web.Helpers.xml
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\bin\System.Web.Mvc.xml
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.csproj.CopyComplete
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.dll
 C:\Users\hp\Desktop\Mail-pro\MailPro\MailPro\obj\Debug\MailPro.pdb
