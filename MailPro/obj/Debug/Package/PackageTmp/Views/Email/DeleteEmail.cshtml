@@ -1,0 +1,132 @@
+﻿@model MailPro.Mails
+
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Delete?</title>
+
+    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../files/fontawesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("../files/bootstrap.min.css")">
+
+
+    <script src="@Url.Content("../files/jquery-3.4.1.min.js")"></script>
+    <script src="@Url.Content("../files/bootstrap.min.js")"></script>
+    <style>
+        .vertical-nav {
+            min-width: 17rem;
+            width: 17rem;
+            height: 100vh;
+            position: fixed;
+            top: 5.2rem;
+            left: 0;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+        }
+
+        .top-nav {
+            width: calc(100% - 17rem);
+            margin-left: 0rem;
+            transition: all 0.4s;
+        }
+
+        img {
+            width: 500px;
+            height: auto;
+        }
+
+        body {
+            background: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        nav{
+		background: linear-gradient(to bottom, #6C006D, #0F092C);
+	}
+
+        .separator {
+            margin: 3rem 0;
+            border-bottom: 1px dashed #fff;
+        }
+
+        .text-uppercase {
+            letter-spacing: 0.1em;
+        }
+
+        .text-gray {
+            color: #aaa;
+        }
+    </style>
+    <!--<script>
+            $(function() {
+                // Sidebar toggle
+                $('#sidebarCollapse').on('click', function() {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+            });
+    </script>-->
+</head>
+
+<body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+    @*<div class="media nav-item ml-1" >
+            <img src="../img/LOGO2.png" style="height: 70px;width:"20px">
+
+        </div>*@
+    <div class="media-body nav-item ml-0">
+        <b class="m-1" style="font-family:Consolas, Andale Mono, Lucida Console, Lucida Sans Typewriter, Monaco, Courier New, monospace">MAIL PRO</b>
+    </div>
+
+    <div class=" collapse navbar-collapse nav-item active " id="navbarSupportedContent">
+        <!--
+        <a class="nav-link" href="#"	>Signout</a>-->
+    </div>
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active"><small class="text-uppercase font-weight-bold">menu</small></button>
+
+
+
+</nav>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="page-content active container" id="content">
+            <div class="row pt-3">
+                <div class="col-lg-6 mx-auto">
+                    <img src="@Url.Content("../img/delete.png")" />
+                </div>
+            </div>
+
+            <div class="row pt-3">
+
+                <div class="col-lg-6 mx-auto text-center">
+                    <strong><em>Are you sure you want to delete this?</em></strong>
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="col-lg-2 mx-auto"></div>
+                <div class="col-lg-2 mx-auto">
+                    <a href="https://localhost:44378/Email/ShowSentEmail">
+                        <button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active page-content"><small class="text-uppercase font-weight-bold">Back</small></button>
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    @*<button type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active page-content"><small class="text-uppercase font-weight-bold">Delete</small></button>*@
+                    <input type="submit" value="Delete" class="btn btn-light bg-white rounded-pill shadow-sm px-4 nav-item active page-content" />
+                </div>
+                <div class="col-lg-2 mx-auto"></div>
+            </div>
+
+
+        </div>
+    }
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f9bcb1142c340a9893613757d512870" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="DatabaseModel.CategoryTable" Width="1.5" PointX="3.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.ConnectTable" Width="1.5" PointX="6.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.FacultyTable" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.StudentTable" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK_CategoryTable_FacultyTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_ConnectTable_CategoryTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_ConnectTable_StudentTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DatabaseModel.Mails" Width="1.5" PointX="3.625" PointY="3.875" />
+        <AssociationConnector Association="DatabaseModel.FK_Mails_FacultyTable" />
+        <EntityTypeShape EntityType="DatabaseModel.Temp" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="DatabaseModel.TemplateTable" Width="1.5" PointX="7" PointY="4.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
