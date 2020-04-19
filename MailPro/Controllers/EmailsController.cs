@@ -158,7 +158,6 @@ namespace MailPro.Controllers
         public async Task EmailSent(Mails model)
         {
             List<int> fetch = (List<int>)Session["MailTransfer"];
-            int i = 1;
             int Fac = (int)Session["FacultyID"];
             FacultyTable ft = new FacultyTable();
             var context = new MailProEntities();
@@ -168,13 +167,8 @@ namespace MailPro.Controllers
                 StudentTable st = new StudentTable();
                 foreach (var item in fetch)
                 {
-                    if (i < fetch.Count())
-                    {
-                        st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
-                        await sendprocess(st, ft, model);
-                    }
-                    else;
-                    i++;
+                    st = context.StudentTable.SingleOrDefault(x => x.StudentNo == item);
+                    await sendprocess(st, ft, model);
                 }
             }
             catch (Exception ex)
@@ -189,42 +183,45 @@ namespace MailPro.Controllers
         public async Task sendprocess(StudentTable st, FacultyTable ft, Mails model)
         {
 
-            var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
-            var ToEmail = new MailAddress(st.StudentEmail);
-            var FromEmailPassword = model.GmailPassword;
-
-            string URL = Session["TemplateUrl"].ToString();
-            string Subject = model.Subject;
-            string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
-            Body = PopulateBody(Body, URL);
-
-            SmtpClient smtp = new SmtpClient()
+            try
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
-            };
+                var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
+                var ToEmail = new MailAddress(st.StudentEmail);
+                var FromEmailPassword = model.GmailPassword;
+
+                string URL = Session["TemplateUrl"].ToString();
+                string Subject = model.Subject;
+                string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
+                Body = PopulateBody(Body, URL);
+
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(FromEmail.Address, FromEmailPassword)
+                };
 
 
-            /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
-            context.Mails.Add(model);
-            context.SaveChanges();*/
-            using (var message = new MailMessage(FromEmail, ToEmail)
-            {
-                Subject = Subject,
-                Body = Body,
-                IsBodyHtml = true
-            })
+                /*model.GmailPassword = Crypto.Hash(model.GmailPassword);
+                context.Mails.Add(model);
+                context.SaveChanges();*/
+                using (var message = new MailMessage(FromEmail, ToEmail)
+                {
+                    Subject = Subject,
+                    Body = Body,
+                    IsBodyHtml = true
+                })
 
                 await smtp.SendMailAsync(message);
-            ViewBag.Message = "Your Mail Has been sent successfully";
-
-
-
-
+                ViewBag.Message = "Your Mail Has been sent successfully";
+            }
+            catch(SmtpFailedRecipientsException ex)
+            {
+                ModelState.AddModelError("", "There is some error sending the mails, please recheck your internet connection and password");
+            }
         }
 
         public string PopulateBody(string contents, string URL)
