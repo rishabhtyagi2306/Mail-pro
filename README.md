@@ -1,6 +1,6 @@
-# Mail-pro <img src="/images/LOGO2.png" width="30" height="30">
+# Mail-pro 
 
-A mailing app that helps you to send mails to a specified group of people created by you by using beautiful, predefined templates. This web app is designed specially for teachers for sending mails to a group of students.
+<img src="/images/LOGO2.png" width="120" height="150">A mailing app that helps you to send mails to a specified group of people created by you by using beautiful, predefined templates. This web app is designed specially for teachers for sending mails to a group of students.
 The working of the app will be as follows:
 1. Login using forms authentication.
 2. Signup using email verification i.e. a mail will be sent which will contain the activation link.
