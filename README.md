@@ -1,4 +1,4 @@
-# Mail-pro
+![Image](/images/LOGO2.png)# Mail-pro
 A mailing app that helps you to send mails to a specified group of people created by you by using beautiful, predefined templates. This web app is designed specially for teachers for sending mails to a group of students.
 The working of the app will be as follows:
 1. Login using forms authentication.
@@ -26,7 +26,7 @@ The working of the app will be as follows:
 ![Image](/images/Add_Student.png)
 
 ### View added students list.
-![Image](/images/View_Student.png)
+![Image](/images/View_student.png)
 
 ### Select templates according to your needs from soo many given beautiful templates.
 ![Image](/images/Template.png)
