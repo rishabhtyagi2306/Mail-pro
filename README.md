@@ -12,7 +12,24 @@ The working of the app will be as follows:
 9. There are few additional features like forgot password and reset password.
 
 ## Screenshots
+
+### Sign In page (Landing page).
 ![Image](/images/Sign_in.png)
+
+### Inbox.
 ![Image](/images/Sent_mails.png)
+
+### View Categories that are created by the faculty.
+![Image](/images/ViewCategory.png)
+
+### Add Student using the form or using excel sheet.
 ![Image](/images/Add_Student.png)
+
+### View added students list.
+![Image](/images/View_Student.png)
+
+### Select templates according to your needs from soo many given beautiful templates.
+![Image](/images/Template.png)
+
+### Compose mail using the editor.
 ![Image](/images/Compose.png)
