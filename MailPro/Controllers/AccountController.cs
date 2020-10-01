@@ -223,7 +223,7 @@ namespace MailPro.Controllers
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
             var FromEmail = new MailAddress("4as1827000224@gmail.com", "Mail Pro");
             var ToEmail = new MailAddress(FacultyEmail);
-            var FromEmailPassword = "Rishabh@123";
+            var FromEmailPassword = "*************";
             string Subject = "";
             string Body = "";
             if(EmailFor == "VerifyAccount")
