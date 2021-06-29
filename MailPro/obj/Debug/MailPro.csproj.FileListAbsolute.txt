@@ -81,3 +81,4 @@ C:\Users\hp\source\repos\MailPro\MailPro\bin\Antlr3.Runtime.pdb
 C:\Users\hp\source\repos\MailPro\MailPro\bin\Newtonsoft.Json.xml
 C:\Users\hp\source\repos\MailPro\MailPro\bin\System.Web.Optimization.xml
 C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\MailPro\MailPro\obj\Debug\MailPro.csproj.CoreCompileInputs.cache

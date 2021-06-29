@@ -42,6 +42,7 @@ namespace MailPro.Controllers
 
                     }
                     model.GmailPassword = "unknown";
+                    listing.Join();
                     context.Mails.Add(model);
                     context.SaveChanges();
 
@@ -182,7 +183,6 @@ namespace MailPro.Controllers
 
         public async Task sendprocess(StudentTable st, FacultyTable ft, Mails model)
         {
-
             try
             {
                 var FromEmail = new MailAddress(ft.FacultyEmail, ft.FacultyName);
@@ -191,6 +191,11 @@ namespace MailPro.Controllers
 
                 string URL = Session["TemplateUrl"].ToString();
                 string Subject = model.Subject;
+                string content = model.Contents;
+                if(content == null)
+                {
+                    model.Contents = "The Mail is sent by using template. Hence no preview is available.";
+                }
                 string Body = "Hello " + st.StudentName + ",<br/><br/>" + model.Contents;
                 Body = PopulateBody(Body, URL);
 
